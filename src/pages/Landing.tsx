@@ -1,8 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '../lib/supabase';
+import type { User } from '@supabase/supabase-js';
 
 const Landing: React.FC = () => {
   const navigate = useNavigate();
+  const [user, setUser] = useState<User | null>(null);
+  const [role, setRole] = useState<'applicant' | 'employer' | null>(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }: { data: { session: any } }) => {
+      if (session?.user) {
+        setUser(session.user);
+        setRole(session.user.user_metadata?.role || 'applicant');
+      }
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event: any, session: any) => {
+      setUser(session?.user || null);
+      if (session?.user) {
+        setRole(session.user.user_metadata?.role || 'applicant');
+      } else {
+        setRole(null);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   return (
     <div className="dot-grid relative min-h-screen overflow-hidden">
@@ -38,12 +62,40 @@ const Landing: React.FC = () => {
           The editorial-grade ATS and career platform designed for high-stakes engineering teams. We bridge the gap between resume claims and proven technical mastery.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <button onClick={() => navigate('/jobs')} className="px-8 py-4 bg-primary text-white rounded-lg font-bold text-lg flex items-center justify-center gap-2 hover:bg-[#93000d] transition-all">
-            Browse Opportunities <span className="material-symbols-outlined">arrow_forward</span>
-          </button>
-          <button onClick={() => navigate('/signup?role=employer')} className="px-8 py-4 bg-white text-neutral-950 border-2 border-neutral-950 rounded-lg font-bold text-lg hover:bg-neutral-50 transition-all">
-            For Employers
-          </button>
+          {!user ? (
+            <>
+              <button onClick={() => navigate('/jobs')} className="px-8 py-4 bg-primary text-white rounded-lg font-bold text-lg flex items-center justify-center gap-2 hover:bg-[#93000d] transition-all">
+                Browse Opportunities <span className="material-symbols-outlined">arrow_forward</span>
+              </button>
+              <button onClick={() => navigate('/signup?role=employer')} className="px-8 py-4 bg-white text-neutral-950 border-2 border-neutral-950 rounded-lg font-bold text-lg hover:bg-neutral-50 transition-all">
+                For Employers
+              </button>
+            </>
+          ) : (
+            <>
+              <button 
+                onClick={() => navigate(role === 'employer' ? '/employer/dashboard' : '/applicant/dashboard')} 
+                className="px-8 py-4 bg-primary text-white rounded-lg font-bold text-lg flex items-center justify-center gap-2 hover:bg-[#93000d] transition-all shadow-lg shadow-primary/20"
+              >
+                Go to My Dashboard <span className="material-symbols-outlined font-bold">dashboard</span>
+              </button>
+              {role === 'employer' ? (
+                <button 
+                  onClick={() => navigate('/employer/dashboard')} 
+                  className="px-8 py-4 bg-neutral-950 text-white rounded-lg font-bold text-lg hover:bg-black transition-all flex items-center justify-center gap-2"
+                >
+                  Post a Job <span className="material-symbols-outlined">add_circle</span>
+                </button>
+              ) : (
+                <button 
+                  onClick={() => navigate('/jobs')} 
+                  className="px-8 py-4 bg-white text-neutral-950 border-2 border-neutral-950 rounded-lg font-bold text-lg hover:bg-neutral-50 transition-all flex items-center justify-center gap-2"
+                >
+                  Explore Jobs <span className="material-symbols-outlined">search</span>
+                </button>
+              )}
+            </>
+          )}
         </div>
       </section>
 

@@ -21,12 +21,16 @@ export const useAntiCheat = (maxStrikes: number = 2, onAutoSubmit: () => void) =
     onAutoSubmitRef.current = onAutoSubmit;
   }, [onAutoSubmit]);
 
-  const addStrike = useCallback((type: 'FULLSCREEN_EXIT' | 'TAB_SWITCH') => {
+  const addStrike = useCallback((type: 'FULLSCREEN_EXIT' | 'TAB_SWITCH' | 'PHONE_DETECTED') => {
     setState(prev => ({
       ...prev,
       strikes: prev.strikes + 1,
       lastViolation: type,
     }));
+  }, []);
+
+  const acknowledgeWarning = useCallback(() => {
+    setState(prev => ({ ...prev, lastViolation: null }));
   }, []);
 
   // Separate effect for auto-submission to avoid side-effects in setState
@@ -111,6 +115,8 @@ export const useAntiCheat = (maxStrikes: number = 2, onAutoSubmit: () => void) =
   return {
     ...state,
     enterFullscreen,
+    addStrike,
+    acknowledgeWarning,
     resetStrikes: () => setState(prev => ({ ...prev, strikes: 0, lastViolation: null }))
   };
 };

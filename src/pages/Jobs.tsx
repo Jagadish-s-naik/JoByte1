@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../lib/supabase';
 
@@ -41,6 +41,8 @@ const Jobs: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
+  const [user, setUser] = useState<any>(null);
+  const [role, setRole] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const categories = ['All', 'Engineering', 'Design', 'Data', 'DevOps', 'Security', 'Mobile'];
@@ -87,7 +89,16 @@ const Jobs: React.FC = () => {
       }
     };
 
+    const fetchAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        setUser(session.user);
+        setRole(session.user.user_metadata?.role || 'applicant');
+      }
+    };
+
     fetchJobs();
+    fetchAuth();
   }, []);
 
   const filteredJobs = jobs.filter(job => {
@@ -109,11 +120,21 @@ const Jobs: React.FC = () => {
     <div className="bg-surface font-body text-on-background min-h-screen flex flex-col">
       <main className="dot-grid flex-1 pb-24">
         {/* Hero Bar */}
-        <section className="max-w-[900px] mx-auto pt-16 pb-8 px-6 text-center">
-          <h1 className="text-6xl md:text-7xl font-black tracking-tighter text-neutral-950 mb-4 italic">
-            Find your next <span className="text-primary">Career Leap</span>
-          </h1>
-          <p className="text-neutral-500 font-medium tracking-tight">Access the world's most exclusive engineering and architecture roles.</p>
+        <section className="max-w-[900px] mx-auto pt-16 pb-8 px-6">
+          <div className="flex items-center gap-4 mb-4">
+            {user && (
+              <Link 
+                to={role === 'employer' ? '/employer/dashboard' : '/applicant/dashboard'}
+                className="p-2 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-full transition-colors text-neutral-500 group"
+              >
+                <span className="material-symbols-outlined text-xl group-hover:-translate-x-1 transition-transform">arrow_back</span>
+              </Link>
+            )}
+            <h1 className="text-6xl md:text-7xl font-black tracking-tighter text-neutral-950 italic">
+              Find your next <span className="text-primary">Career Leap</span>
+            </h1>
+          </div>
+          <p className="text-neutral-500 font-medium tracking-tight text-center">Access the world's most exclusive engineering and architecture roles.</p>
         </section>
 
         {/* Search Bar Section */}
@@ -222,25 +243,22 @@ const Jobs: React.FC = () => {
                     {index === 0 && (
                       <span className="px-3 py-1 bg-[#E53935] text-white text-[10px] font-black tracking-widest uppercase rounded-full">TOP MATCH</span>
                     )}
-                    <span className="px-3 py-1 bg-neutral-100 text-neutral-500 text-[10px] font-black tracking-widest uppercase rounded-full">{job.type}</span>
-                  </div>
-                </div>
-                <div className="flex flex-wrap items-center justify-between gap-4">
-                  <div className="flex flex-wrap items-center gap-4">
-                    <div className="flex flex-wrap gap-2">
-                      {job.tags.slice(0, 4).map(tag => (
-                        <span key={tag} className="px-3 py-1 bg-[#FFF1F0] text-primary text-xs font-bold rounded">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <span className="text-neutral-400 text-xs flex items-center">{job.posted_at}</span>
                     <button 
                       onClick={() => setSelectedJob(job)}
                       className="px-4 py-2 text-neutral-600 font-bold text-xs uppercase tracking-widest hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
                     >
                       View Details
                     </button>
+                  </div>
+                </div>
+                
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex flex-wrap gap-2">
+                    {job.tags.slice(0, 3).map(tag => (
+                      <span key={tag} className="px-3 py-1 bg-[#FFF1F0] text-primary text-[10px] font-bold rounded uppercase tracking-wider">
+                        {tag}
+                      </span>
+                    ))}
                   </div>
                   <button 
                     onClick={async () => {

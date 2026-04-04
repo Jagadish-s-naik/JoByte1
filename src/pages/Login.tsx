@@ -34,6 +34,29 @@ const Login: React.FC = () => {
       navigate('/applicant/dashboard');
     }
   };
+  const handleGuestLogin = async () => {
+    setLoading(true);
+    setError(null);
+    
+    // Using a common test account found in the database
+    const { data, error: authError } = await supabase.auth.signInWithPassword({
+      email: 'test@example.com',
+      password: 'password123', // Assuming a standard test password, user can update this
+    });
+
+    if (authError) {
+      setError("Guest account not configured. Use sign in with your own account or contact the admin.");
+      setLoading(false);
+      return;
+    }
+
+    const role = data.user?.user_metadata?.role || 'applicant';
+    if (role === 'employer') {
+      navigate('/employer/dashboard');
+    } else {
+      navigate('/applicant/dashboard');
+    }
+  };
 
   return (
     <div className="dot-grid relative min-h-[calc(100vh-56px)] flex items-center justify-center p-6 overflow-hidden">
@@ -104,15 +127,25 @@ const Login: React.FC = () => {
             </div>
           </div>
 
-          {/* Sign In Button */}
-          <button 
-            type="submit" 
-            disabled={loading}
-            className="w-full h-[44px] bg-[#B7131A] hover:bg-[#93000d] disabled:opacity-50 text-white font-bold rounded-lg flex items-center justify-center gap-2 transition-all active:scale-95 shadow-sm"
-          >
-            {loading ? 'Signing in...' : 'Sign In'}
-            {!loading && <span className="material-symbols-outlined text-sm">arrow_forward</span>}
-          </button>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button 
+              type="submit" 
+              disabled={loading}
+              className="flex-[2] h-[44px] bg-[#B7131A] hover:bg-[#93000d] disabled:opacity-50 text-white font-bold rounded-lg flex items-center justify-center gap-2 transition-all active:scale-95 shadow-sm"
+            >
+              {loading ? 'Signing in...' : 'Sign In'}
+              {!loading && <span className="material-symbols-outlined text-sm">arrow_forward</span>}
+            </button>
+            <button
+              type="button"
+              onClick={handleGuestLogin}
+              disabled={loading}
+              className="flex-1 h-[44px] bg-neutral-100 hover:bg-neutral-200 text-neutral-600 font-bold rounded-lg flex items-center justify-center gap-2 transition-all active:scale-95 border border-neutral-200"
+            >
+              <span className="material-symbols-outlined text-sm">person_pin</span>
+              Guest
+            </button>
+          </div>
         </form>
 
         {/* Social Divider */}

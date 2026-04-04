@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   Mail, 
@@ -51,12 +51,12 @@ const Footer: React.FC = () => {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+            <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity group">
+              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
                 <span className="text-white font-black text-xl">J</span>
               </div>
               <span className="text-2xl font-bold tracking-tighter text-neutral-900 dark:text-white">JoByte</span>
-            </div>
+            </Link>
             <p className="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-xs">
               Advanced AI-powered recruitment engine for precision career architecture and enterprise-grade talent assessment.
             </p>

@@ -7,12 +7,13 @@ import {
 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import type { User, AuthChangeEvent, Session } from '@supabase/supabase-js';
-import { useNotifications, type NotificationType } from '../../context/NotificationContext';
+import { useNotifications } from '../../context/NotificationContext';
+
 
 const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const { notifications, unreadCount, markAsRead, markAllAsRead } = useNotifications();
   const [user, setUser] = useState<User | null>(null);
   const [role, setRole] = useState<'applicant' | 'employer' | null>(null);
@@ -35,6 +36,8 @@ const Navbar: React.FC = () => {
     return () => subscription.unsubscribe();
   }, []);
 
+
+
   const handleSignOut = async () => {
     await supabase.auth.signOut();
     navigate('/login');
@@ -51,7 +54,6 @@ const Navbar: React.FC = () => {
     ] : [])
   ];
 
-  // Close dropdowns when clicking outside (simple effect)
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -70,7 +72,9 @@ const Navbar: React.FC = () => {
     <header className="bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md border-b border-neutral-100 dark:border-neutral-800 shadow-sm docked full-width top-0 sticky z-50">
       <div className="flex justify-between items-center h-14 px-6 max-w-[1440px] mx-auto">
         <div className="flex items-center gap-8">
-          <Link to="/" className="text-2xl font-black tracking-tighter text-neutral-950 dark:text-white">JoByte</Link>
+          <Link to="/" className="text-2xl font-black tracking-tighter text-neutral-950 dark:text-white hover:opacity-80 transition-opacity">
+            JoByte
+          </Link>
           <nav className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
@@ -94,6 +98,15 @@ const Navbar: React.FC = () => {
         {/* Desktop User Section */}
         {user ? (
           <div className="hidden md:flex items-center gap-4">
+            {role === 'employer' && (
+              <button 
+                onClick={() => navigate('/employer/dashboard?action=create-job')}
+                className="flex items-center gap-2 px-4 py-1.5 bg-neutral-950 text-white rounded-lg text-[11px] font-black tracking-widest uppercase hover:bg-black transition-all active:scale-95 border border-white/10"
+              >
+                <span className="material-symbols-outlined text-sm">add_circle</span>
+                Post a Mission
+              </button>
+            )}
             <div className="relative notifications-dropdown-container">
               <button 
                 onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
@@ -204,7 +217,7 @@ const Navbar: React.FC = () => {
                   >
                     <div className="px-4 py-2 border-b border-neutral-100 dark:border-white/10">
                       <p className="text-sm font-bold text-neutral-950 dark:text-white leading-none">
-                        {user.user_metadata?.full_name || 'User'}
+                        {user?.user_metadata?.full_name || 'User'}
                       </p>
                       <p className="text-[10px] text-neutral-500 uppercase tracking-wider mt-1">
                         {role}

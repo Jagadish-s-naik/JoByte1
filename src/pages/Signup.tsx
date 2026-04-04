@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Mail, 
@@ -16,6 +16,7 @@ import {
 import { supabase } from '../lib/supabase';
 
 const Signup: React.FC = () => {
+  const [searchParams] = useSearchParams();
   const [step, setStep] = useState(1);
   const [role, setRole] = useState<'applicant' | 'employer' | null>(null);
   const [formData, setFormData] = useState({
@@ -26,6 +27,14 @@ const Signup: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const roleParam = searchParams.get('role');
+    if (roleParam === 'employer' || roleParam === 'applicant') {
+      setRole(roleParam as 'employer' | 'applicant');
+      setStep(2);
+    }
+  }, [searchParams]);
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,6 +76,29 @@ const Signup: React.FC = () => {
 
     // Redirect to login or specific dashboard
     navigate('/login');
+  };
+
+  const handleGuestLogin = async () => {
+    setLoading(true);
+    setError(null);
+    
+    const { data, error: authError } = await supabase.auth.signInWithPassword({
+      email: 'test@example.com',
+      password: 'password123',
+    });
+
+    if (authError) {
+      setError("Guest account not configured. Please use standard registration or contact support.");
+      setLoading(false);
+      return;
+    }
+
+    const role = data.user?.user_metadata?.role || 'applicant';
+    if (role === 'employer') {
+      navigate('/employer/dashboard');
+    } else {
+      navigate('/applicant/dashboard');
+    }
   };
 
   return (
@@ -214,15 +246,34 @@ const Signup: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="pt-6 flex flex-col gap-4">
+                  <div className="pt-6 flex flex-col sm:flex-row gap-3">
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full btn-primary py-4 flex items-center justify-center gap-2 group"
+                      className="flex-[2] btn-primary py-4 flex items-center justify-center gap-2 group"
                     >
                       {loading ? 'Creating Account...' : 'Complete Registration'}
                       {!loading && <CheckCircle2 size={18} />}
                     </button>
+                    <div className="flex flex-1 gap-2">
+                      <Link
+                        to="/login"
+                        className="flex-1 px-4 py-4 bg-white/5 text-slate-300 font-bold rounded-xl border border-white/10 hover:bg-white/10 hover:text-white transition-all flex items-center justify-center text-sm"
+                      >
+                        Sign In
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={handleGuestLogin}
+                        disabled={loading}
+                        className="flex-1 px-4 py-4 bg-white/5 text-slate-300 font-bold rounded-xl border border-white/10 hover:bg-white/10 hover:text-white transition-all flex items-center justify-center gap-1 text-sm"
+                      >
+                        <span className="material-symbols-outlined text-sm">person</span>
+                        Guest
+                      </button>
+                    </div>
+                  </div>
+                  <div className="flex justify-center">
                     <button
                       type="button"
                       onClick={() => setStep(1)}

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
 import { useNavigate } from 'react-router-dom';
+import ApplicationProgressModal from '../../components/Applicant/ApplicationProgressModal';
+import type { Candidate } from '../../types';
 
 interface Mission {
   id?: string;
@@ -21,6 +23,7 @@ const ApplicantDashboard: React.FC = () => {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [applications, setApplications] = useState<Application[]>([]);
+  const [selectedApp, setSelectedApp] = useState<any>(null);
   const navigate = useNavigate();
   
   const [stats, setStats] = useState([
@@ -176,7 +179,11 @@ const ApplicantDashboard: React.FC = () => {
                       <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${getStatusStyle(app.status || '')}`}>
                         {app.status}
                       </span>
-                      <button className="text-neutral-400 hover:text-neutral-950 transition-colors">
+                      <button 
+                        onClick={() => setSelectedApp(app)}
+                        className="text-neutral-400 hover:text-neutral-950 transition-colors p-2 hover:bg-neutral-50 rounded-full"
+                        title="View detailed progress"
+                      >
                         <span className="material-symbols-outlined">chevron_right</span>
                       </button>
                     </div>
@@ -259,8 +266,13 @@ const ApplicantDashboard: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    
+    <ApplicationProgressModal 
+      application={selectedApp} 
+      onClose={() => setSelectedApp(null)} 
+    />
+  </div>
+);
 };
 
 export default ApplicantDashboard;
