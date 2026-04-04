@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JoByte Applicant Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#e5e2e1",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2e3132",
+                        "surface-variant": "#e1e3e4",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-background": "#191c1d",
+                        "tertiary-fixed": "#afecff",
+                        "secondary-container": "#e5e2e1",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "surface-bright": "#f8f9fa",
+                        "surface": "#f8f9fa",
+                        "on-surface-variant": "#5b403d",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#ffb4ac",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#72d4ef",
+                        "primary": "#b7131a",
+                        "surface-container": "#edeeef",
+                        "on-secondary-container": "#656464",
+                        "on-error": "#ffffff",
+                        "secondary": "#5f5e5e",
+                        "primary-fixed": "#ffdad6",
+                        "surface-tint": "#bb171c",
+                        "on-primary-container": "#fffbff",
+                        "on-tertiary-container": "#f9fdff",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#93000d",
+                        "outline": "#906f6c",
+                        "on-tertiary-fixed": "#001f27",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-dim": "#d9dadb",
+                        "tertiary": "#006578",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c9c6c5",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-secondary-fixed-variant": "#474646",
+                        "outline-variant": "#e4beb9",
+                        "on-surface": "#191c1d",
+                        "on-primary-fixed": "#410002",
+                        "on-tertiary-fixed-variant": "#004e5d",
+                        "primary-container": "#db322f",
+                        "on-error-container": "#93000a",
+                        "background": "#f8f9fa",
+                        "tertiary-container": "#008097"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            background-image: radial-gradient(circle, #D1D5DB 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-on-surface">
+<!-- TopNavBar (Logged-IN) -->
+<header class="bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md border-b border-neutral-100 dark:border-neutral-800 shadow-sm docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center h-14 px-6 max-w-[1440px] mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black tracking-tighter text-neutral-950 dark:text-white">JoByte</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-['Inter'] font-medium text-sm tracking-tight text-neutral-600 dark:text-neutral-400 hover:text-[#B7131A] transition-colors duration-200" href="#">Find Jobs</a>
+<a class="font-['Inter'] font-medium text-sm tracking-tight text-neutral-600 dark:text-neutral-400 hover:text-[#B7131A] transition-colors duration-200" href="#">Assessments</a>
+<a class="font-['Inter'] font-bold text-sm tracking-tight text-[#B7131A] dark:text-[#E53935] border-b-2 border-[#B7131A]" href="#">My Applications</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-neutral-600 dark:text-neutral-400 scale-95 active:scale-100 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-neutral-200 overflow-hidden border border-neutral-100">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="Professional headshot of a young male professional in a clean studio setting with soft neutral lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9DjWOTcPJDT4OZ1vqYQjOCd-RujkZuE866PfzZSrs4VDrUd4czeGwJE01KSqRI9O34VHU0JV2EihaYnA53vIYLWs8fisKPrFwJjdRaqy-7yqJZO-wti5WxJ9mfCVWYSyEraDIinqrB7Zz3CZtVL1IOF5kE_Y9sRKT1w-uFv8MMfWiwrIR9KOlfXpbYGLwMXEuJrcSFWnnoEUAUUMDGL6a8L70rA4KuNGe4VxFoGQ-ad_Vy3yw7tG6hU3rXtl5Obd7Apx7z-joXg"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-6 py-8">
+<!-- Dashboard Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-10">
+<div>
+<h1 class="text-[28px] font-bold tracking-tight text-neutral-950">
+                    Welcome back, <span class="text-primary">john</span>
+</h1>
+<p class="text-sm text-secondary font-medium mt-1">Your career architecture is evolving. 4 updates since yesterday.</p>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto">
+<div class="relative flex-grow md:w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 text-lg" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant/40 rounded-lg focus:ring-2 focus:ring-neutral-950 focus:border-neutral-950 transition-all text-sm" placeholder="Search applications..." type="text"/>
+</div>
+<button class="p-2 border border-outline-variant/40 rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-neutral-600" data-icon="filter_list">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Stat Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+<!-- Total Applications -->
+<div class="bg-surface-container-lowest border border-outline-variant/20 p-6 rounded-lg shadow-[0px_12px_32px_rgba(13,13,13,0.04)]">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary-container rounded-lg">
+<span class="material-symbols-outlined text-on-primary" data-icon="work" style="font-variation-settings: 'FILL' 1;">work</span>
+</div>
+<span class="px-2 py-1 bg-green-50 text-green-700 text-[10px] font-bold rounded-full">+12%</span>
+</div>
+<p class="text-xs font-bold uppercase tracking-widest text-secondary mb-1">Total Applications</p>
+<p class="text-3xl font-black text-neutral-950 tracking-tighter">42</p>
+</div>
+<!-- In Review -->
+<div class="bg-surface-container-lowest border border-outline-variant/20 p-6 rounded-lg shadow-[0px_12px_32px_rgba(13,13,13,0.04)]">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-amber-500 rounded-lg">
+<span class="material-symbols-outlined text-white" data-icon="visibility" style="font-variation-settings: 'FILL' 1;">visibility</span>
+</div>
+<span class="px-2 py-1 bg-green-50 text-green-700 text-[10px] font-bold rounded-full">+12%</span>
+</div>
+<p class="text-xs font-bold uppercase tracking-widest text-secondary mb-1">In Review</p>
+<p class="text-3xl font-black text-neutral-950 tracking-tighter">18</p>
+</div>
+<!-- Interviews -->
+<div class="bg-surface-container-lowest border border-outline-variant/20 p-6 rounded-lg shadow-[0px_12px_32px_rgba(13,13,13,0.04)]">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-emerald-600 rounded-lg">
+<span class="material-symbols-outlined text-white" data-icon="event" style="font-variation-settings: 'FILL' 1;">event</span>
+</div>
+<span class="px-2 py-1 bg-green-50 text-green-700 text-[10px] font-bold rounded-full">+12%</span>
+</div>
+<p class="text-xs font-bold uppercase tracking-widest text-secondary mb-1">Interviews</p>
+<p class="text-3xl font-black text-neutral-950 tracking-tighter">05</p>
+</div>
+<!-- Offers -->
+<div class="bg-surface-container-lowest border border-outline-variant/20 p-6 rounded-lg shadow-[0px_12px_32px_rgba(13,13,13,0.04)]">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-indigo-600 rounded-lg">
+<span class="material-symbols-outlined text-white" data-icon="stars" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+<span class="px-2 py-1 bg-green-50 text-green-700 text-[10px] font-bold rounded-full">+12%</span>
+</div>
+<p class="text-xs font-bold uppercase tracking-widest text-secondary mb-1">Offers</p>
+<p class="text-3xl font-black text-neutral-950 tracking-tighter">02</p>
+</div>
+</div>
+<!-- Dashboard Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-10 gap-8">
+<!-- Left Column: Recent Applications (60%) -->
+<div class="lg:col-span-6">
+<div class="flex justify-between items-end mb-6">
+<h2 class="text-xl font-bold text-neutral-950">Recent Applications</h2>
+<a class="text-sm font-bold text-primary hover:underline" href="#">View All ›</a>
+</div>
+<div class="bg-white border border-outline-variant/40 rounded-lg p-12 flex flex-col items-center justify-center min-h-[400px] text-center">
+<div class="w-16 h-16 bg-surface-container-low rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-neutral-400 text-3xl" data-icon="inbox">inbox</span>
+</div>
+<h3 class="text-lg font-semibold text-neutral-950 mb-1">No applications found.</h3>
+<p class="text-sm text-secondary max-w-xs mx-auto">Your journey hasn't started yet. Browse jobs to architecturalize your next career move.</p>
+<button class="mt-6 px-6 py-2 bg-neutral-950 text-white rounded-lg text-sm font-bold scale-95 active:scale-100 transition-transform">
+                        Browse Openings
+                    </button>
+</div>
+</div>
+<!-- Right Column: Scores & Assessments (38%) -->
+<div class="lg:col-span-4 space-y-8">
+<!-- Hiring Confidence Score -->
+<div class="bg-surface-container-lowest border border-outline-variant/20 p-6 rounded-lg shadow-[0px_12px_32px_rgba(13,13,13,0.04)]">
+<h2 class="text-sm font-bold uppercase tracking-widest text-secondary mb-6">Hiring Confidence Score</h2>
+<div class="flex items-end justify-between mb-2">
+<span class="text-4xl font-black text-neutral-950">0<span class="text-lg text-secondary font-normal tracking-normal">/100</span></span>
+<span class="text-xs font-bold text-secondary">ARCHITECT STAGE</span>
+</div>
+<div class="w-full h-2 bg-neutral-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-0 rounded-full transition-all duration-1000"></div>
+</div>
+<p class="mt-4 text-xs text-secondary leading-relaxed">Complete your <a class="text-primary font-bold underline" href="#">Assessment Profile</a> to generate your precision score for recruiters.</p>
+</div>
+<!-- Upcoming Assessments -->
+<div class="bg-surface-container-lowest border border-outline-variant/20 p-6 rounded-lg shadow-[0px_12px_32px_rgba(13,13,13,0.04)]">
+<h2 class="text-sm font-bold uppercase tracking-widest text-secondary mb-6">Upcoming Assessments</h2>
+<div class="flex flex-col items-center py-8 text-center">
+<span class="material-symbols-outlined text-neutral-300 text-4xl mb-3" data-icon="assignment_late">assignment_late</span>
+<p class="text-sm text-secondary italic font-medium">No pending assessments.</p>
+</div>
+<button class="w-full py-3 border border-outline-variant/40 rounded-lg text-xs font-bold text-neutral-600 hover:bg-neutral-950 hover:text-white transition-all uppercase tracking-widest">
+                        Practice Assessment
+                    </button>
+</div>
+<!-- Tips Panel -->
+<div class="bg-neutral-950 p-6 rounded-lg text-white">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<h3 class="text-lg font-bold italic mb-2">Pro Editorial Tip</h3>
+<p class="text-xs text-neutral-400 leading-relaxed">Candidates who complete their portfolio within 24 hours of applying have a 40% higher response rate from MNC hiring managers.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-20 border-t border-neutral-100 bg-white">
+<div class="max-w-7xl mx-auto px-8 py-12 flex flex-col md:flex-row justify-between items-center">
+<div class="mb-6 md:mb-0">
+<div class="text-neutral-900 font-bold mb-2">JoByte Editorial Engine</div>
+<p class="font-['Inter'] text-xs text-neutral-500">© 2024 JoByte Editorial Engine. Precision Career Architecture.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-['Inter'] text-xs text-neutral-500 hover:text-[#B7131A] underline transition-all" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-xs text-neutral-500 hover:text-[#B7131A] underline transition-all" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-xs text-neutral-500 hover:text-[#B7131A] underline transition-all" href="#">Cookie Settings</a>
+<a class="font-['Inter'] text-xs text-neutral-500 hover:text-[#B7131A] underline transition-all" href="#">Global Careers</a>
+</div>
+</div>
+</footer>
+</body></html>

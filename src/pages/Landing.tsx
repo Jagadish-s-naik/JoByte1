@@ -1,219 +1,147 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { 
-  ArrowRight, 
-  ShieldCheck, 
-  Brain, 
-  BarChart3, 
-  Globe,
-  Users,
-  Briefcase,
-  ChevronRight
-} from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Landing: React.FC = () => {
   const navigate = useNavigate();
 
-  const features = [
-    {
-      icon: Brain,
-      title: "AI-Driven Assessments",
-      description: "Our VJSA engine evaluates technical logic and problem-solving through real-world simulations."
-    },
-    {
-      icon: ShieldCheck,
-      title: "Anti-Cheat Environment",
-      description: "Secure, monitored testing environment ensuring 100% integrity for every applicant."
-    },
-    {
-      icon: BarChart3,
-      title: "Confidence Scoring",
-      description: "Objective metrics and 'Hiring Confidence Scores' help employers make data-backed decisions."
-    }
-  ];
-
   return (
-    <div className="bg-background text-white selection:bg-primary/30">
+    <div className="dot-grid relative min-h-screen overflow-hidden">
+      {/* Floating Tech Icons (Decorative) */}
+      <div className="absolute inset-0 pointer-events-none opacity-45 text-neutral-400">
+        <span className="material-symbols-outlined absolute top-[10%] left-[5%]" style={{ fontSize: '40px' }}>code</span>
+        <span className="material-symbols-outlined absolute top-[15%] right-[10%]" style={{ fontSize: '32px' }}>database</span>
+        <span className="material-symbols-outlined absolute bottom-[20%] left-[12%]" style={{ fontSize: '36px' }}>terminal</span>
+        <span className="material-symbols-outlined absolute top-[40%] left-[8%]" style={{ fontSize: '28px' }}>smartphone</span>
+        <span className="material-symbols-outlined absolute bottom-[10%] right-[15%]" style={{ fontSize: '44px' }}>briefcase_meal</span>
+        <span className="material-symbols-outlined absolute top-[60%] right-[5%]" style={{ fontSize: '30px' }}>security</span>
+        <span className="material-symbols-outlined absolute top-[25%] left-[45%]" style={{ fontSize: '24px' }}>memory</span>
+        <span className="material-symbols-outlined absolute bottom-[35%] left-[48%]" style={{ fontSize: '34px' }}>cloud_done</span>
+        <span className="material-symbols-outlined absolute top-[75%] left-[25%]" style={{ fontSize: '26px' }}>api</span>
+        <span className="material-symbols-outlined absolute top-[12%] left-[80%]" style={{ fontSize: '38px' }}>developer_mode</span>
+        <span className="material-symbols-outlined absolute bottom-[45%] right-[25%]" style={{ fontSize: '24px' }}>psychology</span>
+        <span className="material-symbols-outlined absolute top-[50%] left-[20%]" style={{ fontSize: '22px' }}>schema</span>
+        <span className="material-symbols-outlined absolute bottom-[5%] left-[50%]" style={{ fontSize: '40px' }}>verified</span>
+        <span className="material-symbols-outlined absolute top-[85%] right-[40%]" style={{ fontSize: '30px' }}>analytics</span>
+      </div>
+
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        {/* Abstract Background Elements */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none -z-10">
-          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/20 rounded-full blur-[120px] animate-pulse" />
-          <div className="absolute top-[20%] right-[-10%] w-[40%] h-[40%] bg-indigo-500/10 rounded-full blur-[100px]" />
+      <section className="relative pt-24 pb-20 px-6 max-w-7xl mx-auto text-center">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-8">
+          <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>stars</span>
+          Empowering the next generation of tech talent
         </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-400 text-xs font-medium tracking-wide mb-8"
-          >
-            <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
-            Empowering the next generation of technical hiring
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-bold font-display tracking-tight text-white mb-8 leading-[1.1]"
-          >
-            Hire the best with <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-indigo-400 to-primary-600">
-              Technical Confidence
-            </span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-slate-400 text-lg md:text-xl max-w-3xl mx-auto mb-12 leading-relaxed"
-          >
-            JoByte is an enterprise-grade recruitment platform that utilizes AI-driven virtual simulations 
-             to verify skills before you even interview. Data-driven hiring, simplified.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <button 
-              onClick={() => navigate('/jobs')}
-              className="w-full sm:w-auto btn-primary h-14 px-10 text-base flex items-center justify-center gap-3 group"
-            >
-              Browse Opportunities <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-            </button>
-            <button 
-              onClick={() => navigate('/signup')}
-              className="w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/10 h-14 px-10 rounded-xl font-bold transition-all flex items-center justify-center"
-            >
-              For Employers
-            </button>
-          </motion.div>
+        <h1 className="text-6xl md:text-8xl font-black text-[#111827] tracking-tighter mb-6 leading-tight">
+          Hire the best with<br />
+          <span className="text-[#E53935]">Technical Confidence</span>
+        </h1>
+        <p className="text-xl text-neutral-600 max-w-2xl mx-auto mb-10 font-medium leading-relaxed">
+          The editorial-grade ATS and career platform designed for high-stakes engineering teams. We bridge the gap between resume claims and proven technical mastery.
+        </p>
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <button onClick={() => navigate('/jobs')} className="px-8 py-4 bg-primary text-white rounded-lg font-bold text-lg flex items-center justify-center gap-2 hover:bg-[#93000d] transition-all">
+            Browse Opportunities <span className="material-symbols-outlined">arrow_forward</span>
+          </button>
+          <button onClick={() => navigate('/signup?role=employer')} className="px-8 py-4 bg-white text-neutral-950 border-2 border-neutral-950 rounded-lg font-bold text-lg hover:bg-neutral-50 transition-all">
+            For Employers
+          </button>
         </div>
       </section>
 
-      {/* Social Proof / Logos */}
-      <section className="py-16 border-y border-white/5 bg-surface-950/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-xs font-bold text-slate-500 uppercase tracking-widest mb-10">
-            Trusted by industry leaders in tech
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-30 grayscale saturate-0">
-            <div className="flex items-center gap-2 font-bold text-xl"><Globe size={24} /> TECHFLOW</div>
-            <div className="flex items-center gap-2 font-bold text-xl"><Users size={24} /> ZENTRY</div>
-            <div className="flex items-center gap-2 font-bold text-xl"><Briefcase size={24} /> NOVA LABS</div>
-            <div className="flex items-center gap-2 font-bold text-xl"><ShieldCheck size={24} /> SECURECORE</div>
+      {/* Trust Row */}
+      <section className="py-12 border-y border-neutral-100 bg-white/50 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-neutral-400 mb-8">TRUSTED BY INDUSTRY LEADERS IN TECH</p>
+          <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 grayscale opacity-70">
+            <div className="flex items-center gap-2 text-xl font-bold tracking-tighter">
+              <span className="material-symbols-outlined">water_drop</span> TECHFLOW
+            </div>
+            <div className="flex items-center gap-2 text-xl font-bold tracking-tighter">
+              <span className="material-symbols-outlined">center_focus_strong</span> ZENTRY
+            </div>
+            <div className="flex items-center gap-2 text-xl font-bold tracking-tighter">
+              <span className="material-symbols-outlined">hexagon</span> NOVA LABS
+            </div>
+            <div className="flex items-center gap-2 text-xl font-bold tracking-tighter">
+              <span className="material-symbols-outlined">shield</span> SECURECORE
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      {/* Features Section */}
+      <section className="py-24 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">The JoByte Advantage</h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">
-            Traditional resumes are outdated. We provide a comprehensive evaluation ecosystem that highlights true merit.
-          </p>
+          <h2 className="text-4xl font-bold tracking-tight text-neutral-950 mb-4">The JoByte Advantage</h2>
+          <p className="text-neutral-500 max-w-xl mx-auto">Precision-engineered tools to streamline your recruitment architecture and career growth.</p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {features.map((f, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-surface-900/50 border border-white/5 p-8 rounded-3xl group hover:border-primary/30 transition-all"
-            >
-              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
-                <f.icon size={28} />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">{f.title}</h3>
-              <p className="text-sm text-slate-400 leading-relaxed">{f.description}</p>
-            </motion.div>
-          ))}
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* Feature 1 */}
+          <div className="group bg-white p-8 rounded-lg border border-neutral-100 shadow-sm hover:border-t-[3px] hover:border-t-primary transition-all duration-300">
+            <div className="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
+              <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>psychology</span>
+            </div>
+            <h3 className="text-xl font-bold text-neutral-950 mb-3">AI Assessments</h3>
+            <p className="text-neutral-600 text-sm leading-relaxed">Context-aware technical challenges that adapt to the candidate's level in real-time, providing deep insights.</p>
+          </div>
+          {/* Feature 2 */}
+          <div className="group bg-white p-8 rounded-lg border border-neutral-100 shadow-sm hover:border-t-[3px] hover:border-t-primary transition-all duration-300">
+            <div className="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
+              <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>security</span>
+            </div>
+            <h3 className="text-xl font-bold text-neutral-950 mb-3">Anti-Cheat</h3>
+            <p className="text-neutral-600 text-sm leading-relaxed">Advanced proctoring and code-style fingerprinting ensure that the work you evaluate is 100% original talent.</p>
+          </div>
+          {/* Feature 3 */}
+          <div className="group bg-white p-8 rounded-lg border border-neutral-100 shadow-sm hover:border-t-[3px] hover:border-t-primary transition-all duration-300">
+            <div className="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
+              <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>verified</span>
+            </div>
+            <h3 className="text-xl font-bold text-neutral-950 mb-3">Confidence Scoring</h3>
+            <p className="text-neutral-600 text-sm leading-relaxed">A proprietary metric that quantifies the reliability of a candidate's skill profile based on cross-referenced data.</p>
+          </div>
         </div>
-      <main className="relative z-10 pt-32 pb-20 px-6 max-w-7xl mx-auto flex flex-col items-center text-center">
-        <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.8, ease: "easeOut" }}
-           className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-8"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-          </span>
-          Next-Gen Recruitment Engine
-        </motion.div>
-
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-          className="text-5xl md:text-8xl font-black font-display tracking-tight leading-[0.9] mb-8"
-        >
-          HIRE WITH <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-indigo-400 to-primary-600 animate-gradient-x">
-            ABSOLUTE CONFIDENCE
-          </span>
-        </motion.h1>
-
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-slate-400 text-lg md:text-xl max-w-2xl mb-12 font-medium leading-relaxed"
-        >
-          JoByte integrates <span className="text-white">Virtual Job Simulations</span> and <span className="text-white">AI-Driven Scoring</span> to find your perfect candidate, 10x faster and with zero bias.
-        </motion.p>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row items-center gap-6"
-        >
-          <button 
-            onClick={() => navigate('/signup?role=employer')}
-            className="w-full sm:w-auto btn-primary px-10 py-4 text-sm font-bold shadow-2xl shadow-primary/40 hover:scale-105 transition-all group"
-          >
-            Start Hiring Now <ChevronRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-          </button>
-          <button 
-            onClick={() => navigate('/jobs')}
-            className="w-full sm:w-auto px-10 py-4 bg-white/5 border border-white/10 rounded-2xl text-sm font-bold hover:bg-white/10 hover:border-white/20 transition-all"
-          >
-            Explore Jobs
-          </button>
-        </motion.div>
-        </main>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto bg-gradient-to-br from-primary/20 to-indigo-500/10 border border-primary/20 rounded-[3rem] p-12 text-center relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-[100px] rounded-full -mr-32 -mt-32" />
-          <h2 className="text-3xl md:text-5xl font-bold mb-8 relative z-10">Start your career journey or <br />hire top talent today.</h2>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
-            <button 
-              onClick={() => navigate('/signup')} 
-              className="btn-primary h-14 px-12 text-lg w-full sm:w-auto"
-            >
-              Get Started
-            </button>
-            <button 
-              onClick={() => navigate('/jobs')}
-              className="bg-white/5 hover:bg-white/10 border border-white/10 h-14 px-12 rounded-xl font-bold transition-all w-full sm:w-auto"
-            >
-              Learn More
-            </button>
+      {/* Hire Section */}
+      <section className="py-24 px-6 bg-neutral-950 text-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 relative z-10">
+          <div className="flex-1 text-left">
+            <div className="inline-block px-4 py-1 rounded-full border border-[#E53935] text-[#E53935] text-xs font-bold tracking-widest mb-6">
+              NEXT-GEN RECRUITMENT ENGINE
+            </div>
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 leading-[0.95]">
+              HIRE WITH <span className="text-[#E53935]">ABSOLUTE</span><br />CONFIDENCE
+            </h2>
+            <p className="text-neutral-400 text-lg mb-10 max-w-lg leading-relaxed">
+              Eliminate the noise in your hiring funnel. JoByte's editorial approach surfaces the top 1% of talent using verified technical architecture audits.
+            </p>
+            <div className="flex gap-4">
+              <button onClick={() => navigate('/signup?role=employer')} className="px-8 py-4 bg-primary text-white rounded-lg font-bold hover:bg-[#93000d] transition-all">Request Demo</button>
+              <button onClick={() => navigate('/jobs')} className="px-8 py-4 bg-transparent border border-neutral-700 text-white rounded-lg font-bold hover:bg-neutral-900 transition-all">Platform Tour</button>
+            </div>
+          </div>
+          <div className="flex-1 w-full max-w-lg">
+            <div className="relative bg-neutral-900 rounded-xl overflow-hidden shadow-2xl border border-neutral-800 p-2">
+              <img 
+                alt="Technical recruitment dashboard" 
+                className="rounded-lg w-full h-[400px] object-cover" 
+                src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=2850&ixlib=rb-4.0.3" 
+              />
+            </div>
+          </div>
+        </div>
+        {/* Background accent */}
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary opacity-10 blur-[120px]"></div>
+      </section>
+
+      {/* CTA Banner */}
+      <section className="py-24 px-6">
+        <div className="max-w-[900px] mx-auto bg-neutral-50 rounded-2xl p-12 text-center border border-neutral-100 shadow-sm">
+          <h2 className="text-3xl md:text-4xl font-black tracking-tight text-neutral-950 mb-6">Start your career journey with editorial precision.</h2>
+          <p className="text-neutral-500 mb-10 max-w-md mx-auto">Join 50,000+ engineers building their legacy at top-tier organizations worldwide.</p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <button onClick={() => navigate('/signup')} className="px-8 py-4 bg-primary text-white rounded-lg font-bold hover:bg-[#93000d] transition-all">Create Profile</button>
+            <button onClick={() => navigate('/jobs')} className="px-8 py-4 bg-neutral-950 text-white rounded-lg font-bold hover:bg-black transition-all">View Active Roles</button>
           </div>
         </div>
       </section>

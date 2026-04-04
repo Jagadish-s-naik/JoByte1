@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Assessment Complete | JoByte</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            background-image: radial-gradient(circle, #D1D5DB 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .dot-grid-bg {
+            background-image: radial-gradient(circle, #D1D5DB 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#e5e2e1",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2e3132",
+                        "surface-variant": "#e1e3e4",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-background": "#191c1d",
+                        "tertiary-fixed": "#afecff",
+                        "secondary-container": "#e5e2e1",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "surface-bright": "#f8f9fa",
+                        "surface": "#f8f9fa",
+                        "on-surface-variant": "#5b403d",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#ffb4ac",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#72d4ef",
+                        "primary": "#b7131a",
+                        "surface-container": "#edeeef",
+                        "on-secondary-container": "#656464",
+                        "on-error": "#ffffff",
+                        "secondary": "#5f5e5e",
+                        "primary-fixed": "#ffdad6",
+                        "surface-tint": "#bb171c",
+                        "on-primary-container": "#fffbff",
+                        "on-tertiary-container": "#f9fdff",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#93000d",
+                        "outline": "#906f6c",
+                        "on-tertiary-fixed": "#001f27",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-dim": "#d9dadb",
+                        "tertiary": "#006578",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c9c6c5",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-secondary-fixed-variant": "#474646",
+                        "outline-variant": "#e4beb9",
+                        "on-surface": "#191c1d",
+                        "on-primary-fixed": "#410002",
+                        "on-tertiary-fixed-variant": "#004e5d",
+                        "primary-container": "#db322f",
+                        "on-error-container": "#93000a",
+                        "background": "#f8f9fa",
+                        "tertiary-container": "#008097"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md border-b border-neutral-100 dark:border-neutral-800 shadow-sm docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center h-14 px-6 max-w-[1440px] mx-auto">
+<!-- Brand Logo -->
+<div class="text-2xl font-black tracking-tighter text-neutral-950 dark:text-white">
+                JoByte
+            </div>
+<!-- Navigation Links -->
+<div class="hidden md:flex items-center gap-8">
+<a class="font-['Inter'] font-medium text-sm tracking-tight text-neutral-600 dark:text-neutral-400 hover:text-[#B7131A] transition-colors duration-200" href="#">Find Jobs</a>
+<a class="font-['Inter'] font-bold text-sm tracking-tight text-[#B7131A] dark:text-[#E53935] border-b-2 border-[#B7131A]" href="#">Assessments</a>
+<a class="font-['Inter'] font-medium text-sm tracking-tight text-neutral-600 dark:text-neutral-400 hover:text-[#B7131A] transition-colors duration-200" href="#">Employers</a>
+<a class="font-['Inter'] font-medium text-sm tracking-tight text-neutral-600 dark:text-neutral-400 hover:text-[#B7131A] transition-colors duration-200" href="#">Pricing</a>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-neutral-600 dark:text-neutral-400 p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-full transition-colors" data-icon="notifications">notifications</button>
+<div class="flex items-center gap-3 pl-2 border-l border-neutral-100 dark:border-neutral-800">
+<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-neutral-200 dark:border-neutral-700 object-cover" data-alt="Close-up studio portrait of a professional man in a dark suit with soft cinematic lighting and a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9Lb3pTR74yrYwipV6yAEsFxicQ78V31rRH4I4bNMckv7OkvnBBabmt_A0n4SimhDwumnixmQWvkEWIZpnwNC9nD7I0QkLc7728tJ2ZsIOVBC6ycocLtAUKFTATRWDkVI51d0uaLSbUT_v__OLh4a4KYnlbo5nzWcfe2jcQzOuFd_V9Y7ed2BH72QT5wgHJsUWlV9gPLlEUuAgGuPHBDHHxasRImxLOP_0neLE1Y2aTsJBnevWkHvxfSk9T4LumkaUWgfFSA5IAQ"/>
+<span class="hidden lg:block font-['Inter'] font-semibold text-xs uppercase tracking-wider text-neutral-950 dark:text-white">Alexander Rossi</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center p-6 sm:p-12 relative overflow-hidden">
+<!-- Center Success Card -->
+<div class="w-full max-w-[560px] bg-white border border-neutral-200 shadow-md rounded-[16px] p-12 text-center z-10 relative" id="assessment-complete">
+<!-- Success Icon -->
+<div class="mx-auto w-16 h-16 bg-[#F0FDF4] rounded-[16px] flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-[#22C55E] text-[40px]" data-icon="check_circle">check_circle</span>
+</div>
+<!-- Header Content -->
+<h2 class="text-[28px] font-bold text-neutral-900 leading-tight mb-4">
+                Assessment Complete
+            </h2>
+<p class="text-[15px] text-neutral-500 leading-relaxed max-w-[420px] mx-auto mb-10">
+                Your results have been securely transmitted to Qubit Dynamics. A detailed performance report has been generated and attached to your application profile.
+            </p>
+<!-- Score Grid -->
+<div class="grid grid-cols-3 gap-3 mb-10">
+<!-- Card 1 -->
+<div class="bg-[#F9FAFB] border border-neutral-200 rounded-lg py-4 px-2">
+<span class="block text-[11px] font-bold text-neutral-500 tracking-wider mb-1">TECHNICAL</span>
+<span class="text-xl font-bold text-neutral-900">87%</span>
+</div>
+<!-- Card 2 -->
+<div class="bg-[#F9FAFB] border border-neutral-200 rounded-lg py-4 px-2">
+<span class="block text-[11px] font-bold text-neutral-500 tracking-wider mb-1">LOGIC</span>
+<span class="text-xl font-bold text-neutral-900">92%</span>
+</div>
+<!-- Card 3 -->
+<div class="bg-[#F9FAFB] border border-neutral-200 rounded-lg py-4 px-2">
+<span class="block text-[11px] font-bold text-neutral-500 tracking-wider mb-1">OVERALL</span>
+<span class="text-xl font-bold text-[#E53935]">89%</span>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full h-12 bg-[#B7131A] text-white font-bold rounded-lg hover:bg-[#93000d] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2">
+                Return to Dashboard
+            </button>
+<!-- Secondary Detail -->
+<div class="mt-8 pt-8 border-t border-neutral-100 flex items-center justify-center gap-4 text-xs text-neutral-400">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="lock">lock</span>
+                    Encrypted Data Transfer
+                </span>
+<span class="w-1 h-1 bg-neutral-300 rounded-full"></span>
+<span>ID: JB-992-QX</span>
+</div>
+</div>
+<!-- Decorative Background Elements (Architectural/Editorial) -->
+<div class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
+<div class="absolute top-20 left-10 w-96 h-[1px] bg-neutral-300 rotate-45"></div>
+<div class="absolute bottom-20 right-10 w-96 h-[1px] bg-neutral-300 rotate-45"></div>
+<div class="absolute top-1/2 left-1/4 w-32 h-32 border border-neutral-200 rounded-full -translate-y-1/2"></div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-white dark:bg-neutral-950 border-t border-neutral-100 dark:border-neutral-900 w-full py-12">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col gap-2 items-center md:items-start">
+<div class="text-neutral-900 dark:text-white font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-[#B7131A]" data-icon="architecture">architecture</span>
+                    JoByte Editorial Engine
+                </div>
+<p class="font-['Inter'] text-xs text-neutral-500">
+                    © 2024 JoByte Editorial Engine. Precision Career Architecture.
+                </p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Cookie Settings</a>
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Global Careers</a>
+</div>
+</div>
+</footer>
+</body></html>

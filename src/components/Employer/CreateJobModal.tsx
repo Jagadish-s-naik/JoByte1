@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { X, Briefcase, MapPin, DollarSign, List, ShieldCheck, FileText, CheckCircle2 } from 'lucide-react';
+import type { User as SupabaseUser, Session } from '@supabase/supabase-js';
 import { supabase } from '../../lib/supabase';
 
 interface CreateJobModalProps {
@@ -10,7 +10,7 @@ interface CreateJobModalProps {
 
 const CreateJobModal: React.FC<CreateJobModalProps> = ({ onClose, onSuccess }) => {
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<SupabaseUser | null>(null);
   
   const [formData, setFormData] = useState({
     title: '',
@@ -20,11 +20,13 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({ onClose, onSuccess }) =
     salary: '',
     tags: '',
     clearance: 'Alpha',
-    description: ''
+    description: '',
+    requirements: '',
+    benefits: ''
   });
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }: any) => {
+    supabase.auth.getSession().then(({ data: { session } }: { data: { session: Session | null } }) => {
       if (session?.user) {
         setUser(session.user);
         // Pre-fill company if available in metadata
@@ -45,8 +47,16 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({ onClose, onSuccess }) =
     setLoading(true);
 
     try {
-      const tagsArray = formData.tags.split(',').map(tag => tag.trim()).filter(t => t);
+      const tagsArray = formData.tags.split(',').map((tag: string) => tag.trim()).filter((t: string) => t);
       
+      const fullDescription = `
+${formData.description}
+
+${formData.requirements ? '### Requirements\n' + formData.requirements : ''}
+
+${formData.benefits ? '### Benefits\n' + formData.benefits : ''}
+`.trim();
+
       const { error } = await supabase.from('missions').insert({
         title: formData.title,
         company: formData.company,
@@ -55,7 +65,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({ onClose, onSuccess }) =
         salary: formData.salary,
         tags: tagsArray,
         clearance: formData.clearance,
-        description: formData.description,
+        description: fullDescription,
         employer_id: user?.id
       });
 
@@ -66,9 +76,10 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({ onClose, onSuccess }) =
       
       onSuccess();
       onClose();
-    } catch (err: any) {
-      console.error('Resolved Error creating job:', err.message || err);
-      alert(`Failed to post job: ${err.message || 'Unknown error'}`);
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      console.error('Resolved Error creating job:', errorMessage);
+      alert(`Failed to post job: ${errorMessage}`);
     } finally {
       setLoading(false);
     }
@@ -90,15 +101,16 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({ onClose, onSuccess }) =
         <div className="sticky top-0 z-10 bg-surface-900/80 backdrop-blur-md px-6 py-4 border-b border-white/10 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center">
-              <Briefcase className="text-primary" size={20} />
+              <span className="material-symbols-outlined text-primary text-xl">work</span>
             </div>
             <h2 className="text-xl font-bold font-display text-white">Create Job Posting</h2>
           </div>
           <button 
+            type="button"
             onClick={onClose}
             className="p-2 text-slate-400 hover:text-white bg-white/5 rounded-full hover:bg-white/10 transition-colors"
           >
-            <X size={20} />
+            <span className="material-symbols-outlined text-xl">close</span>
           </button>
         </div>
 
@@ -110,7 +122,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({ onClose, onSuccess }) =
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Job Title *</label>
                 <div className="relative">
-                  <Briefcase className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-base">work</span>
                   <input
                     type="text"
                     name="title"
@@ -127,7 +139,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({ onClose, onSuccess }) =
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Company Name *</label>
                 <div className="relative">
-                  <Briefcase className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-base">business</span>
                   <input
                     type="text"
                     name="company"
@@ -144,7 +156,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({ onClose, onSuccess }) =
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Location *</label>
                 <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-base">location_on</span>
                   <input
                     type="text"
                     name="location"
@@ -161,7 +173,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({ onClose, onSuccess }) =
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Salary Range</label>
                 <div className="relative">
-                  <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-base">payments</span>
                   <input
                     type="text"
                     name="salary"
@@ -192,7 +204,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({ onClose, onSuccess }) =
               {/* Clearance (Difficulty) */}
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2 flex items-center gap-2">
-                  VJSA Assessment Level <ShieldCheck size={14} className="text-primary" />
+                  VJSA Assessment Level <span className="material-symbols-outlined text-primary text-sm">verified_user</span>
                 </label>
                 <select
                   name="clearance"
@@ -212,7 +224,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({ onClose, onSuccess }) =
             <div>
               <label className="block text-sm font-medium text-slate-300 mb-2">Required Skills / Tags</label>
               <div className="relative">
-                <List className="absolute left-3 top-3 text-slate-500" size={16} />
+                <span className="material-symbols-outlined absolute left-3 top-3 text-slate-500 text-base">label</span>
                 <input
                   type="text"
                   name="tags"
@@ -228,14 +240,46 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({ onClose, onSuccess }) =
             <div>
               <label className="block text-sm font-medium text-slate-300 mb-2">Job Description</label>
               <div className="relative">
-                <FileText className="absolute left-3 top-3 text-slate-500" size={16} />
+                <span className="material-symbols-outlined absolute left-3 top-3 text-slate-500 text-base">description</span>
                 <textarea
                   name="description"
                   required
                   value={formData.description}
                   onChange={handleChange}
-                  placeholder="Describe the role, responsibilities, and requirements..."
-                  rows={6}
+                  placeholder="Describe the role and responsibilities..."
+                  rows={4}
+                  className="w-full bg-slate-800/50 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm resize-y custom-scrollbar"
+                />
+              </div>
+            </div>
+
+            {/* Requirements */}
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2">Requirements</label>
+              <div className="relative">
+                <span className="material-symbols-outlined absolute left-3 top-3 text-slate-500 text-base">fact_check</span>
+                <textarea
+                  name="requirements"
+                  value={formData.requirements}
+                  onChange={handleChange}
+                  placeholder="List the key requirements and qualifications..."
+                  rows={3}
+                  className="w-full bg-slate-800/50 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm resize-y custom-scrollbar"
+                />
+              </div>
+            </div>
+
+            {/* Benefits */}
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2">Benefits & Perks</label>
+              <div className="relative">
+                <span className="material-symbols-outlined absolute left-3 top-3 text-slate-500 text-base">redeem</span>
+                <textarea
+                  name="benefits"
+                  value={formData.benefits}
+                  onChange={handleChange}
+                  placeholder="What benefits does the company provide?"
+                  rows={3}
                   className="w-full bg-slate-800/50 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm resize-y custom-scrollbar"
                 />
               </div>
@@ -259,7 +303,7 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({ onClose, onSuccess }) =
                   <div className="w-5 h-5 rounded-full border-2 border-white/20 border-t-white animate-spin" />
                 ) : (
                   <>
-                    <CheckCircle2 size={18} /> Publish Job
+                    <span className="material-symbols-outlined text-[18px]">check_circle</span> Publish Job
                   </>
                 )}
               </button>

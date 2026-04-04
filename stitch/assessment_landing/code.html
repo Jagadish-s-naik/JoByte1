@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JoByte | Assessment Landing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            background-image: radial-gradient(circle, #D1D5DB 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed": "#e5e2e1",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2e3132",
+                        "surface-variant": "#e1e3e4",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-background": "#191c1d",
+                        "tertiary-fixed": "#afecff",
+                        "secondary-container": "#e5e2e1",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "surface-bright": "#f8f9fa",
+                        "surface": "#f8f9fa",
+                        "on-surface-variant": "#5b403d",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#ffb4ac",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#72d4ef",
+                        "primary": "#b7131a",
+                        "surface-container": "#edeeef",
+                        "on-secondary-container": "#656464",
+                        "on-error": "#ffffff",
+                        "secondary": "#5f5e5e",
+                        "primary-fixed": "#ffdad6",
+                        "surface-tint": "#bb171c",
+                        "on-primary-container": "#fffbff",
+                        "on-tertiary-container": "#f9fdff",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#93000d",
+                        "outline": "#906f6c",
+                        "on-tertiary-fixed": "#001f27",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-dim": "#d9dadb",
+                        "tertiary": "#006578",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c9c6c5",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-secondary-fixed-variant": "#474646",
+                        "outline-variant": "#e4beb9",
+                        "on-surface": "#191c1d",
+                        "on-primary-fixed": "#410002",
+                        "on-tertiary-fixed-variant": "#004e5d",
+                        "primary-container": "#db322f",
+                        "on-error-container": "#93000a",
+                        "background": "#f8f9fa",
+                        "tertiary-container": "#008097"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen flex flex-col text-on-background">
+<!-- Top Navigation Bar -->
+<nav class="bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md text-[#B7131A] dark:text-[#E53935] font-['Inter'] font-medium text-sm tracking-tight border-b border-neutral-100 dark:border-neutral-800 shadow-sm docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center h-14 px-6 max-w-[1440px] mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black tracking-tighter text-neutral-950 dark:text-white">JoByte</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-[#B7131A] dark:text-[#E53935] font-bold border-b-2 border-[#B7131A] transition-colors duration-200" href="#">Find Jobs</a>
+<a class="text-neutral-600 dark:text-neutral-400 hover:text-[#B7131A] transition-colors duration-200" href="#">Assessments</a>
+<a class="text-neutral-600 dark:text-neutral-400 hover:text-[#B7131A] transition-colors duration-200" href="#">Employers</a>
+<a class="text-neutral-600 dark:text-neutral-400 hover:text-[#B7131A] transition-colors duration-200" href="#">Pricing</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-neutral-600 hover:text-[#B7131A] transition-transform scale-95 active:scale-100">notifications</button>
+<div class="flex items-center gap-2 border-l border-neutral-200 pl-4">
+<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-neutral-200" data-alt="Professional headshot of a young male professional in a smart casual outfit, soft studio lighting, clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3S69BNIDFT--SdnZpuCToTgyZw848Wzdp8RD84t2c_hMCXbbBUdW5qE5Q6VtMEbLZ5pmsmOriih2UB_JMCyjVLQHQTV0I1vtrM40Hn2qauUGz03f3IdkEy4khaxFefCX_V3RxZic1xkNybJxBturKsPmahFwhqxOt48keD1qoRS6Ispo8xLUcbOu2Z_mFyxS3-Yym76QChuh8PHN3XYEOHPsg7J13Wtm9WiOPMh5Rpi7YcPZO63MEFekHJnX3KYYZlNT30oSzdQ"/>
+<span class="material-symbols-outlined text-neutral-600">expand_more</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-grow flex items-center justify-center py-12 px-4 relative" id="assessment-start">
+<!-- Assessment Card -->
+<section class="max-w-[680px] w-full bg-white rounded-2xl border border-outline-variant/40 shadow-xl overflow-hidden">
+<!-- Card Header -->
+<header class="bg-surface-container-low border-b border-outline-variant/20 p-6 flex flex-col gap-4">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-[#FFF1F0] flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-[#E53935] text-2xl" data-icon="shield">shield</span>
+</div>
+<div>
+<h2 class="text-xl font-bold tracking-tight text-neutral-900 leading-none mb-1">Virtual Skills Assessment (VJSA)</h2>
+<p class="text-[11px] font-bold uppercase text-neutral-500 tracking-[0.08em]">QUBIT DYNAMICS › QUANTUM SYSTEMS ARCHITECT</p>
+</div>
+</div>
+<span class="bg-[#FFF1F0] text-[#E53935] text-[11px] font-bold px-2 py-1 rounded-[4px] uppercase">LEVEL 5</span>
+</div>
+</header>
+<!-- Card Body -->
+<div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-10">
+<!-- Left Column: Rules -->
+<div class="flex flex-col gap-6">
+<h3 class="text-xs font-black uppercase tracking-widest text-neutral-400 mb-2">ASSESSMENT RULES</h3>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-green-600 text-xl" data-icon="check_circle">check_circle</span>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-neutral-900">Environmental Stability</span>
+<p class="text-sm text-neutral-500 leading-relaxed">Ensure a quiet, well-lit space with a neutral background.</p>
+</div>
+</div>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-amber-500 text-xl" data-icon="warning">warning</span>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-neutral-900">Active Monitoring</span>
+<p class="text-sm text-neutral-500 leading-relaxed">Browsing session and tab switches are logged via JoByte Proctored AI.</p>
+</div>
+</div>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-red-600 text-xl" data-icon="lock">lock</span>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-neutral-900">Hardware Lock</span>
+<p class="text-sm text-neutral-500 leading-relaxed">External peripherals and multi-monitor setups must be disconnected.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Features -->
+<div class="flex flex-col gap-6">
+<h3 class="text-xs font-black uppercase tracking-widest text-neutral-400 mb-2">PLATFORM FEATURES</h3>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-[#E53935] text-xl" data-icon="public">public</span>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-neutral-900">Global Benchmarking</span>
+<p class="text-sm text-neutral-500 leading-relaxed">Your performance is indexed against global architecture standards.</p>
+</div>
+</div>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-neutral-400 text-xl" data-icon="schedule">schedule</span>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-neutral-900">Dynamic Timing</span>
+<p class="text-sm text-neutral-500 leading-relaxed">Total duration: 45 minutes. Auto-submission upon expiration.</p>
+</div>
+</div>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-neutral-400 text-xl" data-icon="info">info</span>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-neutral-900">Instant Feedback</span>
+<p class="text-sm text-neutral-500 leading-relaxed">High-level results available immediately post-assessment.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Identity Confirmation Section -->
+<div class="px-8 pb-8 pt-2">
+<label class="text-xs font-black uppercase tracking-widest text-neutral-400 mb-3 block">CONFIRM IDENTITY</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-neutral-400 text-lg" data-icon="person">person</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 bg-surface-container-low border border-outline-variant/40 rounded-lg text-neutral-900 font-bold focus:outline-none cursor-not-allowed" readonly="" type="text" value="john doe"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+<span class="text-[10px] bg-neutral-200 text-neutral-500 font-bold px-1.5 py-0.5 rounded uppercase">Verified</span>
+</div>
+</div>
+</div>
+<!-- Card Footer -->
+<footer class="p-8 pt-0">
+<button class="w-full h-12 bg-primary hover:bg-[#A51117] text-white font-bold rounded-lg transition-all active:scale-[0.98] flex items-center justify-center gap-2 shadow-lg shadow-primary/10">
+                    Start Professional Assessment
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</footer>
+</section>
+<!-- Decorative Asset Background -->
+<div class="absolute bottom-12 right-12 opacity-5 hidden lg:block select-none pointer-events-none">
+<span class="text-[12rem] font-black leading-none text-neutral-900 tracking-tighter">VJSA</span>
+</div>
+</main>
+<!-- Footer Section -->
+<footer class="bg-white dark:bg-neutral-950 font-['Inter'] text-xs text-neutral-500 w-full py-12 border-t border-neutral-100 dark:border-neutral-900">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="text-neutral-900 dark:text-white font-bold text-base">JoByte</span>
+<p>© 2024 JoByte Editorial Engine. Precision Career Architecture.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Privacy Policy</a>
+<a class="text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Terms of Service</a>
+<a class="text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Cookie Settings</a>
+<a class="text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Global Careers</a>
+</div>
+</div>
+</footer>
+</body></html>

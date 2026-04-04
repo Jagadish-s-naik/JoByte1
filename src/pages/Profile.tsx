@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { motion } from 'framer-motion';
+import type { User as SupabaseUser } from '@supabase/supabase-js';
 import { User, Mail, Save, Building, ShieldCheck, CheckCircle2 } from 'lucide-react';
-import Navbar from '../components/layout/Navbar';
 
 const Profile: React.FC = () => {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<SupabaseUser | null>(null);
   const [role, setRole] = useState<'applicant' | 'employer' | string>('');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -47,7 +47,7 @@ const Profile: React.FC = () => {
       
       setSuccessMsg('Profile updated successfully!');
       setTimeout(() => setSuccessMsg(''), 3000);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Failed to update profile:', err);
     } finally {
       setSaving(false);
@@ -58,7 +58,6 @@ const Profile: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
       
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
         <motion.div

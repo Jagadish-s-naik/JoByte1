@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#e5e2e1",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#2e3132",
+                    "surface-variant": "#e1e3e4",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-background": "#191c1d",
+                    "tertiary-fixed": "#afecff",
+                    "secondary-container": "#e5e2e1",
+                    "primary-fixed-dim": "#ffb4ac",
+                    "surface-bright": "#f8f9fa",
+                    "surface": "#f8f9fa",
+                    "on-surface-variant": "#5b403d",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#ffb4ac",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#72d4ef",
+                    "primary": "#b7131a",
+                    "surface-container": "#edeeef",
+                    "on-secondary-container": "#656464",
+                    "on-error": "#ffffff",
+                    "secondary": "#5f5e5e",
+                    "primary-fixed": "#ffdad6",
+                    "surface-tint": "#bb171c",
+                    "on-primary-container": "#fffbff",
+                    "on-tertiary-container": "#f9fdff",
+                    "surface-container-low": "#f3f4f5",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#93000d",
+                    "outline": "#906f6c",
+                    "on-tertiary-fixed": "#001f27",
+                    "surface-container-high": "#e7e8e9",
+                    "surface-dim": "#d9dadb",
+                    "tertiary": "#006578",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#c9c6c5",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-secondary-fixed-variant": "#474646",
+                    "outline-variant": "#e4beb9",
+                    "on-surface": "#191c1d",
+                    "on-primary-fixed": "#410002",
+                    "on-tertiary-fixed-variant": "#004e5d",
+                    "primary-container": "#db322f",
+                    "on-error-container": "#93000a",
+                    "background": "#f8f9fa",
+                    "tertiary-container": "#008097"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"],
+                    "mono": ["JetBrains Mono", "monospace"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .dot-grid {
+            background-image: radial-gradient(circle, #D1D5DB 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-white font-body text-on-surface min-h-screen dot-grid">
+<!-- Top Focus Bar -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-neutral-100 px-6 py-3">
+<div class="max-w-[1440px] mx-auto flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-sm font-black tracking-tighter text-neutral-900 leading-tight">Quantum Systems Architect</span>
+<span class="text-[10px] uppercase tracking-widest font-bold text-secondary">Task 2 of 2</span>
+</div>
+<!-- Fullscreen Status Pill -->
+<div class="hidden md:flex bg-[#F9FAFB] border border-neutral-100 rounded-full px-4 py-1 items-center gap-2">
+<span class="text-[12px] text-neutral-500 font-medium">http://localhost:5173 — to exit full screen, press Esc</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex flex-col items-end">
+<span class="text-[10px] uppercase tracking-widest font-black text-neutral-400">INTEGRITY SCORE</span>
+<span class="text-sm font-bold text-green-600">100%</span>
+</div>
+<div class="relative w-10 h-10 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-neutral-100" cx="20" cy="20" fill="transparent" r="18" stroke="currentColor" stroke-width="3"></circle>
+<circle class="text-green-500" cx="20" cy="20" fill="transparent" r="18" stroke="currentColor" stroke-dasharray="113" stroke-dashoffset="0" stroke-width="3"></circle>
+</svg>
+<span class="absolute material-symbols-outlined text-green-600 text-lg" data-icon="shield_checked" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Assessment Canvas -->
+<main class="max-w-[900px] mx-auto py-12 px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+<!-- LEFT PANEL: Mission Parameters -->
+<section class="bg-white border border-outline-variant/40 rounded-xl p-6 shadow-sm">
+<header class="mb-6">
+<h2 class="text-primary font-black text-xs tracking-[0.2em] flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="terminal">terminal</span>
+                        MISSION PARAMETERS
+                    </h2>
+</header>
+<div class="space-y-4">
+<p class="text-sm text-on-surface leading-relaxed">
+                        Implement a basic error correction parity check for the incoming quantum data stream. The stabilizer must validate the checksum against the current qubit state vector before the next pulse sequence begins.
+                    </p>
+<div class="space-y-2">
+<span class="text-[10px] font-bold text-secondary uppercase tracking-widest">Required Implementation:</span>
+<div class="bg-[#F9FAFB] border border-neutral-100 rounded-lg p-4 font-mono text-[13px] text-neutral-700 leading-relaxed">
+<code class="block">
+                                bool validate_parity(uint8_t data) {<br/>
+                                  // TODO: Implement bitwise XOR<br/>
+                                  // return parity_bit;<br/>
+                                }
+                            </code>
+</div>
+</div>
+<div class="pt-4 border-t border-neutral-50 flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-xs font-medium text-neutral-500">System Priority: High</span>
+</div>
+</div>
+</section>
+<!-- RIGHT PANEL: Editor Area -->
+<section class="flex flex-col h-full min-h-[500px]">
+<!-- Editor Header -->
+<div class="bg-surface-container-low border-t border-l border-r border-outline-variant/40 rounded-t-lg px-4 py-2 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-secondary" data-icon="description">description</span>
+<span class="text-[11px] font-bold tracking-wider text-neutral-600 font-mono">STABILIZER_V1.CPP</span>
+</div>
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-green-400"></div>
+</div>
+</div>
+<!-- Editor Body -->
+<div class="flex-grow bg-white border border-outline-variant/40 rounded-b-lg flex font-mono text-[13px] overflow-hidden">
+<!-- Line Numbers -->
+<div class="w-10 bg-surface-container-lowest border-r border-neutral-50 py-4 flex flex-col items-center text-[#9CA3AF] select-none">
+<span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+</div>
+<!-- Text Area -->
+<div class="p-4 flex-grow relative bg-white">
+<div class="text-neutral-400 italic mb-2">// Begin quantum parity validation</div>
+<div class="text-neutral-800">
+<span class="text-blue-600">#include</span> &lt;iostream&gt;<br/>
+<span class="text-blue-600">#include</span> &lt;cstdint&gt;<br/><br/>
+<span class="text-purple-600 font-bold">bool</span> <span class="text-emerald-700">validate_parity</span>(uint8_t data) {<br/>
+                                <span class="text-neutral-400">// Type logic here</span><br/>
+                                <span class="w-[2px] h-4 bg-primary inline-block align-middle cursor-blink"></span>
+</div>
+</div>
+</div>
+<!-- Editor Footer / Actions -->
+<div class="mt-4 flex items-center justify-between">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-outline-variant/20 text-xs font-bold text-secondary uppercase tracking-widest hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="play_arrow">play_arrow</span>
+                        SIMULATE RUN
+                    </button>
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-primary text-white text-xs font-bold uppercase tracking-widest hover:opacity-90 active:scale-95 transition-all shadow-md">
+<span class="material-symbols-outlined text-sm" data-icon="backup" style="font-variation-settings: 'FILL' 1;">backup</span>
+                        SUBMIT DATA
+                    </button>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer Content (Suppressed main nav per requirements) -->
+<footer class="mt-auto py-8 border-t border-neutral-100">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 bg-primary"></div>
+<span class="text-[10px] font-black tracking-tighter text-neutral-900 uppercase">JoByte Editorial Engine</span>
+</div>
+<p class="font-['Inter'] text-xs text-neutral-400">
+                © 2024 JoByte Editorial Engine. Precision Career Architecture.
+            </p>
+<div class="flex gap-6">
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] transition-all" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] transition-all" href="#">Support Terminal</a>
+</div>
+</div>
+</footer>
+</body></html>

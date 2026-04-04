@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create Account | JoByte Editorial Engine</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#e5e2e1",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#2e3132",
+                    "surface-variant": "#e1e3e4",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-background": "#191c1d",
+                    "tertiary-fixed": "#afecff",
+                    "secondary-container": "#e5e2e1",
+                    "primary-fixed-dim": "#ffb4ac",
+                    "surface-bright": "#f8f9fa",
+                    "surface": "#f8f9fa",
+                    "on-surface-variant": "#5b403d",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#ffb4ac",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#72d4ef",
+                    "primary": "#b7131a",
+                    "surface-container": "#edeeef",
+                    "on-secondary-container": "#656464",
+                    "on-error": "#ffffff",
+                    "secondary": "#5f5e5e",
+                    "primary-fixed": "#ffdad6",
+                    "surface-tint": "#bb171c",
+                    "on-primary-container": "#fffbff",
+                    "on-tertiary-container": "#f9fdff",
+                    "surface-container-low": "#f3f4f5",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#93000d",
+                    "outline": "#906f6c",
+                    "on-tertiary-fixed": "#001f27",
+                    "surface-container-high": "#e7e8e9",
+                    "surface-dim": "#d9dadb",
+                    "tertiary": "#006578",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#c9c6c5",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-secondary-fixed-variant": "#474646",
+                    "outline-variant": "#e4beb9",
+                    "on-surface": "#191c1d",
+                    "on-primary-fixed": "#410002",
+                    "on-tertiary-fixed-variant": "#004e5d",
+                    "primary-container": "#db322f",
+                    "on-error-container": "#93000a",
+                    "background": "#f8f9fa",
+                    "tertiary-container": "#008097"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #FFFFFF;
+            background-image: radial-gradient(circle, #D1D5DB 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0px 12px 32px rgba(13, 13, 13, 0.04);
+        }
+    </style>
+</head>
+<body class="font-body text-on-surface antialiased min-h-screen flex flex-col">
+<!-- TopNavBar (Logged-OUT State) -->
+<nav class="bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md text-[#B7131A] dark:text-[#E53935] font-['Inter'] font-medium text-sm tracking-tight docked full-width top-0 sticky z-50 border-b border-neutral-100 dark:border-neutral-800 shadow-sm">
+<div class="flex justify-between items-center h-14 px-6 max-w-[1440px] mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black tracking-tighter text-neutral-950 dark:text-white">JoByte</span>
+<div class="hidden md:flex gap-6">
+<a class="text-neutral-600 dark:text-neutral-400 hover:text-[#B7131A] transition-colors duration-200" href="#">Find Jobs</a>
+<a class="text-neutral-600 dark:text-neutral-400 hover:text-[#B7131A] transition-colors duration-200" href="#">Assessments</a>
+<a class="text-neutral-600 dark:text-neutral-400 hover:text-[#B7131A] transition-colors duration-200" href="#">Employers</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<a class="text-neutral-600 font-medium px-4 py-2 hover:text-primary transition-colors" href="#">Sign In</a>
+<button class="bg-primary text-white px-6 py-2 rounded-lg font-bold scale-95 active:scale-100 transition-transform">Get Started</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center justify-center px-4 py-12 relative overflow-hidden">
+<!-- Floating Decorative Icons (Abstract Background Elements) -->
+<div class="absolute top-20 left-[10%] opacity-10 select-none">
+<span class="material-symbols-outlined text-9xl">work</span>
+</div>
+<div class="absolute bottom-20 right-[10%] opacity-10 select-none">
+<span class="material-symbols-outlined text-9xl">verified_user</span>
+</div>
+<div class="absolute top-1/2 left-[5%] opacity-5 select-none">
+<span class="material-symbols-outlined text-8xl">architecture</span>
+</div>
+<!-- Registration Card -->
+<div class="w-full max-w-[520px] bg-white border border-outline-variant/40 rounded-xl editorial-shadow p-10 z-10">
+<div class="flex flex-col items-center text-center mb-8">
+<span class="text-3xl font-black tracking-tighter text-neutral-950 mb-6">JoByte</span>
+<h2 class="text-3xl font-bold text-neutral-950 tracking-tight mb-2">Create your account</h2>
+<p class="text-secondary text-sm">Join the precision-engineered career network.</p>
+</div>
+<div class="mb-8">
+<p class="text-center font-bold text-neutral-950 mb-6">I want to join as a...</p>
+<div class="grid grid-cols-2 gap-4">
+<!-- Applicant Card (Selected) -->
+<button class="relative flex flex-col items-center p-6 border-2 border-primary bg-[#FFF9F9] rounded-lg transition-all text-left">
+<div class="absolute top-0 left-0 right-0 h-[3px] bg-primary rounded-t-lg"></div>
+<span class="material-symbols-outlined text-primary text-3xl mb-3">school</span>
+<span class="font-bold text-neutral-950 text-sm">Applicant</span>
+<span class="text-[11px] text-secondary mt-1">Seeking opportunities</span>
+</button>
+<!-- Employer Card -->
+<button class="flex flex-col items-center p-6 border border-outline-variant/40 bg-white hover:border-neutral-950 transition-all rounded-lg text-left">
+<span class="material-symbols-outlined text-secondary text-3xl mb-3">corporate_fare</span>
+<span class="font-bold text-neutral-950 text-sm">Employer</span>
+<span class="text-[11px] text-secondary mt-1">Hiring top talent</span>
+</button>
+</div>
+</div>
+<button class="w-full bg-primary text-white py-4 rounded-lg font-bold text-sm tracking-wide flex items-center justify-center gap-2 hover:brightness-110 active:scale-[0.98] transition-all">
+                Continue <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<div class="mt-8 text-center">
+<p class="text-sm text-secondary">
+                    Already have an account? 
+                    <a class="text-primary font-bold hover:underline ml-1" href="#">Sign In</a>
+</p>
+</div>
+</div>
+<!-- Trust Row -->
+<div class="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-4 px-6">
+<div class="flex items-center gap-2 text-[13px] text-secondary font-medium">
+<span class="material-symbols-outlined text-lg text-secondary">shield</span>
+                Secure &amp; Private
+            </div>
+<div class="flex items-center gap-2 text-[13px] text-secondary font-medium">
+<span class="material-symbols-outlined text-lg text-secondary">verified</span>
+                Verified Profiles
+            </div>
+<div class="flex items-center gap-2 text-[13px] text-secondary font-medium">
+<span class="material-symbols-outlined text-lg text-secondary">business_center</span>
+                Direct Industry Links
+            </div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-white dark:bg-neutral-950 w-full py-12 border-t border-neutral-100 dark:border-neutral-900 dot-grid texture transition">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="text-neutral-900 dark:text-white font-bold text-lg">JoByte</span>
+<p class="font-['Inter'] text-xs text-neutral-500">© 2024 JoByte Editorial Engine. Precision Career Architecture.</p>
+</div>
+<div class="flex gap-6">
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Cookie Settings</a>
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Global Careers</a>
+</div>
+</div>
+</footer>
+</body></html>

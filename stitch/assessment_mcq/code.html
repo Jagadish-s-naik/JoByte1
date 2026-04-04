@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JoByte | Assessment MCQ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            background-image: radial-gradient(circle, #D1D5DB 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#e5e2e1",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#2e3132",
+                    "surface-variant": "#e1e3e4",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-background": "#191c1d",
+                    "tertiary-fixed": "#afecff",
+                    "secondary-container": "#e5e2e1",
+                    "primary-fixed-dim": "#ffb4ac",
+                    "surface-bright": "#f8f9fa",
+                    "surface": "#f8f9fa",
+                    "on-surface-variant": "#5b403d",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#ffb4ac",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#72d4ef",
+                    "primary": "#b7131a",
+                    "surface-container": "#edeeef",
+                    "on-secondary-container": "#656464",
+                    "on-error": "#ffffff",
+                    "secondary": "#5f5e5e",
+                    "primary-fixed": "#ffdad6",
+                    "surface-tint": "#bb171c",
+                    "on-primary-container": "#fffbff",
+                    "on-tertiary-container": "#f9fdff",
+                    "surface-container-low": "#f3f4f5",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#93000d",
+                    "outline": "#906f6c",
+                    "on-tertiary-fixed": "#001f27",
+                    "surface-container-high": "#e7e8e9",
+                    "surface-dim": "#d9dadb",
+                    "tertiary": "#006578",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#c9c6c5",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-secondary-fixed-variant": "#474646",
+                    "outline-variant": "#e4beb9",
+                    "on-surface": "#191c1d",
+                    "on-primary-fixed": "#410002",
+                    "on-tertiary-fixed-variant": "#004e5d",
+                    "primary-container": "#db322f",
+                    "on-error-container": "#93000a",
+                    "background": "#f8f9fa",
+                    "tertiary-container": "#008097"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="min-h-screen text-on-background">
+<!-- TopBar (Sticky, 1px bottom border) -->
+<header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm border-b border-neutral-100 shadow-sm">
+<div class="max-w-[1440px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-6">
+<!-- Branding Casing Integrity -->
+<span class="text-2xl font-black tracking-tighter text-neutral-950">JoByte</span>
+<div class="h-8 w-px bg-neutral-200"></div>
+<div class="flex flex-col">
+<span class="font-headline font-bold text-base leading-tight">Quantum Systems Architect</span>
+<span class="text-[13px] text-secondary font-medium">Task 1 of 2</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-right">
+<p class="text-[11px] font-bold tracking-widest text-secondary uppercase">INTEGRITY SCORE</p>
+<p class="text-lg font-black text-primary leading-none">100%</p>
+</div>
+<!-- Progress Ring -->
+<div class="relative w-10 h-10 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-neutral-100" cx="20" cy="20" fill="transparent" r="18" stroke="currentColor" stroke-width="3"></circle>
+<circle class="text-primary" cx="20" cy="20" fill="transparent" r="18" stroke="currentColor" stroke-dasharray="113" stroke-dashoffset="0" stroke-width="3"></circle>
+</svg>
+<span class="absolute material-symbols-outlined text-primary text-sm filled-icon" data-icon="security">security</span>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-16 flex justify-center items-start min-h-[calc(100vh-64px)]">
+<!-- Question Card (700px centered) -->
+<div class="w-full max-w-[700px] bg-white rounded-xl shadow-[0px_12px_32px_rgba(13,13,13,0.04)] border border-outline-variant/30 overflow-hidden">
+<!-- Header -->
+<div class="px-8 pt-8 pb-4">
+<span class="text-[13px] font-extrabold tracking-[0.1em] text-primary uppercase">MISSION TASK: SYSTEM ANALYSIS</span>
+</div>
+<!-- Question Text -->
+<div class="px-8 pb-8">
+<h1 class="text-[17px] font-semibold text-[#111827] leading-relaxed">
+                    Which of these best describes the primary challenge of maintaining qubit stability in a multi-gate quantum processor?
+                </h1>
+</div>
+<!-- Answer Options -->
+<div class="px-8 space-y-3">
+<!-- Option A -->
+<button class="group w-full h-[52px] px-4 flex items-center justify-between bg-white border border-neutral-200 rounded-lg transition-all duration-200 hover:border-primary/50 hover:bg-[#FFF9F9]">
+<div class="flex items-center gap-4">
+<div class="w-5 h-5 rounded-full border-2 border-neutral-300 group-hover:border-primary transition-colors"></div>
+<span class="text-[14px] font-medium text-neutral-600 group-hover:text-neutral-900 transition-colors">Atmospheric pressure differentials at sea level.</span>
+</div>
+</button>
+<!-- Option B (Selected State) -->
+<button class="w-full h-[52px] px-4 flex items-center justify-between bg-[#FFF1F0] border-2 border-primary rounded-lg transition-all duration-200 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center">
+<div class="w-2.5 h-2.5 bg-primary rounded-full"></div>
+</div>
+<span class="text-[14px] font-bold text-neutral-900">Quantum decoherence due to environmental thermal noise.</span>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</button>
+<!-- Option C -->
+<button class="group w-full h-[52px] px-4 flex items-center justify-between bg-white border border-neutral-200 rounded-lg transition-all duration-200 hover:border-primary/50 hover:bg-[#FFF9F9]">
+<div class="flex items-center gap-4">
+<div class="w-5 h-5 rounded-full border-2 border-neutral-300 group-hover:border-primary transition-colors"></div>
+<span class="text-[14px] font-medium text-neutral-600 group-hover:text-neutral-900 transition-colors">Latency in classical binary pre-processing buffers.</span>
+</div>
+</button>
+<!-- Option D -->
+<button class="group w-full h-[52px] px-4 flex items-center justify-between bg-white border border-neutral-200 rounded-lg transition-all duration-200 hover:border-primary/50 hover:bg-[#FFF9F9]">
+<div class="flex items-center gap-4">
+<div class="w-5 h-5 rounded-full border-2 border-neutral-300 group-hover:border-primary transition-colors"></div>
+<span class="text-[14px] font-medium text-neutral-600 group-hover:text-neutral-900 transition-colors">Linear scalability of cryogenic cooling hardware.</span>
+</div>
+</button>
+</div>
+<!-- Footer -->
+<div class="mt-8 px-8 py-6 bg-surface-container-lowest border-t border-neutral-50 flex justify-end items-center gap-4">
+<button class="px-6 py-2 text-[12px] font-bold text-secondary uppercase tracking-wider hover:text-neutral-950 transition-colors">Skip for now</button>
+<button class="h-[44px] px-8 bg-primary hover:bg-primary-container text-white text-[12px] font-bold rounded-lg transition-all duration-200 shadow-md flex items-center justify-center uppercase tracking-widest scale-95 active:scale-100">
+                    CONFIRM RESPONSE
+                </button>
+</div>
+</div>
+</main>
+<!-- Side Decoration (Editorial Flair) -->
+<div class="fixed bottom-12 left-12 hidden xl:block">
+<div class="p-4 bg-neutral-950 text-white rounded-lg shadow-2xl max-w-[200px]">
+<p class="text-[10px] font-bold uppercase tracking-widest text-primary mb-2">Technical Note</p>
+<p class="text-[11px] leading-relaxed text-neutral-400">Quantum decoherence is the loss of quantum coherence, the process in which a system's behavior changes from quantum to classical.</p>
+</div>
+</div>
+<!-- Background Decoration Images (Subtle) -->
+<div class="fixed top-24 right-0 w-64 h-64 opacity-10 pointer-events-none grayscale translate-x-1/2">
+<img alt="" class="w-full h-full object-contain" data-alt="minimalist architectural drawing of a complex geometric structure with clean lines and technical annotations on a white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmdhWwsxm8LuwNDJlBIt-OFHccZXWUV28ZqUbnLzWhaswC9odd2VcOcSgSz7t9O1NqCaaeDEApifQUqv9fBGBfOwCpdCr3P04MGkMb21yV6V2qUtGZ4aSXY_C-NXWyhA1ahJprcoExP1BkHetxbJ0r3vrtgE7d2ccZWzUCdBQLXPGAgiVZSd9rGJtko-PrZkUStW1-kV4kGzzt8e6cQ21BXD6sjnAiVXE4ucUcR5IuR0iBTnMIUjRAW4pgwlykC4vuoE1VR9Gr9g"/>
+</div>
+<!-- Hidden Navigation Suppressed per Task (Linear/Focused Journey) -->
+<div class="hidden">
+<!-- Footer logic defined in JSON would go here if not suppressed -->
+</div>
+</body></html>

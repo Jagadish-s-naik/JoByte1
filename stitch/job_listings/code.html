@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#e5e2e1",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2e3132",
+                        "surface-variant": "#e1e3e4",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-background": "#191c1d",
+                        "tertiary-fixed": "#afecff",
+                        "secondary-container": "#e5e2e1",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "surface-bright": "#f8f9fa",
+                        "surface": "#f8f9fa",
+                        "on-surface-variant": "#5b403d",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#ffb4ac",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#72d4ef",
+                        "primary": "#b7131a",
+                        "surface-container": "#edeeef",
+                        "on-secondary-container": "#656464",
+                        "on-error": "#ffffff",
+                        "secondary": "#5f5e5e",
+                        "primary-fixed": "#ffdad6",
+                        "surface-tint": "#bb171c",
+                        "on-primary-container": "#fffbff",
+                        "on-tertiary-container": "#f9fdff",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#93000d",
+                        "outline": "#906f6c",
+                        "on-tertiary-fixed": "#001f27",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-dim": "#d9dadb",
+                        "tertiary": "#006578",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c9c6c5",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-secondary-fixed-variant": "#474646",
+                        "outline-variant": "#e4beb9",
+                        "on-surface": "#191c1d",
+                        "on-primary-fixed": "#410002",
+                        "on-tertiary-fixed-variant": "#004e5d",
+                        "primary-container": "#db322f",
+                        "on-error-container": "#93000a",
+                        "background": "#f8f9fa",
+                        "tertiary-container": "#008097"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .dot-grid {
+            background-image: radial-gradient(circle, #D1D5DB 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-background">
+<!-- TopNavBar Strategy: Using Shared Component JSON logic -->
+<nav class="bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md text-[#B7131A] font-['Inter'] font-medium text-sm tracking-tight border-b border-neutral-100 dark:border-neutral-800 shadow-sm docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center h-14 px-6 max-w-[1440px] mx-auto">
+<div class="text-2xl font-black tracking-tighter text-neutral-950 dark:text-white">JoByte</div>
+<div class="hidden md:flex items-center gap-8">
+<!-- Active Navigation Mapping -->
+<a class="text-[#B7131A] dark:text-[#E53935] font-bold border-b-2 border-[#B7131A] h-14 flex items-center" href="#">Find Jobs</a>
+<a class="text-neutral-600 dark:text-neutral-400 hover:text-[#B7131A] transition-colors duration-200" href="#">Assessments</a>
+<a class="text-neutral-600 dark:text-neutral-400 hover:text-[#B7131A] transition-colors duration-200" href="#">Employers</a>
+<a class="text-neutral-600 dark:text-neutral-400 hover:text-[#B7131A] transition-colors duration-200" href="#">Pricing</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-neutral-600 dark:text-neutral-400 hover:text-[#B7131A] transition-colors">notifications</button>
+<div class="h-8 w-8 rounded-full bg-neutral-200 overflow-hidden">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="professional male portrait with confident expression wearing executive attire in a brightly lit studio environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVyv50qj_JPy18RpKUKfo3IFPWpWUcNKqn3OywEuND7qpxZnqpE5Y9bBqfO0Q2AKU1SImkFKLNl7bdJ5dwIyp-x16eVQiqxJzeYFrOcz74usPoFowWQlymKeCYA5Sq2fDG6_gwIDSDbntaDXYe91M-vAhcDzJFkvyXkj1Rq-XyR4ZrApb5sfHY2HFSVpB9yzBuccTlYvQiabCGNfo-6IDM4YVpa5sspS4P8w5pvGqxZTKWcw-bVLQ1zcIjb7ZPoENFCmDbEg5vtw"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="dot-grid min-h-screen pb-24">
+<!-- Hero Bar -->
+<section class="max-w-[900px] mx-auto pt-16 pb-8 px-6 text-center">
+<h1 class="text-6xl md:text-7xl font-black tracking-tighter text-neutral-950 mb-4">
+                Find your next <span class="text-primary">Career Leap</span>
+</h1>
+<p class="text-neutral-500 font-medium tracking-tight">Access the world's most exclusive engineering and architecture roles.</p>
+</section>
+<!-- Search Bar Section -->
+<div class="max-w-[900px] mx-auto px-6 mb-12">
+<div class="bg-white border border-outline-variant/40 rounded-lg h-16 shadow-xl flex items-center px-2">
+<div class="flex-1 flex items-center px-4 gap-3">
+<span class="material-symbols-outlined text-neutral-400">search</span>
+<input class="w-full border-none focus:ring-0 text-sm font-medium placeholder:text-neutral-400" placeholder="Job title or keywords" type="text"/>
+</div>
+<div class="h-8 w-[1px] bg-neutral-200"></div>
+<div class="flex-1 flex items-center px-4 gap-3">
+<span class="material-symbols-outlined text-neutral-400">location_on</span>
+<input class="w-full border-none focus:ring-0 text-sm font-medium placeholder:text-neutral-400" placeholder="Location or Remote" type="text"/>
+</div>
+<button class="bg-primary text-white px-8 h-12 rounded-lg font-bold text-sm tracking-tight hover:brightness-110 transition-all active:scale-95">
+                    Search Jobs
+                </button>
+</div>
+<!-- Categories -->
+<div class="flex flex-wrap items-center gap-3 mt-8">
+<button class="px-5 py-2 rounded-full bg-primary text-white text-xs font-bold tracking-widest uppercase">All</button>
+<button class="px-5 py-2 rounded-full bg-white border border-neutral-200 text-neutral-600 text-xs font-bold tracking-widest uppercase hover:border-primary hover:text-primary transition-colors">Engineering</button>
+<button class="px-5 py-2 rounded-full bg-white border border-neutral-200 text-neutral-600 text-xs font-bold tracking-widest uppercase hover:border-primary hover:text-primary transition-colors">Design</button>
+<button class="px-5 py-2 rounded-full bg-white border border-neutral-200 text-neutral-600 text-xs font-bold tracking-widest uppercase hover:border-primary hover:text-primary transition-colors">Product</button>
+<button class="px-5 py-2 rounded-full bg-white border border-neutral-200 text-neutral-600 text-xs font-bold tracking-widest uppercase hover:border-primary hover:text-primary transition-colors">Marketing</button>
+<button class="px-5 py-2 rounded-full bg-white border border-neutral-200 text-neutral-600 text-xs font-bold tracking-widest uppercase hover:border-primary hover:text-primary transition-colors">Sales</button>
+<div class="ml-auto">
+<button class="flex items-center gap-2 px-4 py-2 text-neutral-900 font-bold text-xs uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm">settings</span>
+                        Filters
+                    </button>
+</div>
+</div>
+</div>
+<!-- Job Listings -->
+<div class="max-w-[900px] mx-auto px-6 flex flex-col gap-6">
+<!-- Job Card 1 -->
+<div class="group bg-white border border-outline-variant/40 rounded-xl p-6 transition-all hover:border-t-[3px] hover:border-t-primary shadow-sm hover:shadow-md">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-5">
+<div class="w-14 h-14 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-3xl">work</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-neutral-950 mb-1">Senior React Developer</h3>
+<div class="flex items-center gap-3 text-sm text-neutral-500 font-medium">
+<span class="font-bold text-neutral-900">Razorpay</span>
+<span class="material-symbols-outlined text-xs text-yellow-500" style="font-variation-settings: 'FILL' 1;">star</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span>Bengaluru, India</span>
+</div>
+<div class="flex items-center gap-1 text-primary font-bold">
+<span class="material-symbols-outlined text-sm">payments</span>
+<span>$80k - $120k</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="px-3 py-1 bg-[#E53935] text-white text-[10px] font-black tracking-widest uppercase rounded-full">TOP MATCH</span>
+<span class="px-3 py-1 bg-neutral-100 text-neutral-500 text-[10px] font-black tracking-widest uppercase rounded-full">Full-time</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-[#FFF1F0] text-primary text-xs font-bold rounded">React</span>
+<span class="px-3 py-1 bg-[#FFF1F0] text-primary text-xs font-bold rounded">TypeScript</span>
+<span class="px-3 py-1 bg-[#FFF1F0] text-primary text-xs font-bold rounded">Node.js</span>
+<span class="ml-2 text-neutral-400 text-xs flex items-center">2 days ago</span>
+</div>
+<button class="group/btn flex items-center gap-2 text-primary font-bold text-sm hover:translate-x-1 transition-transform">
+                        Start Assessment 
+                        <span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Job Card 2 -->
+<div class="group bg-white border border-outline-variant/40 rounded-xl p-6 transition-all hover:border-t-[3px] hover:border-t-primary shadow-sm hover:shadow-md">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-5">
+<div class="w-14 h-14 bg-neutral-900 rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-3xl">hub</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-neutral-950 mb-1">Quantum Systems Architect</h3>
+<div class="flex items-center gap-3 text-sm text-neutral-500 font-medium">
+<span class="font-bold text-neutral-900">Qubit Dynamics</span>
+<span class="material-symbols-outlined text-xs text-yellow-500" style="font-variation-settings: 'FILL' 1;">star</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">language</span>
+<span>Remote</span>
+</div>
+<div class="flex items-center gap-1 text-primary font-bold">
+<span class="material-symbols-outlined text-sm">payments</span>
+<span>$160k - $210k</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="px-3 py-1 bg-[#E53935] text-white text-[10px] font-black tracking-widest uppercase rounded-full">TOP MATCH</span>
+<span class="px-3 py-1 bg-neutral-100 text-neutral-500 text-[10px] font-black tracking-widest uppercase rounded-full">Full-time</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-[#FFF1F0] text-primary text-xs font-bold rounded">Python</span>
+<span class="px-3 py-1 bg-[#FFF1F0] text-primary text-xs font-bold rounded">Quantum Computing</span>
+<span class="px-3 py-1 bg-[#FFF1F0] text-primary text-xs font-bold rounded">C++</span>
+<span class="ml-2 text-neutral-400 text-xs flex items-center">5 hours ago</span>
+</div>
+<button class="group/btn flex items-center gap-2 text-primary font-bold text-sm hover:translate-x-1 transition-transform">
+                        Start Assessment 
+                        <span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Job Card 3 -->
+<div class="group bg-white border border-outline-variant/40 rounded-xl p-6 transition-all hover:border-t-[3px] hover:border-t-primary shadow-sm hover:shadow-md">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-5">
+<div class="w-14 h-14 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-3xl">security</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-neutral-950 mb-1">Orbital AI Safety Officer</h3>
+<div class="flex items-center gap-3 text-sm text-neutral-500 font-medium">
+<span class="font-bold text-neutral-900">Aegis Defense</span>
+<span class="material-symbols-outlined text-xs text-yellow-500" style="font-variation-settings: 'FILL' 1;">star</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span>Washington, D.C.</span>
+</div>
+<div class="flex items-center gap-1 text-primary font-bold">
+<span class="material-symbols-outlined text-sm">payments</span>
+<span>$140k - $185k</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="px-3 py-1 bg-neutral-100 text-neutral-500 text-[10px] font-black tracking-widest uppercase rounded-full">Full-time</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-[#FFF1F0] text-primary text-xs font-bold rounded">AI Safety</span>
+<span class="px-3 py-1 bg-[#FFF1F0] text-primary text-xs font-bold rounded">Ethics</span>
+<span class="px-3 py-1 bg-[#FFF1F0] text-primary text-xs font-bold rounded">Rust</span>
+<span class="ml-2 text-neutral-400 text-xs flex items-center">Just now</span>
+</div>
+<button class="group/btn flex items-center gap-2 text-primary font-bold text-sm hover:translate-x-1 transition-transform">
+                        Start Assessment 
+                        <span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Strategy -->
+<footer class="bg-white dark:bg-neutral-950 border-t border-neutral-100 dark:border-neutral-900 py-12">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="text-neutral-900 dark:text-white font-bold">JoByte</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Cookie Settings</a>
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Global Careers</a>
+</div>
+<div class="font-['Inter'] text-xs text-neutral-500 opacity-80">
+                © 2024 JoByte Editorial Engine. Precision Career Architecture.
+            </div>
+</div>
+</footer>
+</body></html>

@@ -11,8 +11,10 @@ import {
   FileText
 } from 'lucide-react';
 
+import type { Candidate } from '../../types';
+
 interface CandidateReportProps {
-  candidate: any;
+  candidate: Candidate;
   onClose: () => void;
 }
 

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Profile Settings | JoByte</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            background-image: radial-gradient(circle, #D1D5DB 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#e5e2e1",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2e3132",
+                        "surface-variant": "#e1e3e4",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-background": "#191c1d",
+                        "tertiary-fixed": "#afecff",
+                        "secondary-container": "#e5e2e1",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "surface-bright": "#f8f9fa",
+                        "surface": "#f8f9fa",
+                        "on-surface-variant": "#5b403d",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#ffb4ac",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#72d4ef",
+                        "primary": "#b7131a",
+                        "surface-container": "#edeeef",
+                        "on-secondary-container": "#656464",
+                        "on-error": "#ffffff",
+                        "secondary": "#5f5e5e",
+                        "primary-fixed": "#ffdad6",
+                        "surface-tint": "#bb171c",
+                        "on-primary-container": "#fffbff",
+                        "on-tertiary-container": "#f9fdff",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#93000d",
+                        "outline": "#906f6c",
+                        "on-tertiary-fixed": "#001f27",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-dim": "#d9dadb",
+                        "tertiary": "#006578",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c9c6c5",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-secondary-fixed-variant": "#474646",
+                        "outline-variant": "#e4beb9",
+                        "on-surface": "#191c1d",
+                        "on-primary-fixed": "#410002",
+                        "on-tertiary-fixed-variant": "#004e5d",
+                        "primary-container": "#db322f",
+                        "on-error-container": "#93000a",
+                        "background": "#f8f9fa",
+                        "tertiary-container": "#008097"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md font-['Inter'] font-medium text-sm tracking-tight docked full-width top-0 sticky z-50 border-b border-neutral-100 dark:border-neutral-800 shadow-sm">
+<div class="flex justify-between items-center h-14 px-6 max-w-[1440px] mx-auto">
+<div class="text-2xl font-black tracking-tighter text-neutral-950 dark:text-white">JoByte</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-neutral-600 dark:text-neutral-400 hover:text-[#B7131A] transition-colors duration-200" href="#">Find Jobs</a>
+<a class="text-[#B7131A] dark:text-[#E53935] font-bold border-b-2 border-[#B7131A]" href="#">My Applications</a>
+<a class="text-neutral-600 dark:text-neutral-400 hover:text-[#B7131A] transition-colors duration-200" href="#">Assessments</a>
+<a class="text-neutral-600 dark:text-neutral-400 hover:text-[#B7131A] transition-colors duration-200" href="#">Employers</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="material-symbols-outlined text-neutral-600 dark:text-neutral-400 scale-95 active:scale-100 transition-transform">notifications</button>
+<div class="h-8 w-8 rounded-full bg-neutral-200 overflow-hidden">
+<img alt="User profile avatar" data-alt="Close-up professional headshot of a smiling young male professional in a clean studio setting with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZRv5nrnDYHylAh24b7etIN7xmAt8p-5FUBiY0We9Iawd6iLjP3UJcbhFccpU90LE25LDBE9fN6ekRyyE7iHNv7dQgNr_BWpl5AIOiI5C3hd8N0YpAf6e9LBmUxvlH7blPcqvWSOYhNRjubPQKUsdfnWdEeWSK3gCJcwudO2KVNJ2PuTkCD_GGF-SPNP_eqgGtkE0ygR9oUpXV-0lYfQOGlpWpa8B3httRBwLCBGGVNEIrk-a-Tw99DNi3OXnsNAYggWGQp1nqxA"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="flex-grow flex items-center justify-center py-12 px-4">
+<!-- Settings Card -->
+<div class="w-full max-w-[680px] bg-white border border-neutral-100 rounded-xl shadow-[0px_12px_32px_rgba(13,13,13,0.04)] overflow-hidden">
+<!-- Card Header -->
+<div class="bg-[#F3F4F6] p-6 flex justify-between items-start">
+<div class="h-12 w-12 bg-white rounded-lg flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-neutral-400" style="font-size: 28px;">person</span>
+</div>
+<div class="flex items-center space-x-1 bg-white px-3 py-1 rounded-full border border-neutral-200 shadow-sm">
+<span class="material-symbols-outlined text-[#B7131A]" style="font-size: 16px; font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-[11px] font-bold text-neutral-700 uppercase tracking-wider">Verified Applicant</span>
+</div>
+</div>
+<!-- Card Body -->
+<div class="p-8">
+<div class="mb-8">
+<h2 class="text-[1.5rem] font-semibold text-neutral-900 mb-1">Profile Settings</h2>
+<p class="text-sm text-neutral-500">Manage your public identity and account verification status.</p>
+</div>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Full Name -->
+<div class="space-y-2">
+<label class="block text-[11px] font-bold text-neutral-500 uppercase tracking-widest">Full Name</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400">person</span>
+<input class="w-full pl-10 pr-4 h-12 bg-surface-container-low border border-outline-variant/40 rounded-lg focus:ring-0 focus:border-neutral-950 transition-all text-sm font-medium" placeholder="Enter your name" type="text" value="Alexander Sterling"/>
+</div>
+</div>
+<!-- Email Address -->
+<div class="space-y-2">
+<label class="block text-[11px] font-bold text-neutral-500 uppercase tracking-widest">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400">mail</span>
+<input class="w-full pl-10 pr-4 h-12 bg-surface-container-low border border-outline-variant/40 rounded-lg focus:ring-0 focus:border-neutral-950 transition-all text-sm font-medium" placeholder="Email address" type="email" value="a.sterling@jobyte.io"/>
+</div>
+<p class="text-[11px] text-neutral-400 italic">Email changes require re-authentication.</p>
+</div>
+</div>
+<div class="pt-6 flex justify-end">
+<button class="bg-[#B7131A] hover:bg-[#93000d] text-white font-bold h-12 px-8 rounded-lg shadow-sm flex items-center space-x-2 transition-all active:scale-95" type="button">
+<span class="material-symbols-outlined" style="font-size: 20px;">save</span>
+<span>Save Changes</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-white dark:bg-neutral-950 w-full py-12 border-t border-neutral-100 dark:border-neutral-900">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center">
+<div class="flex flex-col items-center md:items-start space-y-2 mb-6 md:mb-0">
+<div class="text-neutral-900 dark:text-white font-bold">JoByte</div>
+<div class="font-['Inter'] text-xs text-neutral-500">© 2024 JoByte Editorial Engine. Precision Career Architecture.</div>
+</div>
+<div class="flex space-x-6">
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Cookie Settings</a>
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Global Careers</a>
+</div>
+</div>
+</footer>
+</body></html>

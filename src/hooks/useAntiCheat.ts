@@ -10,8 +10,8 @@ interface AntiCheatState {
 export const useAntiCheat = (maxStrikes: number = 2, onAutoSubmit: () => void) => {
   const [state, setState] = useState<AntiCheatState>({
     strikes: 0,
-    isFullscreen: false,
-    isTabActive: true,
+    isFullscreen: !!document.fullscreenElement,
+    isTabActive: !document.hidden,
     lastViolation: null,
   });
 
@@ -22,18 +22,19 @@ export const useAntiCheat = (maxStrikes: number = 2, onAutoSubmit: () => void) =
   }, [onAutoSubmit]);
 
   const addStrike = useCallback((type: 'FULLSCREEN_EXIT' | 'TAB_SWITCH') => {
-    setState(prev => {
-      const newStrikes = prev.strikes + 1;
-      if (newStrikes >= maxStrikes) {
-        onAutoSubmitRef.current();
-      }
-      return {
-        ...prev,
-        strikes: newStrikes,
-        lastViolation: type,
-      };
-    });
-  }, [maxStrikes]);
+    setState(prev => ({
+      ...prev,
+      strikes: prev.strikes + 1,
+      lastViolation: type,
+    }));
+  }, []);
+
+  // Separate effect for auto-submission to avoid side-effects in setState
+  useEffect(() => {
+    if (state.strikes >= maxStrikes) {
+      onAutoSubmitRef.current();
+    }
+  }, [state.strikes, maxStrikes]);
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -88,12 +89,6 @@ export const useAntiCheat = (maxStrikes: number = 2, onAutoSubmit: () => void) =
     document.addEventListener('contextmenu', handleContextMenu);
     document.addEventListener('keydown', handleKeyDown);
 
-    // Initial state check
-    setState(prev => ({ 
-      ...prev, 
-      isFullscreen: !!document.fullscreenElement,
-      isTabActive: !document.hidden
-    }));
 
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);

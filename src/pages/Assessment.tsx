@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -16,7 +16,6 @@ import { useAntiCheat } from '../hooks/useAntiCheat';
 import MCQTask from '../components/Assessment/MCQTask';
 import CodeEditorTask from '../components/Assessment/CodeEditorTask';
 import { supabase } from '../lib/supabase';
-import Navbar from '../components/layout/Navbar';
 
 type AssessmentStage = 'INSTRUCTIONS' | 'SIMULATION' | 'ANALYSIS' | 'COMPLETED';
 
@@ -39,7 +38,7 @@ const Assessment: React.FC = () => {
     submitAssessmentRef.current();
   }, []);
 
-  const { strikes, lastViolation, enterFullscreen, isFullscreen, isTabActive } = useAntiCheat(2, stableOnAutoSubmit);
+  const { strikes, enterFullscreen, isFullscreen, isTabActive } = useAntiCheat(2, stableOnAutoSubmit);
   const maxStrikes = 2;
 
   useEffect(() => {
@@ -246,7 +245,6 @@ const Assessment: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background text-white selection:bg-primary/30">
-      <Navbar />
       
       <div className="relative pt-24 pb-12 px-6 flex items-center justify-center min-h-[calc(100vh-64px)]">
 

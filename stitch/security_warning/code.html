@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#e5e2e1",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#2e3132",
+                    "surface-variant": "#e1e3e4",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-background": "#191c1d",
+                    "tertiary-fixed": "#afecff",
+                    "secondary-container": "#e5e2e1",
+                    "primary-fixed-dim": "#ffb4ac",
+                    "surface-bright": "#f8f9fa",
+                    "surface": "#f8f9fa",
+                    "on-surface-variant": "#5b403d",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#ffb4ac",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#72d4ef",
+                    "primary": "#b7131a",
+                    "surface-container": "#edeeef",
+                    "on-secondary-container": "#656464",
+                    "on-error": "#ffffff",
+                    "secondary": "#5f5e5e",
+                    "primary-fixed": "#ffdad6",
+                    "surface-tint": "#bb171c",
+                    "on-primary-container": "#fffbff",
+                    "on-tertiary-container": "#f9fdff",
+                    "surface-container-low": "#f3f4f5",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#93000d",
+                    "outline": "#906f6c",
+                    "on-tertiary-fixed": "#001f27",
+                    "surface-container-high": "#e7e8e9",
+                    "surface-dim": "#d9dadb",
+                    "tertiary": "#006578",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#c9c6c5",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-secondary-fixed-variant": "#474646",
+                    "outline-variant": "#e4beb9",
+                    "on-surface": "#191c1d",
+                    "on-primary-fixed": "#410002",
+                    "on-tertiary-fixed-variant": "#004e5d",
+                    "primary-container": "#db322f",
+                    "on-error-container": "#93000a",
+                    "background": "#f8f9fa",
+                    "tertiary-container": "#008097"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .dot-grid {
+            background-image: radial-gradient(circle, #D1D5DB 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-blur {
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="font-body bg-surface text-on-surface antialiased">
+<!-- Background Content (Blurred Assessment Page) -->
+<div aria-hidden="true" class="fixed inset-0 dot-grid overflow-hidden flex flex-col glass-blur">
+<!-- Mock Header for Context -->
+<div class="h-14 px-6 flex items-center justify-between bg-white border-b border-neutral-100 opacity-40">
+<div class="text-xl font-black tracking-tighter text-neutral-950">JoByte</div>
+<div class="flex items-center gap-4">
+<div class="h-8 w-24 bg-neutral-200 rounded"></div>
+<div class="h-8 w-8 bg-neutral-200 rounded-full"></div>
+</div>
+</div>
+<main class="flex-1 max-w-5xl mx-auto w-full p-12 opacity-30">
+<div class="space-y-8">
+<div class="h-8 w-1/3 bg-neutral-300 rounded"></div>
+<div class="grid grid-cols-3 gap-6">
+<div class="col-span-2 space-y-4">
+<div class="h-4 w-full bg-neutral-200 rounded"></div>
+<div class="h-4 w-5/6 bg-neutral-200 rounded"></div>
+<div class="h-4 w-4/6 bg-neutral-200 rounded"></div>
+<div class="mt-12 space-y-3">
+<div class="h-14 w-full bg-white border border-neutral-200 rounded-lg"></div>
+<div class="h-14 w-full bg-white border border-neutral-200 rounded-lg"></div>
+<div class="h-14 w-full bg-white border border-neutral-200 rounded-lg"></div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="h-64 w-full bg-neutral-950 rounded-lg"></div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Overlay Wrapper -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-black/35 backdrop-blur-[2px]" id="assessment-warning">
+<!-- Modal Card -->
+<div class="relative w-full max-w-[420px] bg-white border border-[#FECACA] rounded-[16px] shadow-xl p-10 flex flex-col items-center text-center">
+<!-- Warning Icon Container -->
+<div class="w-[60px] h-[60px] bg-[#FEF2F2] rounded-[16px] flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[#EF4444] text-[32px]" data-icon="warning" data-weight="fill" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<!-- Header -->
+<h2 class="text-[#111827] text-[24px] font-bold tracking-tight mb-3">Security Warning</h2>
+<!-- Violation Badge -->
+<div class="inline-flex items-center px-3 py-1 bg-[#FEF2F2] border border-[#FECACA] rounded-[8px] mb-6">
+<span class="text-[#EF4444] text-[12px] font-bold tracking-wider uppercase">VIOLATION 1 OF 2</span>
+</div>
+<!-- Body Text -->
+<p class="text-[#374151] text-[15px] leading-relaxed mb-8">
+                The secure assessment environment has been interrupted. This is your <span class="font-bold">ONLY</span> warning. Exiting the screen again will result in automatic submission of your current progress.
+            </p>
+<!-- Action Button -->
+<button class="w-full h-[48px] bg-[#E53935] hover:bg-[#B7131A] text-white font-bold rounded-[8px] flex items-center justify-center gap-2 transition-all active:scale-[0.98] focus:ring-4 focus:ring-[#ffdad6]">
+                Return to Secure Environment
+                <span class="material-symbols-outlined text-[20px]" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Branding Subtext -->
+<div class="mt-8 pt-6 border-t border-neutral-100 w-full flex justify-center items-center gap-2">
+<span class="text-[10px] font-bold tracking-[0.2em] text-neutral-400 uppercase">JoByte Integrity Protocol</span>
+</div>
+</div>
+</div>
+<!-- Background Grid Detail (Level 0 Canvas) -->
+<div class="fixed inset-0 pointer-events-none dot-grid opacity-20 z-[-1]"></div>
+</body></html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Employer Dashboard - JoByte</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            background-image: radial-gradient(circle, #D1D5DB 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .text-editorial-tight {
+            letter-spacing: -0.02em;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#e5e2e1",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2e3132",
+                        "surface-variant": "#e1e3e4",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-background": "#191c1d",
+                        "tertiary-fixed": "#afecff",
+                        "secondary-container": "#e5e2e1",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "surface-bright": "#f8f9fa",
+                        "surface": "#f8f9fa",
+                        "on-surface-variant": "#5b403d",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#ffb4ac",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#72d4ef",
+                        "primary": "#b7131a",
+                        "surface-container": "#edeeef",
+                        "on-secondary-container": "#656464",
+                        "on-error": "#ffffff",
+                        "secondary": "#5f5e5e",
+                        "primary-fixed": "#ffdad6",
+                        "surface-tint": "#bb171c",
+                        "on-primary-container": "#fffbff",
+                        "on-tertiary-container": "#f9fdff",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#93000d",
+                        "outline": "#906f6c",
+                        "on-tertiary-fixed": "#001f27",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-dim": "#d9dadb",
+                        "tertiary": "#006578",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c9c6c5",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-secondary-fixed-variant": "#474646",
+                        "outline-variant": "#e4beb9",
+                        "on-surface": "#191c1d",
+                        "on-primary-fixed": "#410002",
+                        "on-tertiary-fixed-variant": "#004e5d",
+                        "primary-container": "#db322f",
+                        "on-error-container": "#93000a",
+                        "background": "#f8f9fa",
+                        "tertiary-container": "#008097"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="text-on-background antialiased">
+<!-- Top Navigation Bar -->
+<nav class="bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md border-b border-neutral-100 dark:border-neutral-800 shadow-sm docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center h-14 px-6 max-w-[1440px] mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black tracking-tighter text-neutral-950 dark:text-white">JoByte</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-neutral-600 dark:text-neutral-400 font-['Inter'] font-medium text-sm tracking-tight hover:text-[#B7131A] transition-colors duration-200" href="#">Find Jobs</a>
+<a class="text-neutral-600 dark:text-neutral-400 font-['Inter'] font-medium text-sm tracking-tight hover:text-[#B7131A] transition-colors duration-200" href="#">Assessments</a>
+<a class="text-neutral-600 dark:text-neutral-400 font-['Inter'] font-medium text-sm tracking-tight hover:text-[#B7131A] transition-colors duration-200" href="#">Employers</a>
+<a class="text-neutral-600 dark:text-neutral-400 font-['Inter'] font-medium text-sm tracking-tight hover:text-[#B7131A] transition-colors duration-200" href="#">Pricing</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-neutral-600 hover:text-primary transition-colors">notifications</button>
+<div class="flex items-center gap-3 pl-4 border-l border-neutral-100">
+<img alt="User profile avatar" class="w-8 h-8 rounded-full object-cover" data-alt="Close-up professional portrait of a tech executive in a modern office with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb8Oc39r1qKwgC3S5lx4omgILXuKUid9UqtT1lb385XBDVGAQnz14KSpvi55ZYNMiphIZwQGAlHziIx-swMSTiqAN6x5y28JD0ODX4PiPcIku5u3CEE4hpwFgMf8_fnbMZdz6GFtIyHA8L7mAmPmEkX-FL0lji4TA7onhOogg9RFi5pdhkNqNC5aBlNyAm56KkFfuIqjvKK2yS4e3Ri7FF1fpPvBnTD-OALUV4UTbE9Ra5gyPDXMMOn4w8C-19xRlESwUOaEq_tQ"/>
+<span class="material-symbols-outlined text-neutral-600">account_circle</span>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-6 py-12">
+<!-- Dashboard Header -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
+<div>
+<h1 class="text-[28px] font-black text-neutral-950 leading-tight">
+                    Enterprise <span class="text-primary">Recruitment Hub</span>
+</h1>
+<p class="text-secondary body-md mt-1">Manage your precision-engineered talent acquisition pipeline.</p>
+</div>
+<button class="bg-primary text-white font-bold px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-primary-container scale-95 active:scale-100 transition-all shadow-sm">
+<span class="material-symbols-outlined text-sm">add</span>
+                Create Job Posting
+            </button>
+</header>
+<!-- Stats Grid -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant/20 shadow-[0px_12px_32px_rgba(13,13,13,0.02)]">
+<p class="text-xs font-bold uppercase tracking-widest text-secondary mb-2">Total Job Postings</p>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-black text-neutral-950">24</span>
+<span class="text-xs text-primary font-bold pb-1">+2 this week</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant/20 shadow-[0px_12px_32px_rgba(13,13,13,0.02)]">
+<p class="text-xs font-bold uppercase tracking-widest text-secondary mb-2">Active Applicants</p>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-black text-neutral-950">142</span>
+<span class="w-2 h-2 rounded-full bg-[#E53935] mb-2"></span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant/20 shadow-[0px_12px_32px_rgba(13,13,13,0.02)]">
+<p class="text-xs font-bold uppercase tracking-widest text-secondary mb-2">Successful Hires</p>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-black text-neutral-950">18</span>
+<span class="text-xs text-secondary font-bold pb-1">This quarter</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant/20 shadow-[0px_12px_32px_rgba(13,13,13,0.02)]">
+<p class="text-xs font-bold uppercase tracking-widest text-secondary mb-2">In Review</p>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-black text-neutral-950">45</span>
+<span class="material-symbols-outlined text-secondary text-lg mb-1">hourglass_empty</span>
+</div>
+</div>
+</section>
+<!-- Main Content Area -->
+<div class="flex flex-col lg:flex-row gap-8">
+<!-- LEFT COLUMN: Active Postings -->
+<div class="lg:w-[58%]">
+<div class="flex justify-between items-end mb-6">
+<h2 class="text-xl font-bold text-neutral-950">Active Job Postings</h2>
+<a class="text-primary text-sm font-bold hover:underline transition-all" href="#">Manage All ›</a>
+</div>
+<div class="space-y-4">
+<!-- Job Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-lg p-6 hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start">
+<div class="flex gap-4">
+<div class="w-12 h-12 bg-surface-container flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-primary">work</span>
+</div>
+<div>
+<h3 class="font-bold text-neutral-950 text-lg">Senior React Developer</h3>
+<p class="text-sm text-secondary font-medium mt-0.5">Full-time • Bengaluru</p>
+</div>
+</div>
+<button class="material-symbols-outlined text-secondary hover:text-neutral-950 transition-colors">more_vert</button>
+</div>
+<div class="mt-8 pt-6 border-t border-neutral-100 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">group</span>
+<span class="text-sm font-bold text-neutral-950">0 Applicants</span>
+</div>
+<button class="text-xs font-black uppercase tracking-tighter text-primary group-hover:translate-x-1 transition-transform">View Details</button>
+</div>
+</div>
+<!-- Job Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-lg p-6 hover:shadow-md transition-shadow group">
+<div class="flex justify-between items-start">
+<div class="flex gap-4">
+<div class="w-12 h-12 bg-surface-container flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<div>
+<h3 class="font-bold text-neutral-950 text-lg">Product Data Analyst</h3>
+<p class="text-sm text-secondary font-medium mt-0.5">Remote • Global</p>
+</div>
+</div>
+<button class="material-symbols-outlined text-secondary hover:text-neutral-950 transition-colors">more_vert</button>
+</div>
+<div class="mt-8 pt-6 border-t border-neutral-100 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">group</span>
+<span class="text-sm font-bold text-neutral-950">12 Applicants</span>
+</div>
+<button class="text-xs font-black uppercase tracking-tighter text-primary group-hover:translate-x-1 transition-transform">View Details</button>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Tools & Feed -->
+<div class="lg:w-[40%] space-y-8">
+<!-- Qualified Feed -->
+<div class="bg-surface-container-lowest border border-outline-variant/20 rounded-lg p-6 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-lg font-bold text-neutral-950">Qualified Feed</h2>
+<span class="material-symbols-outlined text-secondary">search</span>
+</div>
+<div class="flex flex-col items-center justify-center py-12 text-center">
+<div class="w-16 h-16 bg-surface-container-low rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-outline text-3xl">person_search</span>
+</div>
+<p class="text-secondary body-md">No applicants found.</p>
+<p class="text-xs text-neutral-400 mt-1 max-w-[200px]">Update your job tags to see more relevant talent.</p>
+</div>
+</div>
+<!-- ATS Integration Card -->
+<div class="bg-[#F9FAFB] border border-outline-variant/20 rounded-lg p-6">
+<div class="flex items-start gap-4 mb-6">
+<div class="p-2 bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">info</span>
+</div>
+<div>
+<h2 class="text-lg font-bold text-neutral-950">ATS Integration</h2>
+<p class="text-xs text-secondary mt-1">Connect JoByte to your internal HR tools for seamless hiring.</p>
+</div>
+</div>
+<button class="w-full bg-[#0D0D0D] text-white font-bold py-3 rounded-lg hover:bg-neutral-800 transition-all flex items-center justify-center gap-2">
+                        Setup Integration
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-white dark:bg-neutral-950 border-t border-neutral-100 dark:border-neutral-900 mt-24">
+<div class="max-w-7xl mx-auto px-8 py-12 flex flex-col md:flex-row justify-between items-center">
+<div class="mb-6 md:mb-0 text-center md:text-left">
+<span class="text-neutral-900 dark:text-white font-bold text-lg">JoByte</span>
+<p class="font-['Inter'] text-xs text-neutral-500 mt-2">© 2024 JoByte Editorial Engine. Precision Career Architecture.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Cookie Settings</a>
+<a class="font-['Inter'] text-xs text-neutral-400 hover:text-[#B7131A] underline transition-all" href="#">Global Careers</a>
+</div>
+</div>
+</footer>
+</body></html>

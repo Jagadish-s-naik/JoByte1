@@ -38,7 +38,7 @@ const dummyClient = {
   functions: {
     invoke: async () => ({ data: { total_score: 85, technical: 88, logic: 75, integrity: 95 }, error: null }),
   }
-} as any;
+};
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.warn('⚠️ Supabase credentials missing (VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY). Application is running in offline mode.');
@@ -46,4 +46,4 @@ if (!supabaseUrl || !supabaseAnonKey) {
 
 export const supabase = (supabaseUrl && supabaseAnonKey) 
   ? createClient(supabaseUrl, supabaseAnonKey)
-  : dummyClient;
+  : (dummyClient as unknown as any);
