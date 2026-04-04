@@ -55,50 +55,72 @@ const Assessment: React.FC = () => {
         setMission(data);
       } catch (err) {
         console.warn('Mission retrieval failed, using demo mission:', err);
-        setMission({
-          id: id,
-          title: 'Quantum Systems Architect',
-          company: 'Qubit Dynamics',
-          clearance: 'Gamma',
-          tasks: [
-            {
-              id: 't1',
-              type: 'MCQ',
-              question: 'Which architectural pattern is best suited for a high-availability, globally distributed quantum ledger?',
-              options: ['Event Sourcing', 'CQRS', 'Sharded Mesh', 'Monolithic'],
-              correctAnswer: 'Sharded Mesh'
+        const getMockMission = (missionId: string) => {
+          const mockMissions: Record<string, any> = {
+            m1: {
+              title: 'Senior React Developer',
+              company: 'TechFlow',
+              clearance: 'Gamma',
+              tasks: [
+                { id: 't1', type: 'MCQ', question: 'What is the primary benefit of React Fragments?', options: ['Performance', 'Cleaner DOM', 'State management', 'CSS scoping'], correctAnswer: 'Cleaner DOM' },
+                { id: 't2', type: 'CODE', title: 'Array Flattening', description: 'Write a function to flatten a nested array.', initialCode: 'function flatten(arr) {\n  // Your code\n}', solution: 'return arr.flat(Infinity);' }
+              ]
             },
-            {
-              id: 't2',
-              type: 'MCQ',
-              question: "In a 'Cat State' quantum cluster, what is the primary cause of sudden decoherence when performing multi-qubit gates?",
-              options: ['Thermal Noise', 'Photonic Leakage', 'Superposition Collapse', 'External Observation'],
-              correctAnswer: 'Thermal Noise'
+            m2: {
+              title: 'Frontend Engineer',
+              company: 'Zentry',
+              clearance: 'Beta',
+              tasks: [
+                { id: 't1', type: 'MCQ', question: 'Which CSS property is used for grid layout?', options: ['flex', 'grid', 'table', 'block'], correctAnswer: 'grid' },
+                { id: 't2', type: 'CODE', title: 'Reverse String', description: 'Reverse a given string.', initialCode: 'function reverse(s) {\n  // Your code\n}', solution: "return s.split('').reverse().join('');" }
+              ]
             },
-            {
-              id: 't3',
-              type: 'MCQ',
-              question: 'Which protocol ensures 100% fidelity in quantum key distribution over distances exceeding 500km?',
-              options: ['BB84', 'E91', 'Quantum Repeaters', 'Error Correction'],
-              correctAnswer: 'Quantum Repeaters'
-            },
-            {
-              id: 't4',
-              type: 'CODE',
-              title: 'Qubit State Stabilization',
-              description: 'Implement a function stabilizeQubits(register) that takes an array of qubit states (0 to 1) and returns an array where any state > 0.95 is snapped to 1.0 and any state < 0.05 is snapped to 0.0.',
-              initialCode: 'function stabilizeQubits(register) {\n  // Your code here\n}',
-              solution: 'return register.map(s => s > 0.95 ? 1.0 : (s < 0.05 ? 0.0 : s));'
-            },
-            {
-              id: 't5',
-              type: 'CODE',
-              title: 'Quantum Error Correction',
-              description: 'Implement a basic parity check algorithm for a 4-qubit register.',
-              initialCode: 'function checkParity(qubits) {\n  // Your code here\n}',
-              solution: 'return qubits.reduce((a, b) => a ^ b, 0);'
+            m12: {
+              title: 'AI/ML Engineer',
+              company: 'NeuralPath',
+              clearance: 'Gamma',
+              tasks: [
+                { id: 't1', type: 'MCQ', question: 'What does CNN stand for in ML?', options: ['Central Neural Net', 'Convolutional Neural Network', 'Computer Node Network', 'Complex Neural Node'], correctAnswer: 'Convolutional Neural Network' },
+                { id: 't2', type: 'CODE', title: 'Mean Squared Error', description: 'Calculate MSE for two arrays.', initialCode: 'function mse(a, b) {\n  // Your code\n}', solution: 'return a.reduce((s, v, i) => s + Math.pow(v - b[i], 2), 0) / a.length;' }
+              ]
             }
-          ]
+          };
+
+          return mockMissions[missionId] || {
+            title: 'Quantum Systems Architect',
+            company: 'Qubit Dynamics',
+            clearance: 'Gamma',
+            tasks: [
+              {
+                id: 't1',
+                type: 'MCQ',
+                question: 'Which architectural pattern is best suited for a high-availability, globally distributed quantum ledger?',
+                options: ['Event Sourcing', 'CQRS', 'Sharded Mesh', 'Monolithic'],
+                correctAnswer: 'Sharded Mesh'
+              },
+              {
+                id: 't2',
+                type: 'MCQ',
+                question: "In a 'Cat State' quantum cluster, what is the primary cause of sudden decoherence when performing multi-qubit gates?",
+                options: ['Thermal Noise', 'Photonic Leakage', 'Superposition Collapse', 'External Observation'],
+                correctAnswer: 'Thermal Noise'
+              },
+              {
+                id: 't3',
+                type: 'CODE',
+                title: 'Qubit State Stabilization',
+                description: 'Implement a function stabilizeQubits(register) where state > 0.95 snaps to 1.0 and < 0.05 snaps to 0.0.',
+                initialCode: 'function stabilizeQubits(register) {\n  // Your code here\n}',
+                solution: 'return register.map(s => s > 0.95 ? 1.0 : (s < 0.05 ? 0.0 : s));'
+              }
+            ]
+          };
+        };
+
+        const mockMissionData = getMockMission(id);
+        setMission({
+          ...mockMissionData,
+          id: id
         });
       } finally {
         setLoading(false);

@@ -7,10 +7,13 @@ import {
 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import type { User, AuthChangeEvent, Session } from '@supabase/supabase-js';
+import { useNotifications, type NotificationType } from '../../context/NotificationContext';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const { notifications, unreadCount, markAsRead, markAllAsRead } = useNotifications();
   const [user, setUser] = useState<User | null>(null);
   const [role, setRole] = useState<'applicant' | 'employer' | null>(null);
   const location = useLocation();
@@ -55,6 +58,9 @@ const Navbar: React.FC = () => {
       if (!target.closest('.profile-dropdown-container')) {
         setIsProfileOpen(false);
       }
+      if (!target.closest('.notifications-dropdown-container')) {
+        setIsNotificationsOpen(false);
+      }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
@@ -88,9 +94,96 @@ const Navbar: React.FC = () => {
         {/* Desktop User Section */}
         {user ? (
           <div className="hidden md:flex items-center gap-4">
-            <button className="p-2 text-neutral-600 dark:text-neutral-400 scale-95 active:scale-100 transition-transform">
-              <span className="material-symbols-outlined">notifications</span>
-            </button>
+            <div className="relative notifications-dropdown-container">
+              <button 
+                onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
+                className="relative p-2 text-neutral-600 dark:text-neutral-400 scale-95 active:scale-100 transition-transform hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg"
+              >
+                <span className="material-symbols-outlined">notifications</span>
+                {unreadCount > 0 && (
+                  <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-red-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white dark:border-neutral-950">
+                    {unreadCount}
+                  </span>
+                )}
+              </button>
+
+              {/* Notifications Dropdown */}
+              <AnimatePresence>
+                {isNotificationsOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute right-0 mt-3 w-80 bg-white dark:bg-surface-900 border border-neutral-100 dark:border-white/10 rounded-xl shadow-2xl overflow-hidden z-50"
+                  >
+                    <div className="px-4 py-3 border-b border-neutral-100 dark:border-white/10 flex justify-between items-center">
+                      <h3 className="text-sm font-bold text-neutral-950 dark:text-white">Notifications</h3>
+                      {unreadCount > 0 && (
+                        <button 
+                          onClick={markAllAsRead}
+                          className="text-[10px] font-bold text-primary hover:underline uppercase tracking-wider"
+                        >
+                          Mark all read
+                        </button>
+                      )}
+                    </div>
+                    
+                    <div className="max-h-[380px] overflow-y-auto">
+                      {notifications.length > 0 ? (
+                        notifications.map((notif) => (
+                          <div 
+                            key={notif.id}
+                            onClick={() => {
+                              markAsRead(notif.id);
+                              navigate(notif.link);
+                              setIsNotificationsOpen(false);
+                            }}
+                            className={`px-4 py-3 border-b border-neutral-50 dark:border-white/5 hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors cursor-pointer group flex gap-3 ${!notif.isRead ? 'bg-primary/5' : ''}`}
+                          >
+                            <div className={`mt-1 h-8 w-8 rounded-full flex items-center justify-center shrink-0 ${
+                              notif.type === 'application' ? 'bg-blue-50 text-blue-600' :
+                              notif.type === 'assessment' ? 'bg-amber-50 text-amber-600' :
+                              notif.type === 'profile' ? 'bg-purple-50 text-purple-600' :
+                              'bg-neutral-50 text-neutral-600'
+                            }`}>
+                              <span className="material-symbols-outlined text-[18px]">
+                                {notif.type === 'application' ? 'work' :
+                                 notif.type === 'assessment' ? 'assignment_late' :
+                                 notif.type === 'profile' ? 'visibility' :
+                                 'info'}
+                              </span>
+                            </div>
+                            <div>
+                              <p className={`text-xs leading-relaxed ${!notif.isRead ? 'text-neutral-950 dark:text-white font-bold' : 'text-neutral-600 dark:text-neutral-400 font-medium'}`}>
+                                {notif.message}
+                              </p>
+                              <p className="text-[10px] text-neutral-400 mt-1 uppercase font-bold tracking-tight">{notif.time}</p>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="py-12 flex flex-col items-center justify-center text-center px-6">
+                           <span className="material-symbols-outlined text-neutral-200 text-4xl mb-2">notifications_off</span>
+                           <p className="text-sm text-neutral-400 font-medium italic">No notifications yet</p>
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-2 border-t border-neutral-100 dark:border-white/10 text-center">
+                      <button 
+                        onClick={() => {
+                          navigate(role === 'employer' ? '/employer/dashboard' : '/applicant/dashboard');
+                          setIsNotificationsOpen(false);
+                        }}
+                        className="text-[11px] font-bold text-secondary hover:text-primary transition-colors py-1 block w-full"
+                      >
+                        See tracking dashboard
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
             <div className="relative profile-dropdown-container">
               <button 
                 onClick={() => setIsProfileOpen(!isProfileOpen)}

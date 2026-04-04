@@ -60,7 +60,19 @@ const ApplicantDashboard: React.FC = () => {
             currentCandData = [
                 { id: '1', status: 'IN_PROGRESS', mission: { id: 'm1', title: 'Senior React Developer', company: 'TechFlow' } },
                 { id: '2', status: 'INVITED', mission: { id: 'm2', title: 'Frontend Engineer', company: 'Zentry' } },
-                { id: '3', status: 'COMPLETED', mission: { id: 'm3', title: 'UI/UX Designer', company: 'Nova Labs' } }
+                { id: '3', status: 'COMPLETED', mission: { id: 'm3', title: 'UI/UX Designer', company: 'Nova Labs' } },
+                { id: '4', status: 'INVITED', mission: { id: 'm4', title: 'Full Stack Developer', company: 'CloudNine' } },
+                { id: '5', status: 'IN_PROGRESS', mission: { id: 'm5', title: 'Backend Architect', company: 'DataStream' } },
+                { id: '6', status: 'COMPLETED', mission: { id: 'm6', title: 'Mobile App Developer', company: 'AppWorks' } },
+                { id: '7', status: 'INVITED', mission: { id: 'm7', title: 'QA Automation Engineer', company: 'CheckMate' } },
+                { id: '8', status: 'INVITED', mission: { id: 'm8', title: 'DevOps Specialist', company: 'ScaleUp' } },
+                { id: '9', status: 'IN_PROGRESS', mission: { id: 'm9', title: 'Data Scientist', company: 'InsightAI' } },
+                { id: '10', status: 'COMPLETED', mission: { id: 'm10', title: 'Security Engineer', company: 'ShieldSoft' } },
+                { id: '11', status: 'INVITED', mission: { id: 'm11', title: 'Product Manager', company: 'Visionary' } },
+                { id: '12', status: 'IN_PROGRESS', mission: { id: 'm12', title: 'AI/ML Engineer', company: 'NeuralPath' } },
+                { id: '13', status: 'INVITED', mission: { id: 'm13', title: 'Infrastructure Engineer', company: 'CloudScale' } },
+                { id: '14', status: 'INVITED', mission: { id: 'm14', title: 'Cybersecurity Analyst', company: 'SafeGuard' } },
+                { id: '15', status: 'INVITED', mission: { id: 'm15', title: 'Blockchain developer', company: 'Cryptex' } }
             ];
             setConfidenceScore(85);
         }

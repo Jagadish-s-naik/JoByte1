@@ -4,6 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 import CreateJobModal from '../../components/Employer/CreateJobModal';
 import CandidateReport from '../../components/Employer/CandidateReport';
 import AtsIntegrationModal from '../../components/Employer/AtsIntegrationModal';
+import JobApplicantsModal from '../../components/Employer/JobApplicantsModal';
 import type { JobPosting, Candidate } from '../../types';
 
 interface Stats {
@@ -21,6 +22,7 @@ const EmployerDashboard: React.FC = () => {
   const [activeJobs, setActiveJobs] = useState<JobPosting[]>([]);
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
+  const [selectedJobForModal, setSelectedJobForModal] = useState<JobPosting | null>(null);
   const [stats, setStats] = useState<Stats[]>([
     { label: 'Total Job Postings', value: '0' },
     { label: 'Active Applicants', value: '0' },
@@ -48,7 +50,8 @@ const EmployerDashboard: React.FC = () => {
         id, title, type, location,
         candidates(count)
       `)
-      .eq('employer_id', session.user.id);
+      .eq('employer_id', session.user.id)
+      .order('created_at', { ascending: false });
 
     if (jobsData) {
       setActiveJobs(jobsData as JobPosting[]);
@@ -143,7 +146,12 @@ const EmployerDashboard: React.FC = () => {
                       <span className="material-symbols-outlined text-secondary text-sm">group</span>
                       <span className="text-sm font-bold text-neutral-950 dark:text-white">{job.candidates?.[0]?.count || 0} Applicants</span>
                     </div>
-                    <button className="text-xs font-black uppercase tracking-tighter text-primary group-hover:translate-x-1 transition-transform">View Details</button>
+                    <button 
+                      onClick={() => setSelectedJobForModal(job)}
+                      className="text-xs font-black uppercase tracking-tighter text-primary group-hover:translate-x-1 transition-transform"
+                    >
+                      View Details
+                    </button>
                   </div>
                 </div>
               ))}
@@ -213,6 +221,14 @@ const EmployerDashboard: React.FC = () => {
           <CandidateReport 
             candidate={selectedCandidate} 
             onClose={() => setSelectedCandidate(null)} 
+          />
+        )}
+        
+        {selectedJobForModal && (
+          <JobApplicantsModal 
+            missionId={selectedJobForModal.id}
+            missionTitle={selectedJobForModal.title}
+            onClose={() => setSelectedJobForModal(null)}
           />
         )}
         
