@@ -7,13 +7,15 @@ interface AntiCheatState {
   lastViolation: string | null;
 }
 
-export const useAntiCheat = (maxStrikes: number = 2, onAutoSubmit: () => void) => {
+export const useAntiCheat = (maxStrikes: number = 2, onAutoSubmit: () => void, isEnabled: boolean = true) => {
   const [state, setState] = useState<AntiCheatState>({
     strikes: 0,
     isFullscreen: !!document.fullscreenElement,
     isTabActive: !document.hidden,
     lastViolation: null,
   });
+
+  const hasSubmittedRef = useRef(false);
 
   // Use a ref for the callback to prevent effect re-runs when the parent component re-renders
   const onAutoSubmitRef = useRef(onAutoSubmit);
@@ -22,12 +24,13 @@ export const useAntiCheat = (maxStrikes: number = 2, onAutoSubmit: () => void) =
   }, [onAutoSubmit]);
 
   const addStrike = useCallback((type: 'FULLSCREEN_EXIT' | 'TAB_SWITCH' | 'PHONE_DETECTED') => {
+    if (!isEnabled) return;
     setState(prev => ({
       ...prev,
       strikes: prev.strikes + 1,
       lastViolation: type,
     }));
-  }, []);
+  }, [isEnabled]);
 
   const acknowledgeWarning = useCallback(() => {
     setState(prev => ({ ...prev, lastViolation: null }));
@@ -35,10 +38,11 @@ export const useAntiCheat = (maxStrikes: number = 2, onAutoSubmit: () => void) =
 
   // Separate effect for auto-submission to avoid side-effects in setState
   useEffect(() => {
-    if (state.strikes >= maxStrikes) {
+    if (state.strikes >= maxStrikes && isEnabled && !hasSubmittedRef.current) {
+      hasSubmittedRef.current = true;
       onAutoSubmitRef.current();
     }
-  }, [state.strikes, maxStrikes]);
+  }, [state.strikes, maxStrikes, isEnabled]);
 
   useEffect(() => {
     const handleVisibilityChange = () => {

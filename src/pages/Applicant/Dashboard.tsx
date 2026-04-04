@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
 import { useNavigate } from 'react-router-dom';
 import ApplicationProgressModal from '../../components/Applicant/ApplicationProgressModal';
-import type { Candidate } from '../../types';
+
 
 interface Mission {
   id?: string;

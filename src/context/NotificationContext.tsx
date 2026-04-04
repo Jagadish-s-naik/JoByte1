@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, type ReactNode, useEffect } from 'react';
 
 export type NotificationType = 'application' | 'assessment' | 'profile' | 'system';
 

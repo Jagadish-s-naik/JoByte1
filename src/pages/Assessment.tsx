@@ -25,7 +25,6 @@ const Assessment: React.FC = () => {
   const [stage, setStage] = useState<AssessmentStage>('INSTRUCTIONS');
   const [currentTaskIndex, setCurrentTaskIndex] = useState(0);
   const [candidateName, setCandidateName] = useState('');
-  const [responses, setResponses] = useState<any[]>([]);
   const [aiReport, setAiReport] = useState<any>(null);
   
   const { id } = useParams<{ id: string }>();
@@ -33,6 +32,9 @@ const Assessment: React.FC = () => {
   const [mission, setMission] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [candidateId, setCandidateId] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const responsesRef = useRef<any[]>([]);
+  const strikesRef = useRef(0);
   const submitAssessmentRef = useRef<() => void>(() => {});
 
   const stableOnAutoSubmit = useCallback(() => {
@@ -40,7 +42,12 @@ const Assessment: React.FC = () => {
     submitAssessmentRef.current();
   }, []);
 
-  const { strikes, enterFullscreen, isFullscreen, isTabActive, addStrike, lastViolation, acknowledgeWarning } = useAntiCheat(2, stableOnAutoSubmit);
+  const { strikes, enterFullscreen, isFullscreen, isTabActive, addStrike, lastViolation, acknowledgeWarning } = useAntiCheat(2, stableOnAutoSubmit, stage === 'SIMULATION');
+  
+  // Sync strikes with ref for submission
+  useEffect(() => {
+    strikesRef.current = strikes;
+  }, [strikes]);
   const maxStrikes = 2;
   const previewContainerRef = useRef<HTMLDivElement>(null);
 
@@ -55,7 +62,8 @@ const Assessment: React.FC = () => {
       }
     },
     isActive: stage === 'INSTRUCTIONS' || stage === 'SIMULATION',
-    previewRef: previewContainerRef
+    previewRef: previewContainerRef,
+    isEnabled: stage === 'SIMULATION' // Only predict during active simulation
   });
 
   useEffect(() => {
@@ -149,9 +157,11 @@ const Assessment: React.FC = () => {
   const currentTask = mission?.tasks?.[currentTaskIndex];
 
   const handleSubmitResults = useCallback(async (finalResponses?: any[]) => {
-    if (!candidateId || !mission) return;
+    if (!candidateId || !mission || isSubmitting) return;
+    setIsSubmitting(true);
 
-    const responsesToSubmit = finalResponses || responses;
+    const responsesToSubmit = finalResponses || responsesRef.current;
+    const finalStrikes = strikesRef.current;
 
     try {
       let finalReport = null;
@@ -164,7 +174,7 @@ const Assessment: React.FC = () => {
             candidateId,
             missionId: mission.id,
             responses: responsesToSubmit,
-            strikes
+            strikes: finalStrikes
           }
         });
         if (error) throw error;
@@ -177,9 +187,9 @@ const Assessment: React.FC = () => {
           total_score: 82,
           technical: 88,
           logic: 75,
-          integrity: 100 - (strikes * 50),
-          analysis_summary: strikes >= 2 ? "Test forcefully terminated due to critical security violations (Unauthorized devices detected)." : "Candidate shows strong proficiency in core concepts. Evaluation complete.",
-          verdict: strikes >= 2 ? "NO" : "YES"
+          integrity: 100 - (finalStrikes * 50),
+          analysis_summary: finalStrikes >= 2 ? "Test forcefully terminated due to critical security violations (Unauthorized devices detected)." : "Candidate shows strong proficiency in core concepts. Evaluation complete.",
+          verdict: finalStrikes >= 2 ? "NO" : "YES"
         };
       }
 
@@ -211,8 +221,10 @@ const Assessment: React.FC = () => {
     } catch (err) {
       console.error('Total submission failure:', err);
       setStage('COMPLETED');
+    } finally {
+      setIsSubmitting(false);
     }
-  }, [candidateId, mission, responses, strikes]);
+  }, [candidateId, mission, isSubmitting]);
 
   useEffect(() => {
     submitAssessmentRef.current = () => {
@@ -253,8 +265,8 @@ const Assessment: React.FC = () => {
   };
 
   const handleTaskComplete = (answer: string) => {
-    const nextResponses = [...responses, { taskId: currentTask.id, answer }];
-    setResponses(nextResponses);
+    const nextResponses = [...responsesRef.current, { taskId: currentTask.id, answer }];
+    responsesRef.current = nextResponses;
     
     if (currentTaskIndex < mission.tasks.length - 1) {
       setCurrentTaskIndex(prev => prev + 1);

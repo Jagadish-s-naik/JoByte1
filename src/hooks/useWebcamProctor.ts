@@ -9,6 +9,7 @@ interface UseWebcamProctorOptions {
   onSuspiciousActivity: () => void;
   isActive: boolean;
   previewRef?: React.RefObject<HTMLDivElement | null>;
+  isEnabled?: boolean;
 }
 
 export const useWebcamProctor = ({
@@ -17,7 +18,8 @@ export const useWebcamProctor = ({
   cooldownMs = 5000,
   onSuspiciousActivity,
   isActive,
-  previewRef
+  previewRef,
+  isEnabled = true
 }: UseWebcamProctorOptions) => {
   const [isModelLoaded, setIsModelLoaded] = useState(false);
   const [cameraError, setCameraError] = useState<string | null>(null);
@@ -77,43 +79,42 @@ export const useWebcamProctor = ({
     };
 
     const loop = async () => {
-      if (!isPredictingRef.current || !webcamRef.current || !modelRef.current) return;
+      if (!isPredictingRef.current || !isEnabled || !webcamRef.current || !modelRef.current) return;
       
       try {
-        webcamRef.current.update(); // update the webcam frame
-        if (webcamRef.current.canvas) {
-           const predictions = await modelRef.current.predict(webcamRef.current.canvas);
-           
-           // We check if the 'Phone Detected' class (or default 'Class 2') exceeds threshold
-           const isCheating = predictions.some(p => {
-               const isTargetClass = p.className.toLowerCase().includes('phone') || p.className === 'Class 2';
-               return isTargetClass && p.probability >= threshold;
-           });
-           
-           if (isCheating) {
-             const now = Date.now();
-             if (now - lastDetectionTimeRef.current > cooldownMs) {
-                lastDetectionTimeRef.current = now;
-                console.warn("Anti-Cheat: Phone detected via WebCam!");
-                onSuspiciousActivityRef.current();
-             }
-           }
+        if (webcamRef.current?.canvas) {
+          webcamRef.current.update(); // update the webcam frame
+          const predictions = await modelRef.current.predict(webcamRef.current.canvas);
+          
+          const isCheating = predictions.some(p => {
+              const isTargetClass = p.className.toLowerCase().includes('phone') || p.className === 'Class 2';
+              return isTargetClass && p.probability >= threshold;
+          });
+          
+          if (isCheating) {
+            const now = Date.now();
+            if (now - lastDetectionTimeRef.current > cooldownMs) {
+               lastDetectionTimeRef.current = now;
+               console.warn("Anti-Cheat: Phone detected via WebCam!");
+               onSuspiciousActivityRef.current();
+            }
+          }
         }
       } catch (e) {
          // suppress silent errors during render loops
       }
 
-      if (isPredictingRef.current) {
+      if (isPredictingRef.current && isEnabled) {
         animationFrameRef.current = window.requestAnimationFrame(loop);
       }
     };
 
-    if (isActive) {
+    if (isActive && isEnabled) {
       setupProctoring();
     } else {
       isPredictingRef.current = false;
       if (webcamRef.current) {
-        webcamRef.current.stop();
+        try { webcamRef.current.stop(); } catch (e) {}
       }
       if (animationFrameRef.current) {
         window.cancelAnimationFrame(animationFrameRef.current);
@@ -127,10 +128,10 @@ export const useWebcamProctor = ({
         window.cancelAnimationFrame(animationFrameRef.current);
       }
       if (webcamRef.current) {
-        webcamRef.current.stop();
+        try { webcamRef.current.stop(); } catch (e) {}
       }
     };
-  }, [modelUrl, threshold, cooldownMs, isActive]);
+  }, [modelUrl, threshold, cooldownMs, isActive, isEnabled]);
 
   return { isModelLoaded, cameraError };
 };
