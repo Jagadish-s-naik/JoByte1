@@ -55,8 +55,8 @@ const Landing: React.FC = () => {
           Empowering the next generation of tech talent
         </div>
         <h1 className="text-6xl md:text-8xl font-black text-[#111827] tracking-tighter mb-6 leading-tight">
-          Hire the best with<br />
-          <span className="text-[#E53935]">Technical Confidence</span>
+          Hire with confidence ,<br />
+          <span className="text-[#E53935]">Work with purpose</span>
         </h1>
         <p className="text-xl text-neutral-600 max-w-2xl mx-auto mb-10 font-medium leading-relaxed">
           The editorial-grade ATS and career platform designed for high-stakes engineering teams. We bridge the gap between resume claims and proven technical mastery.
