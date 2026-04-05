@@ -5,8 +5,9 @@ import GlassCard from '../UI/GlassCard';
 import GlowButton from '../UI/GlowButton';
 
 interface MCQTaskProps {
-  task: {
-    question: string;
+  task?: {
+    question?: string;
+    description?: string;
     options: string[];
   };
   onComplete: (answer: string) => void;
@@ -14,6 +15,10 @@ interface MCQTaskProps {
 
 const MCQTask: React.FC<MCQTaskProps> = ({ task, onComplete }) => {
   const [selected, setSelected] = useState<string | null>(null);
+
+  if (!task) {
+    return <div className="text-center py-10">Initializing mission data...</div>;
+  }
 
   const handleSubmit = () => {
     if (selected) onComplete(selected);
@@ -25,11 +30,11 @@ const MCQTask: React.FC<MCQTaskProps> = ({ task, onComplete }) => {
       
       <GlassCard className="mb-8">
         <p className="text-xl text-teal-100/90 leading-relaxed mb-10">
-          {task.question}
+          {task.question || task.description}
         </p>
         
         <div className="space-y-4">
-          {task.options.map((option, index) => (
+          {task.options?.map((option, index) => (
             <motion.div
               key={index}
               whileHover={{ x: 10, backgroundColor: 'rgba(0, 255, 255, 0.05)' }}

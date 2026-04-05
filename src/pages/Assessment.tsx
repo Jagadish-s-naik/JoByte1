@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -525,7 +525,11 @@ const Assessment: React.FC = () => {
                   </div>
                 </div>
 
-                {currentTask?.type === 'MCQ' ? (
+                {!currentTask ? (
+                  <div className="flex flex-col items-center justify-center py-20 text-teal-400 font-mono">
+                    <p className="animate-pulse">LOADING_TASK_DATA...</p>
+                  </div>
+                ) : currentTask.type === 'MCQ' ? (
                   <MCQTask 
                     task={currentTask} 
                     onComplete={handleTaskComplete} 
@@ -552,8 +556,8 @@ const Assessment: React.FC = () => {
                 </div>
               </div>
               <div className="text-center">
-                <h2 className="text-2xl font-bold mb-2">Analyzing Assessment Profile</h2>
-                <p className="text-slate-400">Our VJSA reasoning engine is evaluating your performance data...</p>
+                <h2 className="text-2xl font-bold mb-2 text-slate-900">Analyzing Assessment Profile</h2>
+                <p className="text-slate-600">Our VJSA reasoning engine is evaluating your performance data...</p>
               </div>
             </motion.div>
           ) : (

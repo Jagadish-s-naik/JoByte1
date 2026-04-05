@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, type ReactNode, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
+import type { ReactNode, FC } from 'react';
 
 export type NotificationType = 'application' | 'assessment' | 'profile' | 'system';
 
@@ -22,7 +23,7 @@ interface NotificationContextType {
 
 const NotificationContext = createContext<NotificationContextType | undefined>(undefined);
 
-export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const NotificationProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [notifications, setNotifications] = useState<Notification[]>([
     {
       id: '1',

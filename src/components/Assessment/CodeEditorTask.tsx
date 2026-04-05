@@ -5,16 +5,22 @@ import GlassCard from '../UI/GlassCard';
 import GlowButton from '../UI/GlowButton';
 
 interface CodeEditorTaskProps {
-  task: {
-    question: string;
-    template: string;
+  task?: {
+    question?: string;
+    description?: string;
+    template?: string;
+    initialCode?: string;
   };
   onComplete: (answer: string) => void;
 }
 
 const CodeEditorTask: React.FC<CodeEditorTaskProps> = ({ task, onComplete }) => {
-  const [code, setCode] = useState(task.template);
+  const [code, setCode] = useState(task?.initialCode || task?.template || '// Start coding...');
   const [output, setOutput] = useState<string | null>(null);
+
+  if (!task) {
+    return <div className="text-center py-10">Initializing mission parameters...</div>;
+  }
 
   const handleRun = () => {
     setOutput("SYSTEM_LOG: SIMULATION RUNNING...\n[SUCCESS] TEST_CASE_01: NOMINAL_TRAJECTORY\n[SUCCESS] TEST_CASE_02: STABILITY_CHECK\nSTATUS: READY FOR SUBMISSION");
@@ -35,7 +41,7 @@ const CodeEditorTask: React.FC<CodeEditorTaskProps> = ({ task, onComplete }) => 
         
         <div className="flex-1 overflow-y-auto pr-4 text-teal-100/70 space-y-4 leading-relaxed font-sans">
           <p className="font-bold text-teal-400">OBJECTIVE:</p>
-          <p>{task.question}</p>
+          <p>{task.question || task.description}</p>
           
           <div className="bg-teal-500/5 p-4 rounded border border-teal-500/20 text-xs font-mono">
             // DATA_STREAM: V_DESC_LIMIT = 5.0 m/s

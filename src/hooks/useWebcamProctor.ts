@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import type { RefObject } from 'react';
 import '@tensorflow/tfjs';
 import * as tmImage from '@teachablemachine/image';
 
@@ -8,7 +9,7 @@ interface UseWebcamProctorOptions {
   cooldownMs?: number;
   onSuspiciousActivity: () => void;
   isActive: boolean;
-  previewRef?: React.RefObject<HTMLDivElement | null>;
+  previewRef?: RefObject<HTMLDivElement | null>;
   isEnabled?: boolean;
 }
 
@@ -30,11 +31,16 @@ export const useWebcamProctor = ({
   const lastDetectionTimeRef = useRef(0);
   const animationFrameRef = useRef<number | null>(null);
   const onSuspiciousActivityRef = useRef(onSuspiciousActivity);
+  const isEnabledRef = useRef(isEnabled);
 
-  // Keep callback fresh
+  // Keep references fresh without re-triggering the main effect
   useEffect(() => {
     onSuspiciousActivityRef.current = onSuspiciousActivity;
   }, [onSuspiciousActivity]);
+
+  useEffect(() => {
+    isEnabledRef.current = isEnabled;
+  }, [isEnabled]);
 
   useEffect(() => {
     let active = true;
@@ -79,24 +85,28 @@ export const useWebcamProctor = ({
     };
 
     const loop = async () => {
-      if (!isPredictingRef.current || !isEnabled || !webcamRef.current || !modelRef.current) return;
+      if (!isPredictingRef.current || !webcamRef.current || !modelRef.current) return;
       
       try {
         if (webcamRef.current?.canvas) {
           webcamRef.current.update(); // update the webcam frame
-          const predictions = await modelRef.current.predict(webcamRef.current.canvas);
           
-          const isCheating = predictions.some(p => {
-              const isTargetClass = p.className.toLowerCase().includes('phone') || p.className === 'Class 2';
-              return isTargetClass && p.probability >= threshold;
-          });
-          
-          if (isCheating) {
-            const now = Date.now();
-            if (now - lastDetectionTimeRef.current > cooldownMs) {
-               lastDetectionTimeRef.current = now;
-               console.warn("Anti-Cheat: Phone detected via WebCam!");
-               onSuspiciousActivityRef.current();
+          if (isEnabledRef.current) {
+            const predictions = await modelRef.current.predict(webcamRef.current.canvas);
+            
+            const isCheating = predictions.some(p => {
+                const isTargetClass = p.className.toLowerCase().includes('phone') || p.className === 'Class 2';
+                return isTargetClass && p.probability >= threshold;
+            });
+            
+            if (isCheating) {
+              const now = Date.now();
+              console.log("DETECTION_ENGINE: Potential violation identified.", predictions.filter(p => p.probability > 0.5));
+              if (now - lastDetectionTimeRef.current > cooldownMs) {
+                 lastDetectionTimeRef.current = now;
+                 console.warn("Anti-Cheat: Phone detected via WebCam!");
+                 onSuspiciousActivityRef.current();
+              }
             }
           }
         }
@@ -104,12 +114,12 @@ export const useWebcamProctor = ({
          // suppress silent errors during render loops
       }
 
-      if (isPredictingRef.current && isEnabled) {
+      if (isPredictingRef.current) {
         animationFrameRef.current = window.requestAnimationFrame(loop);
       }
     };
 
-    if (isActive && isEnabled) {
+    if (isActive) {
       setupProctoring();
     } else {
       isPredictingRef.current = false;
@@ -131,7 +141,7 @@ export const useWebcamProctor = ({
         try { webcamRef.current.stop(); } catch (e) {}
       }
     };
-  }, [modelUrl, threshold, cooldownMs, isActive, isEnabled]);
+  }, [modelUrl, threshold, cooldownMs, isActive]); // isEnabled removed to prevent camera restart
 
   return { isModelLoaded, cameraError };
 };
