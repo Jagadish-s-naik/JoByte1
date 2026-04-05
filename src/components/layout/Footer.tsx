@@ -153,8 +153,8 @@ const Footer: React.FC = () => {
             &copy; {currentYear} JoByte AI. All rights reserved. Precision Career Engineering.
           </p>
           <div className="flex items-center gap-8 text-xs font-bold text-neutral-400 dark:text-neutral-600 uppercase tracking-tighter">
-            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
+            <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-primary transition-colors">Terms Conditions</Link>
             <a href="#" className="hover:text-primary transition-colors">Cookie Settings</a>
           </div>
         </div>

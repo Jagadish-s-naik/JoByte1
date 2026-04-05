@@ -1,0 +1,239 @@
+HIREAXIS
+
+LEGAL DOCUMENT
+
+Privacy Policy
+
+This policy explains how HireAxis collects, uses, stores, and protects your personal data.
+
+Effective Date: June 15, 2025    |    Last Updated: 5 April 2026    |    Version 1.0
+
+Your Privacy MattersHireAxis is committed to transparency about how we handle your data. This policy complies with India's Digital Personal Data Protection Act, 2023 (DPDPA) and incorporates principles aligned with GDPR for international users. Please read this carefully — we have written it to be clear, not just comprehensive.
+
+1. Who We Are
+
+HireAxis ("we," "us," "our") is an AI-powered job portal connecting Candidates seeking employment with Employers looking to hire. We operate as both a Data Fiduciary (for Candidate data) and a Data Processor (processing data on behalf of Employers) under the DPDPA, 2023.
+
+Contact for privacy matters: privacy@hireaxis.com
+
+Data Protection Officer: dpo@hireaxis.com
+
+2. Data We Collect
+
+2.1  Data You Provide Directly
+
+From Candidates:
+
+Identity data: full name, email address, profile photograph (if provided)
+
+Professional data: skills, years of experience, preferred roles, employment history summary, education
+
+Application data: proposal text, simulation scores, resume URL
+
+Communication data: messages and interactions within the Platform
+
+From Employers:
+
+Company data: company name, industry, size, website, description, location
+
+Contact data: recruiter name and email
+
+Job listing content: role titles, descriptions, skill requirements, salary ranges
+
+Hiring outcome data: shortlist and rejection decisions
+
+2.2  Data Collected Automatically
+
+Log data: IP address, browser type, device type, pages visited, timestamps
+
+Usage data: features used, search queries, time spent on pages
+
+Authentication data: session tokens managed by Clerk (our identity provider)
+
+Performance data: error logs and platform diagnostics
+
+2.3  Data from Third Parties
+
+Authentication and identity verification from Clerk (e.g., social login data if you sign in with Google)
+
+Payment status (not card details) from Razorpay or Stripe
+
+3. How We Use Your Data
+
+3.1  To Provide the Platform
+
+Creating and managing your account
+
+Running the AI matching algorithm to rank relevant Job Listings for Candidates and relevant Candidates for Employers
+
+Processing job applications and communicating status updates
+
+Sending automated emails (shortlist notifications with Google Meet links, rejection notifications)
+
+Facilitating proctored assessments through Safe Exam Browser
+
+3.2  Platform Safety and Compliance
+
+Detecting and preventing fraud, misrepresentation, and policy violations
+
+Enforcing the Anti-Ghost Hiring Policy and Terms of Use
+
+Complying with legal obligations, court orders, and regulatory requirements
+
+3.3  Service Improvement
+
+Improving the accuracy of our AI matching algorithm
+
+Analysing platform usage to improve features and user experience
+
+Conducting research and development on recruitment market trends
+
+3.4  Commercial Analytics (Anonymised)
+
+Anonymised Data Resale — Full DisclosureAfter the application period for a job role closes, HireAxis anonymises all Application data associated with that role. We remove all direct and indirect personal identifiers. The resulting anonymised, aggregated datasets may be sold to HR analytics firms, recruitment consultancies, and enterprise clients as market intelligence.What this means in practice: a report might say "demand for Python ML engineers in Bangalore grew 34% in Q2 2025 — we will never say "Ananya Rao applied to 4 jobs." The data sold cannot identify you.Legal basis: Legitimate interest (analytics and platform sustainability) with explicit disclosure per DPDPA, 2023, Section 6.
+
+4. Legal Bases for Processing
+
+We process personal data on the following legal bases under the DPDPA, 2023:
+
+Consent: You provide explicit consent during registration and onboarding. You may withdraw consent at any time (see Section 9).
+
+Contractual necessity: Processing required to provide the services you have requested.
+
+Legitimate interests: Platform security, fraud prevention, service improvement, and the anonymised analytics programme, where such interests are not overridden by your rights.
+
+Legal obligation: Processing required to comply with applicable laws.
+
+5. Data Sharing
+
+5.1  With Employers
+
+Candidate Application data — including profile information, match score, and proposal text — is shared with the Employer who posted the relevant Job Listing, for the sole purpose of evaluating that Application. Employers are contractually required to handle this data in accordance with our Terms of Use and applicable law.
+
+5.2  With Service Providers
+
+We share data with trusted third-party service providers who process data on our behalf:
+
+Clerk — Identity and authentication management (United States). See clerk.com/privacy.
+
+MongoDB Atlas — Database hosting (AWS, Singapore region). See mongodb.com/legal/privacy-policy.
+
+Razorpay / Stripe — Payment processing. We share only the minimum data necessary to process transactions.
+
+Google — Gmail SMTP for transactional emails; Google Meet and Calendar links generated on shortlist.
+
+Vercel / hosting provider — Frontend hosting.
+
+All service providers are bound by data processing agreements and may not use your data for their own purposes.
+
+5.3  With Analytics Buyers (Anonymised Only)
+
+As described in Section 3.4, anonymised and aggregated recruitment data may be sold. No personal data is included in these transfers. Buyers may not attempt to re-identify individuals from this data.
+
+5.4  Legal Disclosures
+
+We may disclose personal data if required to do so by law, court order, or a government authority, or where we believe disclosure is necessary to protect our rights or the safety of any person.
+
+5.5  Business Transfers
+
+In the event of a merger, acquisition, or sale of all or part of our business, personal data may be transferred as part of that transaction. We will notify Users via email and a prominent Platform notice before any such transfer and give you the opportunity to delete your account.
+
+6. Data Retention
+
+We retain personal data for only as long as necessary for the purposes for which it was collected:
+
+Active account data: retained while your account is active.
+
+Application data: retained for 24 months after the application period for the relevant role closes.
+
+Anonymised data: retained indefinitely for analytics purposes.
+
+Payment records: retained for 7 years as required by Indian financial regulations.
+
+Log and audit data: retained for 12 months.
+
+Upon account deletion, personal data is pseudonymised within 30 days and permanently deleted within 90 days, except where retention is required by law.
+
+7. Security
+
+We implement and maintain appropriate technical and organisational security measures, including:
+
+All data transmitted over TLS 1.2 or higher (HTTPS)
+
+Passwords hashed using industry-standard algorithms; credentials managed by Clerk
+
+MongoDB Atlas encryption at rest and in transit
+
+Role-based access controls limiting employee access to personal data
+
+Regular security assessments and dependency audits
+
+Incident response procedures with User notification within 72 hours of any data breach
+
+No security system is impenetrable. In the unlikely event of a data breach affecting your rights, we will notify you and the relevant authorities as required by law.
+
+8. International Data Transfers
+
+HireAxis is based in India. Some of our service providers process data outside India (notably Clerk in the United States and MongoDB Atlas on AWS). We ensure such transfers are subject to adequate safeguards, including standard contractual clauses and data processing agreements, consistent with DPDPA requirements for cross-border transfers.
+
+9. Your Rights
+
+Under the DPDPA, 2023, and applicable law, you have the following rights regarding your personal data:
+
+Right of Access
+
+You may request a copy of all personal data we hold about you. We will respond within 30 days.
+
+Right to Correction
+
+You may correct inaccurate or incomplete data through your account settings or by contacting us.
+
+Right to Erasure
+
+You may request deletion of your personal data. We will action this within 30 days, subject to legal retention requirements. Note that anonymised data derived from your information cannot be deleted as it is no longer personal data.
+
+Right to Withdraw Consent
+
+You may withdraw consent for data processing at any time. Withdrawal does not affect the lawfulness of processing carried out before withdrawal. Note that withdrawing consent may prevent us from providing some or all Platform services.
+
+Right to Grievance Redressal
+
+You may raise a grievance with our Data Protection Officer at dpo@hireaxis.com. We will acknowledge within 48 hours and resolve within 30 days. Unresolved grievances may be escalated to the Data Protection Board of India.
+
+Exercising Your Rights
+
+To exercise any right, contact privacy@hireaxis.com with the subject "Privacy Rights Request" and your registered email address. We may need to verify your identity before processing the request.
+
+10. Cookies and Tracking
+
+HireAxis uses cookies and similar technologies for:
+
+Essential cookies: session management and authentication (required for the Platform to function)
+
+Analytics cookies: understanding how Users interact with the Platform (you may opt out)
+
+We do not use advertising cookies or sell your browsing data to advertisers. HireAxis products are advertisement-free.
+
+11. Children's Privacy
+
+HireAxis is not intended for use by persons under the age of 18. We do not knowingly collect personal data from minors. If we become aware that we have collected data from a minor, we will delete it promptly. If you believe a minor has registered, please contact privacy@hireaxis.com.
+
+12. Changes to This Policy
+
+We may update this Privacy Policy from time to time. Material changes will be communicated via email and a Platform notice at least 14 days before taking effect. The "Last Updated" date at the top of this document reflects the most recent revision. We encourage you to review this policy periodically.
+
+13. Contact and Grievances
+
+For any privacy-related queries, requests, or complaints:
+
+Privacy Team: privacy@hireaxis.com
+
+Data Protection Officer: dpo@hireaxis.com
+
+Legal: legal@hireaxis.com
+
+Postal: HireAxis Technologies, Bangalore, Karnataka, India — 560001
+
+If you are not satisfied with our response, you may contact the Data Protection Board of India (once operational under the DPDPA, 2023).
+
+— End of Privacy Policy —

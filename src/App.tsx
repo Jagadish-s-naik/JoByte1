@@ -10,6 +10,8 @@ import EmployerDashboard from './pages/Employer/Dashboard';
 import Profile from './pages/Profile';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsAndConditions from './pages/TermsAndConditions';
 import ProtectedRoute from './middleware/ProtectedRoute';
 import { NotificationProvider } from './context/NotificationContext';
 import './index.css';
@@ -56,6 +58,10 @@ const AppContent: React.FC = () => {
           {/* Assessment Route */}
           <Route path="/mission/:id" element={<Assessment />} />
           <Route path="/assessment/:id" element={<Assessment />} />
+          
+          {/* Legal Routes */}
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
           
           {/* Fallback */}
           <Route path="*" element={<Navigate to="/" replace />} />

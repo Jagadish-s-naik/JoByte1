@@ -1,0 +1,197 @@
+HIREAXIS
+
+LEGAL DOCUMENT
+
+Terms and Conditions of Use
+
+Please read these terms carefully before using the HireAxis platform.
+
+Effective Date: June 15, 2025    |    Last Updated: 5 April 2026    |    Version 1.0
+
+IMPORTANT NOTICEBy registering, accessing, or using the HireAxis platform in any capacity — as a Candidate or as an Employer — you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions in their entirety. If you do not agree, you must not use this platform.
+
+1. Definitions
+
+"HireAxis," "we," "us," or "our" refers to the HireAxis platform and its operators.
+
+"Platform" means the HireAxis website, mobile applications, APIs, and all associated services.
+
+"Candidate" means any individual who registers on the Platform seeking employment opportunities.
+
+"Employer" means any individual, company, or organisation that registers to post job listings and recruit through the Platform.
+
+"User" refers to both Candidates and Employers collectively.
+
+"Job Listing" means any employment opportunity posted by an Employer on the Platform.
+
+"Application" means a Candidate's submission — either a Proposal or a Simulation — in response to a Job Listing.
+
+"Simulation" means a paid proctored assessment facilitated through Safe Exam Browser (SEB) or equivalent.
+
+"Proposal" means a free-form written application submitted by a Candidate in lieu of a Simulation.
+
+2. Acceptance of Terms
+
+2.1  These Terms and Conditions constitute a legally binding agreement between you and HireAxis. Your continued use of the Platform constitutes acceptance of any amendments we make, which will be communicated with reasonable notice.
+
+2.2  Users must be at least 18 years of age, or the age of majority in their jurisdiction, to register. By registering, you represent that you meet this requirement.
+
+2.3  Employers registering on behalf of a company represent that they have authority to bind that company to these Terms.
+
+3. Account Registration and Onboarding
+
+3.1  Candidate Registration
+
+Candidates must complete the onboarding process, which includes providing accurate personal details, skills, experience, education, and preferred roles. This information is used by our AI matching system to surface relevant Job Listings. You agree to keep this information current and accurate.
+
+3.2  Employer Registration
+
+Employers must provide accurate company information including company name, industry, location, size, and contact details. Employers are responsible for ensuring all job listings posted under their account are truthful and within their authority to offer.
+
+3.3  Account Security
+
+Authentication is handled by Clerk, our third-party identity provider. You are responsible for maintaining the confidentiality of your credentials and for all activity under your account. You must notify us immediately of any suspected unauthorised access.
+
+4. Candidate — Rights and Obligations
+
+4.1  Candidates may browse active Job Listings and apply via Proposal (free) or via Simulation (paid, subject to fee at the time of application).
+
+4.2  By submitting a Proposal, you certify that all information provided is accurate and truthful. Misrepresentation of qualifications, experience, or identity is grounds for immediate account termination.
+
+4.3  Candidates who opt for a Simulation agree to the rules of the applicable proctoring software (Safe Exam Browser). Attempts to circumvent proctoring measures will result in disqualification and account suspension.
+
+4.4  You acknowledge that applying to a Job Listing does not guarantee an interview, offer, or employment. HireAxis makes no representations regarding the outcome of any Application.
+
+4.5  Candidates may track the status of their Applications within the Platform. Status updates — Pending, Shortlisted, or Rejected — are communicated by Employers through the Platform, and automated notifications may be sent to your registered email address.
+
+5. Employer — Rights and Obligations
+
+5.1  Job Listings
+
+Employers may post Job Listings subject to the following conditions:
+
+All information in a Job Listing must be accurate, complete, and not misleading.
+
+Job Listings must represent genuine, current, and available employment opportunities.
+
+Listings must not violate applicable employment, anti-discrimination, or labour laws.
+
+Listings must not be used to collect personal data for purposes other than legitimate recruitment.
+
+5.2  Anti-Ghost Hiring Policy
+
+Anti-Ghost Hiring Policy — Strictly EnforcedGhost hiring — the practice of posting jobs with no genuine intent to hire, or substantially misrepresenting the number of available positions — is prohibited and actively monitored on HireAxis.Employers who declare an intention to hire a significantly large number of candidates and subsequently hire a materially smaller number without reasonable justification will be subject to the following consequences:
+
+First violation: A formal written warning and a financial penalty as determined by HireAxis at the time of the violation, communicated in writing.
+
+Second violation: An increased financial penalty, temporary suspension of the Employer account, and a public note on the Employer's profile.
+
+Third violation and beyond: Permanent blacklisting of the Employer account, forfeiture of any prepaid credits or fees, and potential referral to relevant regulatory authorities.
+
+The threshold for "significant misrepresentation" is a hiring rate below 10% of declared openings, or fewer than 5 hires where more than 50 were declared, whichever is lower. HireAxis reserves the right to amend this threshold at its discretion. By posting a Job Listing with more than 50 declared openings, Employers explicitly acknowledge this policy.
+
+5.3  Employer Data Responsibilities
+
+Employers receive Candidate Application data — including proposals, match scores, and profile information — solely for the purpose of evaluating candidates for the specific listed role. Employers agree:
+
+Not to use Candidate data for any purpose other than evaluating applications for the role in question.
+
+Not to share, sell, transfer, or disclose Candidate data to third parties.
+
+To process Candidate data in compliance with applicable data protection laws, including India's Digital Personal Data Protection Act, 2023 (DPDPA).
+
+To promptly and securely delete Candidate data that is no longer needed for recruitment purposes.
+
+5.4  Shortlisting and Communication
+
+When an Employer shortlists a Candidate through the Platform, HireAxis will send an automated email to the Candidate containing congratulatory messaging, a Google Meet link, and a calendar scheduling link. Employers acknowledge that they should be prepared to honour the interview process promptly upon shortlisting.
+
+6. AI Matching System
+
+6.1  HireAxis uses a semantic AI matching system (based on Sentence Transformers) to rank Job Listings against Candidate profiles and vice versa. Match scores are indicative and represent algorithmic similarity between a Candidate's profile and a Job Listing's requirements.
+
+6.2  Match scores are not guarantees of suitability, qualification, or employment outcome. Employers and Candidates should exercise independent judgment in all hiring decisions.
+
+6.3  The AI system is trained on and operates with the data provided by Users. Incomplete or inaccurate profiles may result in lower-quality matches. HireAxis is not liable for missed matches resulting from incomplete User-provided data.
+
+7. Data Commercialisation — Anonymised Analytics
+
+Important: Anonymised Data Resale DisclosureHireAxis collects Application data, match scores, and recruitment outcomes. After the Application period for a role closes, we anonymise this data — removing all personally identifiable information — and may aggregate it into market intelligence reports and analytics products sold to HR firms, recruitment analysts, and enterprise clients.No data that identifies an individual is ever sold. By using the Platform, both Candidates and Employers consent to this practice as described in this Section and in our Privacy Policy.
+
+7.1  "Anonymised Data" means data from which all direct and indirect identifiers have been removed such that the individual cannot be identified or re-identified by any reasonably practicable means.
+
+7.2  Anonymised Data may include: skill demand trends, match score distributions, application-to-hire ratios, industry-level salary benchmarks, and role-type popularity metrics.
+
+7.3  This commercialisation is a core part of HireAxis's sustainability model and enables us to provide free or low-cost services to Candidates. You may contact us at legal@hireaxis.com if you have questions about this practice.
+
+8. Payments and Refunds
+
+8.1  Simulation applications require payment of the fee disclosed at the time of application. All payments are processed through third-party payment gateways (Razorpay or Stripe). HireAxis does not store payment card information.
+
+8.2  Simulation fees are non-refundable once the Simulation has been initiated and the candidate has accessed the proctored environment.
+
+8.3  If a technical failure on HireAxis's end prevents a Simulation from being completed, a full refund or a free re-attempt will be offered at the Candidate's choice.
+
+8.4  Employer penalty fees under Section 5.2 are due within 14 days of the notice of violation. Failure to pay may result in immediate account suspension and referral for debt recovery.
+
+9. Intellectual Property
+
+9.1  The HireAxis platform, including its design, AI systems, code, branding, and content, is the intellectual property of HireAxis and is protected by applicable copyright, trademark, and trade secret laws.
+
+9.2  Users retain ownership of the content they submit (profiles, proposals, job descriptions). By submitting content, you grant HireAxis a non-exclusive, worldwide, royalty-free licence to use, store, process, display, and anonymise that content for the purposes of operating the Platform and as described in Section 7.
+
+9.3  You may not scrape, copy, reverse-engineer, or attempt to extract any part of the Platform's systems or data without express written permission from HireAxis.
+
+10. Prohibited Conduct
+
+Users must not:
+
+Provide false, misleading, or fraudulent information at any stage.
+
+Impersonate any person, company, or entity.
+
+Use the Platform for any purpose other than legitimate job-seeking or recruitment.
+
+Attempt to access other Users' accounts or data.
+
+Use automated tools, bots, or scrapers to interact with the Platform.
+
+Post discriminatory, harassing, or unlawful job listings or content.
+
+Circumvent any proctoring, security, or access control measure.
+
+Engage in any conduct that could damage, overburden, or disrupt the Platform.
+
+11. Limitation of Liability
+
+11.1  To the maximum extent permitted by applicable law, HireAxis shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the Platform.
+
+11.2  HireAxis's total aggregate liability for any claim arising from use of the Platform shall not exceed the fees paid by the User to HireAxis in the 12 months preceding the claim, or INR 5,000, whichever is greater.
+
+11.3  HireAxis does not guarantee employment outcomes, interview invitations, or the accuracy of any third-party information displayed on the Platform.
+
+12. Termination
+
+12.1  HireAxis may suspend or terminate any User account at any time, without notice, for violation of these Terms, fraudulent activity, or conduct detrimental to other Users or the Platform.
+
+12.2  Users may delete their account at any time through account settings. Upon deletion, personal data will be handled in accordance with our Privacy Policy.
+
+13. Governing Law and Dispute Resolution
+
+13.1  These Terms shall be governed by and construed in accordance with the laws of India.
+
+13.2  Any dispute arising from these Terms or your use of the Platform shall first be subject to good-faith negotiations. If unresolved within 30 days, disputes shall be submitted to binding arbitration under the Arbitration and Conciliation Act, 1996, with the seat of arbitration in Bangalore, Karnataka.
+
+14. Amendments
+
+HireAxis reserves the right to modify these Terms at any time. Material changes will be communicated via email and a prominent notice on the Platform at least 14 days before taking effect. Continued use of the Platform after the effective date constitutes acceptance of the amended Terms.
+
+15. Contact
+
+For questions regarding these Terms, contact:
+
+Email: legal@hireaxis.com
+
+Address: HireAxis Technologies, Bangalore, Karnataka, India — 560001
+
+— End of Terms and Conditions —
