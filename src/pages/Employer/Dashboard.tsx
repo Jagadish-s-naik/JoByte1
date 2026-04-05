@@ -95,52 +95,52 @@ const EmployerDashboard: React.FC = () => {
     const realCandidates = (candidatesData || []) as Candidate[];
     const dummyCandidates: Candidate[] = [
       { 
-        id: 'c1', full_name: 'S. Rodriguez', created_at: new Date().toISOString(), 
+        id: 'c1', full_name: 'Sarah Rodriguez', created_at: new Date().toISOString(), 
         mission: { title: 'Senior Frontend Architect', company: 'JoByte' }, 
         report: [{ total_score: 94, technical_score: 96, logic_score: 92, integrity_score: 100, strikes: 0 }] 
       },
       { 
-        id: 'c2', full_name: 'M. Chen', created_at: new Date().toISOString(), 
+        id: 'c2', full_name: 'Michael Chen', created_at: new Date().toISOString(), 
         mission: { title: 'Product Design Lead', company: 'JoByte' }, 
         report: [{ total_score: 88, technical_score: 85, logic_score: 91, integrity_score: 100, strikes: 0 }] 
       },
       { 
-        id: 'c3', full_name: 'A. Gupta', created_at: new Date().toISOString(), 
+        id: 'c3', full_name: 'Arjun Gupta', created_at: new Date().toISOString(), 
         mission: { title: 'DevOps Platform Engineer', company: 'JoByte' }, 
         report: [{ total_score: 72, technical_score: 74, logic_score: 68, integrity_score: 100, strikes: 0 }] 
       },
       { 
-        id: 'c4', full_name: 'J. Wilson', created_at: new Date().toISOString(), 
+        id: 'c4', full_name: 'James Wilson', created_at: new Date().toISOString(), 
         mission: { title: 'SRE Specialist', company: 'JoByte' }, 
         report: [{ total_score: 81, technical_score: 82, logic_score: 79, integrity_score: 85, strikes: 1 }] 
       },
       { 
-        id: 'c5', full_name: 'E. Petrova', created_at: new Date().toISOString(), 
+        id: 'c5', full_name: 'Elena Petrova', created_at: new Date().toISOString(), 
         mission: { title: 'ML Researcher', company: 'JoByte' }, 
         report: [{ total_score: 96, technical_score: 98, logic_score: 94, integrity_score: 100, strikes: 0 }] 
       },
       { 
-        id: 'c6', full_name: 'D. Kim', created_at: new Date().toISOString(), 
+        id: 'c6', full_name: 'David Kim', created_at: new Date().toISOString(), 
         mission: { title: 'Product Manager', company: 'JoByte' }, 
         report: [{ total_score: 64, technical_score: 60, logic_score: 68, integrity_score: 100, strikes: 0 }] 
       },
       { 
-        id: 'c7', full_name: 'S. Jenkins', created_at: new Date().toISOString(), 
+        id: 'c7', full_name: 'Samantha Jenkins', created_at: new Date().toISOString(), 
         mission: { title: 'Mobile Engineer', company: 'JoByte' }, 
         report: [{ total_score: 89, technical_score: 91, logic_score: 87, integrity_score: 95, strikes: 0 }] 
       },
       { 
-        id: 'c8', full_name: 'O. Farooq', created_at: new Date().toISOString(), 
+        id: 'c8', full_name: 'Omar Farooq', created_at: new Date().toISOString(), 
         mission: { title: 'QA Architect', company: 'JoByte' }, 
         report: [{ total_score: 77, technical_score: 75, logic_score: 79, integrity_score: 100, strikes: 0 }] 
       },
       { 
-        id: 'c9', full_name: 'L. Wang', created_at: new Date().toISOString(), 
+        id: 'c9', full_name: 'Li Wang', created_at: new Date().toISOString(), 
         mission: { title: 'Backend Architect', company: 'JoByte' }, 
         report: [{ total_score: 92, technical_score: 94, logic_score: 90, integrity_score: 100, strikes: 0 }] 
       },
       { 
-        id: 'c10', full_name: 'R. Miller', created_at: new Date().toISOString(), 
+        id: 'c10', full_name: 'Robert Miller', created_at: new Date().toISOString(), 
         mission: { title: 'Cloud Specialist', company: 'JoByte' }, 
         report: [{ total_score: 83, technical_score: 85, logic_score: 81, integrity_score: 90, strikes: 0 }] 
       },

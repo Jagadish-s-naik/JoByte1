@@ -1,207 +1,117 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Shield, Lock, Globe, ArrowLeft } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Shield, Lock, Eye, FileText, Mail, Phone, MapPin, CheckCircle2 } from 'lucide-react';
 
-const PrivacyPolicy: React.FC = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
+const PrivacyPolicy = () => {
   const sections = [
     {
-      id: 'who-we-are',
-      title: '1. Who We Are',
-      content: `JoByte ("we," "us," "our") is an AI-powered job portal connecting Candidates seeking employment with Employers looking to hire. We operate as both a Data Fiduciary (for Candidate data) and a Data Processor (processing data on behalf of Employers) under the DPDPA, 2023.
-
-Contact for privacy matters: horizonhacks@gmail.com
-Phone: +91 6360869590`,
+      title: "1. Introduction",
+      icon: <Shield className="w-6 h-6 text-red-500" />,
+      content: "Welcome to JoByte. We are committed to protecting your personal data and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our platform."
     },
     {
-      id: 'data-we-collect',
-      title: '2. Data We Collect',
-      subsections: [
-        {
-          title: '2.1 Data You Provide Directly',
-          content: `From Candidates:
-• Identity data: full name, email address, profile photograph (if provided)
-• Professional data: skills, years of experience, preferred roles, employment history summary, education
-• Application data: proposal text, simulation scores, resume URL
-• Communication data: messages and interactions within the Platform
-
-From Employers:
-• Company data: company name, industry, size, website, description, location
-• Contact data: recruiter name and email
-• Job listing content: role titles, descriptions, skill requirements, salary ranges
-• Hiring outcome data: shortlist and rejection decisions`,
-        },
-        {
-          title: '2.2 Data Collected Automatically',
-          content: `• Log data: IP address, browser type, device type, pages visited, timestamps
-• Usage data: features used, search queries, time spent on pages
-• Authentication data: session tokens managed by our identity provider
-• Performance data: error logs and platform diagnostics`,
-        },
-      ],
+      title: "2. Data We Collect",
+      icon: <Eye className="w-6 h-6 text-red-400" />,
+      content: [
+        "Personal Identification: Name, email address, phone number, and physical address.",
+        "Professional Information: Resume/CV data, skills, experience, and education history.",
+        "Candidate Performance: Match scores, simulation results, and application status.",
+        "Technical Data: IP address, browser type, and device information."
+      ]
     },
     {
-      id: 'how-we-use-data',
-      title: '3. How We Use Your Data',
-      content: `3.1 To Provide the Platform
-• Creating and managing your account
-• Running the AI matching algorithm to rank relevant Job Listings for Candidates and relevant Candidates for Employers
-• Processing job applications and communicating status updates
-• Sending automated emails (shortlist notifications with Google Meet links, rejection notifications)
-• Facilitating proctored assessments through Safe Exam Browser
-
-3.2 Platform Safety and Compliance
-• Detecting and preventing fraud, misrepresentation, and policy violations
-• Enforcing the Anti-Ghost Hiring Policy and Terms of Use
-• Complying with legal obligations, court orders, and regulatory requirements
-
-3.3 Service Improvement
-• Improving the accuracy of our AI matching algorithm
-• Analysing platform usage to improve features and user experience
-• Conducting research and development on recruitment market trends`,
+      title: "3. How We Use Your Data",
+      icon: <Lock className="w-6 h-6 text-rose-500" />,
+      content: [
+        "To provide and maintain our platform services.",
+        "To facilitate AI-powered candidate-to-job matching.",
+        "To process and manage your job applications and simulations.",
+        "To communicate updates, notifications, and administrative information.",
+        "To generate anonymised market intelligence reports."
+      ]
     },
     {
-      id: 'anonymised-data',
-      title: '3.4 Commercial Analytics (Anonymised)',
-      content: `Anonymised Data Resale — Full Disclosure
-After the application period for a job role closes, JoByte anonymises all Application data associated with that role. We remove all direct and indirect personal identifiers. The resulting anonymised, aggregated datasets may be sold to HR analytics firms, recruitment consultancies, and enterprise clients as market intelligence.
-
-What this means in practice: a report might say "demand for Python ML engineers in Bangalore grew 34% in Q2 2025" — we will never say "Ananya Rao applied to 4 jobs." The data sold cannot identify you.
-
-Legal basis: Legitimate interest (analytics and platform sustainability) with explicit disclosure per DPDPA, 2023, Section 6.`,
+      title: "4. Legal Basis for Processing",
+      icon: <FileText className="w-6 h-6 text-red-600" />,
+      content: "We process your data in compliance with India's Digital Personal Data Protection Act (DPDPA), 2023. Our processing is based on your explicit consent and the necessity of providing our recruitment services."
     },
     {
-      id: 'legal-bases',
-      title: '4. Legal Bases for Processing',
-      content: `We process personal data on the following legal bases under the DPDPA, 2023:
-• Consent: You provide explicit consent during registration and onboarding.
-• Contractual necessity: Processing required to provide the services you have requested.
-• Legitimate interests: Platform security, fraud prevention, service improvement, and the anonymised analytics programme.
-• Legal obligation: Processing required to comply with applicable laws.`,
+      title: "5. Data Sharing and Disclosure",
+      icon: <Shield className="w-6 h-6 text-rose-600" />,
+      content: [
+        "With Employers: We share relevant candidate profile data for recruitment purposes.",
+        "Service Providers: We may use third-party providers (e.g., Supabase, Clerk) for core functions.",
+        "Anonymised Analytics: Aggregated, non-identifiable data may be shared with intelligence partners.",
+        "Legal Requirements: We may disclose data if required by law or to protect our rights."
+      ]
     },
     {
-      id: 'data-sharing',
-      title: '5. Data Sharing',
-      content: `5.1 With Employers
-Candidate Application data — including profile information, match score, and proposal text — is shared with the Employer who posted the relevant Job Listing, for the sole purpose of evaluating that Application.
-
-5.2 With Service Providers
-We share data with trusted third-party service providers (e.g., Supabase for backend, Clerk for Auth, etc.) who process data on our behalf under strict data processing agreements.`,
+      title: "6. Data Retention",
+      icon: <Lock className="w-6 h-6 text-red-700" />,
+      content: "We retain your personal data only for as long as necessary to fulfill the purposes for which it was collected, including for the purposes of satisfying any legal, accounting, or reporting requirements."
     },
     {
-      id: 'data-retention',
-      title: '6. Data Retention',
-      content: `• Active account data: retained while your account is active.
-• Application data: retained for 24 months after the application period closes.
-• Anonymised data: retained indefinitely for analytics purposes.
-• Payment records: retained for 7 years as required by regulations.`,
+      title: "7. Your Rights (DPDPA 2023)",
+      icon: <CheckCircle2 className="w-6 h-6 text-rose-400" />,
+      content: [
+        "Right to access your personal data.",
+        "Right to correction and erasure of your data.",
+        "Right to withdraw consent at any time.",
+        "Right to grievance redressal."
+      ]
     },
     {
-      id: 'security',
-      title: '7. Security',
-      content: `We implement appropriate technical and organisational security measures, including TLS 1.2 or higher encryption, hashed passwords, and role-based access controls. We notify users within 72 hours of any material data breach.`,
-    },
-    {
-      id: 'rights',
-      title: '9. Your Rights',
-      content: `Under the DPDPA, 2023, you have the following rights:
-• Right of Access: Request a copy of your personal data.
-• Right to Correction: Correct inaccurate or incomplete data.
-• Right to Erasure: Request deletion of your personal data.
-• Right to Withdraw Consent: Withdraw consent for data processing at any time.
-• Right to Grievance Redressal: Raise a grievance with our Data Protection Officer at horizonhacks@gmail.com.`,
-    },
+      title: "8. Cookies and Tracking",
+      icon: <Shield className="w-6 h-6 text-red-400" />,
+      content: "We use cookies and similar tracking technologies to track activity on our service and hold certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent."
+    }
   ];
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white">
-      {/* Background patterns */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden opacity-20">
-        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/20 blur-[120px] rounded-full"></div>
-        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full"></div>
-      </div>
-
-      <div className="max-w-4xl mx-auto px-6 py-24 relative z-10">
-        <motion.button
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors mb-12 group"
-        >
-          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm font-bold uppercase tracking-widest">Back</span>
-        </motion.button>
-
+    <div className="min-h-screen bg-black text-white pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="space-y-4 mb-16"
+          className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest">
-            <Shield size={12} />
-            Legal Document
-          </div>
-          <h1 className="text-5xl md:text-6xl font-black tracking-tighter">
-            Privacy <span className="text-primary">Policy</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-red-500 to-red-800 bg-clip-text text-transparent mb-4 tracking-tighter">
+            Privacy Policy
           </h1>
-          <p className="text-neutral-400 text-lg max-w-2xl leading-relaxed">
-            This policy explains how JoByte collects, uses, stores, and protects your personal data.
+          <p className="text-neutral-500 text-lg uppercase tracking-widest font-bold">
+            Effective Date: April 5, 2026 | Version 1.0
           </p>
-          <div className="flex flex-wrap items-center gap-6 pt-4 text-[11px] font-bold uppercase tracking-widest text-neutral-500">
-            <span className="flex items-center gap-2">
-              <Globe size={14} className="text-primary" />
-              Effective Date: June 15, 2025
-            </span>
-            <span className="flex items-center gap-2">
-              <Lock size={14} className="text-primary" />
-              Version 1.0
-            </span>
-            <span className="bg-primary/20 text-primary px-2 py-0.5 rounded">
-              Last Updated: April 5, 2026
-            </span>
-          </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-12">
-          {sections.map((section, idx) => (
+        <div className="space-y-8">
+          {sections.map((section, index) => (
             <motion.section
-              key={section.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.05 }}
-              className="group bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-primary/30 transition-all duration-300"
+              key={index}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className="bg-[#0D0D0E]/50 border border-white/5 rounded-2xl p-6 md:p-8 hover:border-red-500/30 transition-all duration-300 shadow-[0_0_50px_rgba(239,68,68,0.02)]"
             >
-              <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="text-primary opacity-50 group-hover:opacity-100 transition-opacity">#</span>
-                {section.title}
-              </h2>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 bg-red-500/5 rounded-xl border border-red-500/10">
+                  {section.icon}
+                </div>
+                <h2 className="text-2xl font-bold text-white tracking-tight">{section.title}</h2>
+              </div>
               
-              {section.content && (
-                <p className="text-neutral-400 leading-relaxed whitespace-pre-wrap">
+              {Array.isArray(section.content) ? (
+                <ul className="space-y-4">
+                  {section.content.map((item, i) => (
+                    <li key={i} className="flex gap-3 text-neutral-400 leading-relaxed font-medium">
+                      <span className="text-red-500 mt-1 font-black">•</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-neutral-400 leading-relaxed font-medium">
                   {section.content}
                 </p>
-              )}
-
-              {section.subsections && (
-                <div className="space-y-8 mt-6">
-                  {section.subsections.map((sub, sIdx) => (
-                    <div key={sIdx} className="space-y-3">
-                      <h3 className="text-lg font-bold text-white/90">
-                        {sub.title}
-                      </h3>
-                      <p className="text-neutral-400 leading-relaxed whitespace-pre-wrap">
-                        {sub.content}
-                      </p>
-                    </div>
-                  ))}
-                </div>
               )}
             </motion.section>
           ))}
@@ -209,23 +119,44 @@ We share data with trusted third-party service providers (e.g., Supabase for bac
 
         <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mt-20 pt-10 border-t border-white/10 text-center"
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="mt-16 p-8 bg-gradient-to-br from-red-500/5 to-black rounded-3xl border border-red-500/10 text-center relative overflow-hidden group"
         >
-          <p className="text-neutral-500 text-sm mb-6">
-            For any queries or grievances, please reach out to our legal team.
-          </p>
-          <div className="flex flex-col items-center gap-3">
-            <a href="mailto:horizonhacks@gmail.com" className="flex items-center gap-2 text-primary font-bold hover:underline">
-              <Mail size={16} />
-              horizonhacks@gmail.com
-            </a>
-            <p className="text-neutral-400 font-medium">
-              JoByte Technologies, Mangalore, Karnataka, India
-            </p>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.05),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+          <h2 className="text-2xl font-black mb-8 tracking-tighter uppercase">Contact Our Privacy Team</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+            <div className="flex flex-col items-center gap-2">
+              <div className="p-4 bg-red-500/5 rounded-full mb-2 border border-red-500/10">
+                <Mail className="w-6 h-6 text-red-400" />
+              </div>
+              <p className="text-[10px] font-black text-neutral-500 uppercase tracking-widest">Email Us</p>
+              <a href="mailto:horizonhacks@gmail.com" className="text-white hover:text-red-500 transition-colors font-bold">
+                horizonhacks@gmail.com
+              </a>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <div className="p-4 bg-red-500/5 rounded-full mb-2 border border-red-500/10">
+                <Phone className="w-6 h-6 text-rose-500" />
+              </div>
+              <p className="text-[10px] font-black text-neutral-500 uppercase tracking-widest">Call Us</p>
+              <a href="tel:+916360869590" className="text-white hover:text-red-500 transition-colors font-bold">
+                +91 6360869590
+              </a>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <div className="p-4 bg-red-500/5 rounded-full mb-2 border border-red-500/10">
+                <MapPin className="w-6 h-6 text-red-600" />
+              </div>
+              <p className="text-[10px] font-black text-neutral-500 uppercase tracking-widest">Visit Us</p>
+              <p className="text-white font-bold">Mangalore, Karnataka, India</p>
+            </div>
           </div>
         </motion.div>
+
+        <div className="mt-12 text-center text-gray-500 text-sm">
+          © 2026 JoByte. All rights reserved. Compliant with DPDPA, 2023.
+        </div>
       </div>
     </div>
   );

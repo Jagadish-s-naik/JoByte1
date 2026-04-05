@@ -131,56 +131,90 @@ const JobApplicantsModal: React.FC<JobApplicantsModalProps> = ({ missionId, miss
               </div>
 
               {/* Candidate List */}
-              {candidates.map((candidate) => {
-                const score = candidate.report?.[0]?.total_score || 0;
-                return (
-                  <motion.div 
-                    key={candidate.id}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="grid grid-cols-12 gap-4 items-center bg-surface-container-low/30 hover:bg-surface-container-low border border-outline-variant/10 rounded-2xl p-4 transition-colors group"
-                  >
-                    <div className="col-span-5 flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center font-black text-primary text-xl shrink-0">
-                        {candidate.full_name?.charAt(0)}
-                      </div>
-                      <div className="min-w-0">
-                        <h4 className="font-bold text-neutral-950 dark:text-white truncate">{candidate.full_name}</h4>
-                        <p className="text-xs text-secondary truncate">{candidate.email}</p>
-                      </div>
-                    </div>
+                {candidates.map((candidate) => {
+                  const report = candidate.report?.[0];
+                  const score = report?.total_score || 0;
+                  return (
+                    <motion.div 
+                      key={candidate.id}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      className="flex flex-col bg-surface-container-low/30 hover:bg-surface-container-low border border-outline-variant/10 rounded-2xl p-4 transition-colors group"
+                    >
+                      <div className="grid grid-cols-12 gap-4 items-center">
+                        <div className="col-span-5 flex items-center gap-4">
+                          <div className="w-12 h-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center font-black text-primary text-xl shrink-0">
+                            {candidate.full_name?.charAt(0)}
+                          </div>
+                          <div className="min-w-0">
+                            <h4 className="font-bold text-neutral-950 dark:text-white truncate">{candidate.full_name}</h4>
+                            <p className="text-xs text-secondary truncate">{candidate.email}</p>
+                          </div>
+                        </div>
 
-                    <div className="col-span-2 flex justify-center">
-                      <div className={`px-3 py-1 rounded-full border text-xs font-black ${getScoreColor(score)}`}>
-                        {score}%
+                        <div className="col-span-2 flex justify-center">
+                          <div className={`px-3 py-1 rounded-full border text-xs font-black ${getScoreColor(score)}`}>
+                            {score}%
+                          </div>
+                        </div>
+
+                        <div className="col-span-3 flex justify-center">
+                          <span className={`text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1 ${
+                            candidate.status === 'HIRED' ? 'bg-green-100 text-green-700' :
+                            candidate.status === 'REJECTED' ? 'bg-red-100 text-red-700' :
+                            'bg-blue-100 text-blue-700'
+                          }`}>
+                            <span className="material-symbols-outlined text-[12px]">
+                              {candidate.status === 'HIRED' ? 'check_circle' : 
+                               candidate.status === 'REJECTED' ? 'cancel' : 'pending'}
+                            </span>
+                            {candidate.status}
+                          </span>
+                        </div>
+
+                        <div className="col-span-2 text-right">
+                          <button 
+                            onClick={() => setSelectedCandidate(candidate)}
+                            className="text-[10px] font-black uppercase tracking-tighter text-primary hover:underline group-hover:translate-x-1 transition-all flex items-center gap-1 ml-auto"
+                          >
+                            Details <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                          </button>
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="col-span-3 flex justify-center">
-                      <span className={`text-[10px] font-bold px-2 py-1 rounded flex items-center gap-1 ${
-                        candidate.status === 'HIRED' ? 'bg-green-100 text-green-700' :
-                        candidate.status === 'REJECTED' ? 'bg-red-100 text-red-700' :
-                        'bg-blue-100 text-blue-700'
-                      }`}>
-                        <span className="material-symbols-outlined text-[12px]">
-                          {candidate.status === 'HIRED' ? 'check_circle' : 
-                           candidate.status === 'REJECTED' ? 'cancel' : 'pending'}
-                        </span>
-                        {candidate.status}
-                      </span>
-                    </div>
-
-                    <div className="col-span-2 text-right">
-                      <button 
-                        onClick={() => setSelectedCandidate(candidate)}
-                        className="text-[10px] font-black uppercase tracking-tighter text-primary hover:underline group-hover:translate-x-1 transition-all flex items-center gap-1 ml-auto"
-                      >
-                        Details <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                      </button>
-                    </div>
-                  </motion.div>
-                );
-              })}
+                      {/* Performance Breakdown - Added as per user request */}
+                      <div className="mt-4 pt-4 border-t border-outline-variant/5 grid grid-cols-3 gap-4">
+                        <div className="flex flex-col gap-1">
+                          <span className="text-[9px] font-bold text-secondary uppercase tracking-widest">Technical</span>
+                          <div className="flex items-center gap-2">
+                            <div className="h-1 flex-1 bg-white/5 rounded-full overflow-hidden">
+                              <div className="h-full bg-indigo-500" style={{ width: `${report?.technical_score || 0}%` }} />
+                            </div>
+                            <span className="text-[10px] font-bold text-neutral-600 dark:text-neutral-400">{report?.technical_score || 0}%</span>
+                          </div>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <span className="text-[9px] font-bold text-secondary uppercase tracking-widest">Logic</span>
+                          <div className="flex items-center gap-2">
+                            <div className="h-1 flex-1 bg-white/5 rounded-full overflow-hidden">
+                              <div className="h-full bg-blue-500" style={{ width: `${report?.logic_score || 0}%` }} />
+                            </div>
+                            <span className="text-[10px] font-bold text-neutral-600 dark:text-neutral-400">{report?.logic_score || 0}%</span>
+                          </div>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <span className="text-[9px] font-bold text-secondary uppercase tracking-widest">Integrity</span>
+                          <div className="flex items-center gap-2">
+                            <div className="h-1 flex-1 bg-white/5 rounded-full overflow-hidden">
+                              <div className="h-full bg-green-500" style={{ width: `${report?.integrity_score || 0}%` }} />
+                            </div>
+                            <span className="text-[10px] font-bold text-neutral-600 dark:text-neutral-400">{report?.integrity_score || 0}%</span>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center py-20 text-center">

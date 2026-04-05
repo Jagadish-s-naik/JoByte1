@@ -45,9 +45,9 @@ const Footer: React.FC = () => {
       links: [
         { label: 'Privacy Policy', href: '/privacy' },
         { label: 'Terms of Service', href: '/terms' },
-        { label: 'Cookie Policy', href: '#' },
-        { label: 'Integrity Protocol', href: '#' },
-        { label: 'Legal Notice', href: '#' }
+        { label: 'Cookie Policy', href: '/privacy#cookies' },
+        { label: 'Integrity Protocol', href: '/terms#integrity' },
+        { label: 'Legal Notice', href: '/terms#notice' }
       ]
     }
   ];
@@ -117,18 +117,35 @@ const Footer: React.FC = () => {
               <ul className="space-y-4">
                 {section.links.map((link) => (
                   <li key={link.label}>
-                    <a 
-                      href={link.href}
-                      className="group flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400 hover:text-primary dark:hover:text-white transition-all font-semibold"
-                    >
-                      <span className="w-0 overflow-hidden group-hover:w-3 transition-all duration-300 text-primary opacity-0 group-hover:opacity-100 italic">/</span>
-                      <span>{link.label}</span>
-                      {link.badge && (
-                         <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-[9px] font-black uppercase text-primary ring-1 ring-inset ring-primary/20 ml-1">
-                           {link.badge}
-                         </span>
-                      )}
-                    </a>
+                    {link.href.startsWith('/') ? (
+                      <Link 
+                        to={link.href}
+                        className="group flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400 hover:text-primary dark:hover:text-white transition-all font-semibold"
+                      >
+                        <span className="w-0 overflow-hidden group-hover:w-3 transition-all duration-300 text-primary opacity-0 group-hover:opacity-100 italic">/</span>
+                        <span>{link.label}</span>
+                        {link.badge && (
+                           <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-[9px] font-black uppercase text-primary ring-1 ring-inset ring-primary/20 ml-1">
+                             {link.badge}
+                           </span>
+                        )}
+                      </Link>
+                    ) : (
+                      <a 
+                        href={link.href}
+                        target={link.href.startsWith('http') ? "_blank" : undefined}
+                        rel={link.href.startsWith('http') ? "noopener noreferrer" : undefined}
+                        className="group flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400 hover:text-primary dark:hover:text-white transition-all font-semibold"
+                      >
+                        <span className="w-0 overflow-hidden group-hover:w-3 transition-all duration-300 text-primary opacity-0 group-hover:opacity-100 italic">/</span>
+                        <span>{link.label}</span>
+                        {link.badge && (
+                           <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-[9px] font-black uppercase text-primary ring-1 ring-inset ring-primary/20 ml-1">
+                             {link.badge}
+                           </span>
+                        )}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
