@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Lock, Eye, FileText, Mail, Phone, MapPin, CheckCircle2 } from 'lucide-react';
 
