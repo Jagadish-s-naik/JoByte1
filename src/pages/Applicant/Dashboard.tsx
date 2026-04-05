@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
 import { useNavigate } from 'react-router-dom';
 import ApplicationProgressModal from '../../components/Applicant/ApplicationProgressModal';
+import { motion, AnimatePresence } from 'framer-motion';
 
 
 interface Mission {
@@ -24,6 +25,9 @@ const ApplicantDashboard: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [applications, setApplications] = useState<Application[]>([]);
   const [selectedApp, setSelectedApp] = useState<any>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeStatus, setActiveStatus] = useState('All');
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const navigate = useNavigate();
   
   const [stats, setStats] = useState([
@@ -100,6 +104,20 @@ const ApplicantDashboard: React.FC = () => {
     fetchDashboardData();
   }, []);
 
+  // Filtered Applications logic
+  const filteredApplications = React.useMemo(() => {
+    return applications.filter(app => {
+      const matchesSearch = 
+        (app.mission?.title?.toLowerCase() || '').includes(searchQuery.toLowerCase()) || 
+        (app.mission?.company?.toLowerCase() || '').includes(searchQuery.toLowerCase());
+      
+      const matchesStatus = 
+        activeStatus === 'All' || app.status === activeStatus;
+      
+      return matchesSearch && matchesStatus;
+    });
+  }, [applications, searchQuery, activeStatus]);
+
   if (loading) return null;
 
   const getStatusStyle = (status: string) => {
@@ -128,12 +146,64 @@ const ApplicantDashboard: React.FC = () => {
               <input 
                 type="text" 
                 placeholder="Search applications..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 bg-white border border-outline-variant/40 rounded-lg focus:ring-2 focus:ring-neutral-950 focus:border-neutral-950 transition-all text-sm"
               />
             </div>
-            <button className="p-2 border bg-white border-outline-variant/40 rounded-lg hover:bg-surface-container-low transition-colors">
-              <span className="material-symbols-outlined text-neutral-600">filter_list</span>
-            </button>
+            <div className="relative">
+              <button 
+                onClick={() => setIsFilterOpen(!isFilterOpen)}
+                className={`p-2 border transition-all rounded-lg flex items-center justify-center ${
+                  isFilterOpen || activeStatus !== 'All' 
+                    ? 'bg-neutral-950 border-neutral-950 text-white' 
+                    : 'bg-white border-outline-variant/40 text-neutral-600 hover:bg-surface-container-low'
+                }`}
+              >
+                <span className="material-symbols-outlined">filter_list</span>
+              </button>
+
+              <AnimatePresence>
+                {isFilterOpen && (
+                  <>
+                    {/* Overlay to close on outside click */}
+                    <div 
+                      className="fixed inset-0 z-40" 
+                      onClick={() => setIsFilterOpen(false)} 
+                    />
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      className="absolute right-0 mt-2 w-48 bg-white border border-outline-variant/20 rounded-xl shadow-2xl z-50 overflow-hidden"
+                    >
+                      <div className="p-2">
+                        <p className="text-[10px] font-black text-neutral-400 uppercase tracking-widest px-3 py-2">Filter by Status</p>
+                        {['All', 'INVITED', 'IN_PROGRESS', 'COMPLETED'].map((status) => (
+                          <button
+                            key={status}
+                            onClick={() => {
+                              setActiveStatus(status);
+                              setIsFilterOpen(false);
+                            }}
+                            className={`w-full text-left px-3 py-2 rounded-lg text-sm font-bold transition-colors flex items-center justify-between ${
+                              activeStatus === status 
+                                ? 'bg-primary/10 text-primary' 
+                                : 'text-neutral-600 hover:bg-surface-container-low'
+                            }`}
+                          >
+                            {status.replace('_', ' ')}
+                            {activeStatus === status && (
+                              <span className="material-symbols-outlined text-sm">check</span>
+                            )}
+                          </button>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
         </div>
 
@@ -162,9 +232,9 @@ const ApplicantDashboard: React.FC = () => {
               <a href="#" className="text-sm font-bold text-primary hover:underline">View All ›</a>
             </div>
 
-            {applications.length > 0 ? (
+            {filteredApplications.length > 0 ? (
               <div className="space-y-4">
-                {applications.map((app, i) => (
+                {filteredApplications.map((app, i) => (
                   <div key={app.id || i} className="bg-white border border-outline-variant/40 p-5 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between group hover:border-primary/40 transition-all shadow-sm">
                     <div className="flex items-center gap-4 mb-4 sm:mb-0">
                       <div className="w-12 h-12 rounded-lg bg-surface-container-low border border-outline-variant/20 flex items-center justify-center font-bold text-xl text-neutral-700">
@@ -181,7 +251,7 @@ const ApplicantDashboard: React.FC = () => {
                       </span>
                       <button 
                         onClick={() => setSelectedApp(app)}
-                        className="text-neutral-400 hover:text-neutral-950 transition-colors p-2 hover:bg-neutral-50 rounded-full"
+                        className="text-neutral-400 hover:text-neutral-950 transition-colors p-2 hover:bg-neutral-50 rounded-full flex items-center justify-center"
                         title="View detailed progress"
                       >
                         <span className="material-symbols-outlined">chevron_right</span>

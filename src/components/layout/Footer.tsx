@@ -120,19 +120,19 @@ const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-4">
               <li>
-                <a href="mailto:contact@jobyte.ai" className="flex items-center gap-3 text-sm text-neutral-500 dark:text-neutral-400 hover:text-primary transition-colors">
+                <a href="mailto:horizonhacks@gmail.com" className="flex items-center gap-3 text-sm text-neutral-500 dark:text-neutral-400 hover:text-primary transition-colors">
                   <div className="w-8 h-8 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                     <Mail size={16} />
                   </div>
-                  <span>contact@jobyte.ai</span>
+                  <span>horizonhacks@gmail.com</span>
                 </a>
               </li>
               <li>
-                <a href="tel:+1800123BYTE" className="flex items-center gap-3 text-sm text-neutral-500 dark:text-neutral-400 hover:text-primary transition-colors">
+                <a href="tel:+916360869590" className="flex items-center gap-3 text-sm text-neutral-500 dark:text-neutral-400 hover:text-primary transition-colors">
                   <div className="w-8 h-8 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                     <Phone size={16} />
                   </div>
-                  <span>+1 (800) 123-BYTE</span>
+                  <span>+91 6360869590</span>
                 </a>
               </li>
               <li>
@@ -140,7 +140,7 @@ const Footer: React.FC = () => {
                   <div className="w-8 h-8 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
                     <MapPin size={16} />
                   </div>
-                  <span>San Francisco, CA</span>
+                  <span>Mangalore, Karnataka</span>
                 </div>
               </li>
             </ul>

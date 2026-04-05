@@ -25,12 +25,23 @@ import type { Profile as UserProfile, ExperienceItem, EducationItem, SocialLinks
 type Tab = 'overview' | 'professional' | 'settings';
 
 const Profile: React.FC = () => {
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [activeTab, setActiveTab] = useState<Tab>('overview');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+
+  // Local state for UI-only toggles
+  const [toggles, setToggles] = useState<Record<string, boolean>>({
+    'New Job Recommendations': true,
+    'Assessment Phase Updates': true,
+    'Company Newsletters': false,
+    'Public Profile Visibility': true,
+    'Show VJSA Performance Scores': true,
+    'Anonymous Application Mode': false,
+  });
 
   useEffect(() => {
     fetchProfile();
@@ -158,6 +169,31 @@ const Profile: React.FC = () => {
     updateProfileField('skills', profile?.skills?.filter(s => s !== skillToRemove));
   };
 
+  const handleImageClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 10 * 1024 * 1024) {
+        setErrorMsg('Image size must be less than 10MB');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target?.result && typeof event.target.result === 'string') {
+          updateProfileField('avatar_url', event.target.result);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleToggle = (label: string) => {
+    setToggles(prev => ({ ...prev, [label]: !prev[label] }));
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -173,7 +209,7 @@ const Profile: React.FC = () => {
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
         <Link 
           to={profile?.role === 'employer' ? '/employer/dashboard' : '/applicant/dashboard'}
-          className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors group mb-8 w-fit"
+          className="flex items-center gap-2 text-slate-400 hover:text-slate-900 transition-colors group mb-8 w-fit"
         >
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
           <span className="text-sm font-medium uppercase tracking-widest">Back to Dashboard</span>
@@ -195,7 +231,18 @@ const Profile: React.FC = () => {
                       <User className="text-slate-500" size={60} />
                     </div>
                   )}
-                  <button className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-2xl">
+                  <input 
+                    type="file" 
+                    ref={fileInputRef} 
+                    onChange={handleFileChange} 
+                    className="hidden" 
+                    accept="image/*"
+                  />
+                  <button 
+                    type="button"
+                    onClick={handleImageClick}
+                    className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-2xl cursor-pointer pointer-events-auto"
+                  >
                     <Camera className="text-white" size={24} />
                   </button>
                 </div>
@@ -392,14 +439,18 @@ const Profile: React.FC = () => {
                       
                       <div className="space-y-4">
                         {profile.experience?.map((exp, idx) => (
-                          <div key={idx} className="p-6 bg-slate-800/30 rounded-3xl border border-white/5 relative group">
-                            <button 
-                              type="button" 
-                              onClick={() => removeExperience(idx)}
-                              className="absolute top-6 right-6 text-slate-600 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100"
-                            >
-                              <Trash2 size={18} />
-                            </button>
+                          <div key={idx} className="p-6 bg-slate-800/30 rounded-3xl border border-white/5 relative group overflow-hidden">
+                            <div className="flex justify-between items-start mb-6 -mt-2">
+                              <h4 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Experience Entry #{idx + 1}</h4>
+                              <button 
+                                type="button" 
+                                onClick={() => removeExperience(idx)}
+                                className="p-2 text-slate-500 hover:text-red-400 hover:bg-red-400/10 rounded-xl transition-all"
+                                title="Remove role"
+                              >
+                                <Trash2 size={18} />
+                              </button>
+                            </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                               <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <Input 
@@ -444,13 +495,17 @@ const Profile: React.FC = () => {
                       <div className="space-y-4">
                         {profile.education?.map((edu, idx) => (
                           <div key={idx} className="p-6 bg-slate-800/30 rounded-3xl border border-white/5 relative group">
-                            <button 
-                              type="button" 
-                              onClick={() => removeEducation(idx)}
-                              className="absolute top-6 right-6 text-slate-600 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100"
-                            >
-                              <Trash2 size={18} />
-                            </button>
+                            <div className="flex justify-between items-start mb-6 -mt-2">
+                              <h4 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Qualification #{idx + 1}</h4>
+                              <button 
+                                type="button" 
+                                onClick={() => removeEducation(idx)}
+                                className="p-2 text-slate-500 hover:text-red-400 hover:bg-red-400/10 rounded-xl transition-all"
+                                title="Remove qualification"
+                              >
+                                <Trash2 size={18} />
+                              </button>
+                            </div>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                               <Input 
                                 placeholder="University/School" 
@@ -582,20 +637,44 @@ const Profile: React.FC = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                       <div className="p-6 bg-slate-800/30 rounded-3xl border border-white/5">
+                        <div className="p-6 bg-slate-800/30 rounded-3xl border border-white/5">
                           <h4 className="text-white font-bold mb-4">Email Notifications</h4>
                           <div className="space-y-3">
-                             <ToggleLabel label="New Job Recommendations" />
-                             <ToggleLabel label="Assessment Phase Updates" />
-                             <ToggleLabel label="Company Newsletters" />
+                             <Toggle 
+                               label="New Job Recommendations" 
+                               checked={toggles['New Job Recommendations']} 
+                               onChange={() => handleToggle('New Job Recommendations')} 
+                             />
+                             <Toggle 
+                               label="Assessment Phase Updates" 
+                               checked={toggles['Assessment Phase Updates']} 
+                               onChange={() => handleToggle('Assessment Phase Updates')} 
+                             />
+                             <Toggle 
+                               label="Company Newsletters" 
+                               checked={toggles['Company Newsletters']} 
+                               onChange={() => handleToggle('Company Newsletters')} 
+                             />
                           </div>
                        </div>
                        <div className="p-6 bg-slate-800/30 rounded-3xl border border-white/5">
                           <h4 className="text-white font-bold mb-4">Privacy Controls</h4>
                           <div className="space-y-3">
-                             <ToggleLabel label="Public Profile Visibility" />
-                             <ToggleLabel label="Show VJSA Performance Scores" />
-                             <ToggleLabel label="Anonymous Application Mode" />
+                             <Toggle 
+                               label="Public Profile Visibility" 
+                               checked={toggles['Public Profile Visibility']} 
+                               onChange={() => handleToggle('Public Profile Visibility')} 
+                             />
+                             <Toggle 
+                               label="Show VJSA Performance Scores" 
+                               checked={toggles['Show VJSA Performance Scores']} 
+                               onChange={() => handleToggle('Show VJSA Performance Scores')} 
+                             />
+                             <Toggle 
+                               label="Anonymous Application Mode" 
+                               checked={toggles['Anonymous Application Mode']} 
+                               onChange={() => handleToggle('Anonymous Application Mode')} 
+                             />
                           </div>
                        </div>
                     </div>
@@ -669,13 +748,21 @@ const Input = (props: React.InputHTMLAttributes<HTMLInputElement>) => (
   />
 );
 
-const ToggleLabel = ({ label }: { label: string }) => (
-  <label className="flex items-center justify-between group cursor-pointer">
+const Toggle = ({ label, checked, onChange }: { label: string, checked: boolean, onChange: () => void }) => (
+  <button 
+    type="button"
+    onClick={onChange}
+    className="flex items-center justify-between w-full group cursor-pointer"
+  >
     <span className="text-sm text-slate-400 group-hover:text-slate-200 transition-colors">{label}</span>
-    <div className="w-10 h-5 bg-surface-800 rounded-full border border-white/10 relative">
-      <div className="absolute top-1 left-1 w-2.5 h-2.5 bg-slate-500 rounded-full" />
+    <div className={`w-10 h-5 rounded-full border transition-all relative ${checked ? 'bg-primary/20 border-primary/50' : 'bg-surface-800 border-white/10'}`}>
+      <motion.div 
+        animate={{ x: checked ? 20 : 0 }}
+        transition={{ type: "spring", stiffness: 500, damping: 30 }}
+        className={`absolute top-1 left-1 w-2.5 h-2.5 rounded-full transition-colors ${checked ? 'bg-primary shadow-[0_0_8px_rgba(var(--primary-rgb),0.5)]' : 'bg-slate-500'}`} 
+      />
     </div>
-  </label>
+  </button>
 );
 
 export default Profile;

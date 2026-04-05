@@ -125,7 +125,7 @@ const Jobs: React.FC = () => {
             {user && (
               <Link 
                 to={role === 'employer' ? '/employer/dashboard' : '/applicant/dashboard'}
-                className="p-2 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-full transition-colors text-neutral-500 group"
+                className="p-2 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-full transition-colors text-neutral-500 group mt-1.5 md:mt-2.5"
               >
                 <span className="material-symbols-outlined text-xl group-hover:-translate-x-1 transition-transform">arrow_back</span>
               </Link>
@@ -143,7 +143,7 @@ const Jobs: React.FC = () => {
             <div className="flex-1 flex items-center px-4 gap-3">
               <span className="material-symbols-outlined text-primary group-focus-within:scale-110 transition-transform">search</span>
               <input 
-                className="w-full border-none focus:ring-0 text-sm font-bold placeholder:text-neutral-400 placeholder:font-medium" 
+                className="w-full border-none focus:ring-0 focus:outline-none text-sm font-bold placeholder:text-neutral-400 placeholder:font-medium" 
                 placeholder="Job title, skills or keywords" 
                 type="text"
                 value={searchTerm}
@@ -154,7 +154,7 @@ const Jobs: React.FC = () => {
             <div className="flex-1 flex items-center px-4 gap-3 hidden sm:flex">
               <span className="material-symbols-outlined text-primary">location_on</span>
               <input 
-                className="w-full border-none focus:ring-0 text-sm font-bold placeholder:text-neutral-400 placeholder:font-medium" 
+                className="w-full border-none focus:ring-0 focus:outline-none text-sm font-bold placeholder:text-neutral-400 placeholder:font-medium" 
                 placeholder="Location or Remote" 
                 type="text"
                 value={locationSearch}
