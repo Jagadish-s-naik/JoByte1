@@ -100,6 +100,7 @@ const Login: React.FC = () => {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                maxLength={250}
                 className="block w-full h-[44px] pl-10 pr-3 bg-white border border-[#E5E7EB] rounded-lg text-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary placeholder:text-neutral-400" 
                 placeholder="name@company.com"
               />
@@ -121,6 +122,7 @@ const Login: React.FC = () => {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                maxLength={250}
                 className="block w-full h-[44px] pl-10 pr-3 bg-white border border-[#E5E7EB] rounded-lg text-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary placeholder:text-neutral-400" 
                 placeholder="••••••••"
               />

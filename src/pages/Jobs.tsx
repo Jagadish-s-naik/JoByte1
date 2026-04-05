@@ -148,6 +148,7 @@ const Jobs: React.FC = () => {
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
+                maxLength={250}
               />
             </div>
             <div className="h-8 w-[1px] bg-neutral-200"></div>
@@ -159,6 +160,7 @@ const Jobs: React.FC = () => {
                 type="text"
                 value={locationSearch}
                 onChange={(e) => setLocationSearch(e.target.value)}
+                maxLength={250}
               />
             </div>
             <button 

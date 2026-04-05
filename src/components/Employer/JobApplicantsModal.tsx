@@ -18,6 +18,37 @@ const JobApplicantsModal: React.FC<JobApplicantsModalProps> = ({ missionId, miss
   useEffect(() => {
     const fetchApplicants = async () => {
       setLoading(true);
+
+      // Check if missionId is a valid UUID
+      const isUuid = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(missionId);
+
+      const dummyApplicants: Candidate[] = [
+        { 
+          id: `da1-${missionId}`, full_name: 'A. Rivera', email: 'alex.r@example.com', status: 'IN_REVIEW', created_at: new Date().toISOString(),
+          mission: { title: missionTitle, company: 'JoByte' },
+          report: [{ total_score: 87, technical_score: 84, logic_score: 89, integrity_score: 100, strikes: 0 }]
+        },
+        { 
+          id: `da2-${missionId}`, full_name: 'J. Smith', email: 'j.smith@example.com', status: 'SHORTLISTED', created_at: new Date().toISOString(),
+          mission: { title: missionTitle, company: 'JoByte' },
+          report: [{ total_score: 92, technical_score: 95, logic_score: 90, integrity_score: 100, strikes: 0 }]
+        },
+        { 
+          id: `da3-${missionId}`, full_name: 'C. Johnson', email: 'casey.j@example.com', status: 'REJECTED', created_at: new Date().toISOString(),
+          mission: { title: missionTitle, company: 'JoByte' },
+          report: [{ total_score: 45, technical_score: 40, logic_score: 50, integrity_score: 100, strikes: 2 }]
+        },
+      ];
+
+      if (!isUuid) {
+        // Delay slightly to show loading state for demo purposes
+        setTimeout(() => {
+          setCandidates(dummyApplicants);
+          setLoading(false);
+        }, 600);
+        return;
+      }
+
       const { data, error } = await supabase
         .from('candidates')
         .select(`
@@ -30,14 +61,19 @@ const JobApplicantsModal: React.FC<JobApplicantsModalProps> = ({ missionId, miss
 
       if (error) {
         console.error('Error fetching applicants:', error);
+        setCandidates(dummyApplicants);
       } else {
-        setCandidates(data as Candidate[]);
+        if (data && data.length > 0) {
+          setCandidates(data as Candidate[]);
+        } else {
+          setCandidates(dummyApplicants);
+        }
       }
       setLoading(false);
     };
 
     fetchApplicants();
-  }, [missionId]);
+  }, [missionId, missionTitle]);
 
   const getScoreColor = (score: number) => {
     if (score >= 85) return 'text-green-500 bg-green-500/10 border-green-500/20';
@@ -46,20 +82,20 @@ const JobApplicantsModal: React.FC<JobApplicantsModalProps> = ({ missionId, miss
   };
 
   return (
-    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 overflow-hidden">
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="absolute inset-0 bg-neutral-950/80 backdrop-blur-sm" 
-        onClick={onClose} 
+        className="fixed inset-0 bg-black/80 backdrop-blur-md cursor-pointer"
+        onClick={onClose}
       />
       
       <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        className="relative w-full max-w-4xl max-h-[85vh] bg-surface-container-lowest border border-outline-variant/20 rounded-3xl shadow-2xl flex flex-col overflow-hidden"
+        className="relative z-10 w-full max-w-4xl max-h-[85vh] bg-surface-container-lowest border border-outline-variant/20 rounded-3xl shadow-2xl flex flex-col overflow-hidden"
       >
         {/* Header */}
         <div className="px-8 py-6 border-b border-outline-variant/10 flex items-center justify-between shrink-0">

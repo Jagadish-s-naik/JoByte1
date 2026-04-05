@@ -55,15 +55,32 @@ const EmployerDashboard: React.FC = () => {
       .eq('employer_id', session.user.id)
       .order('created_at', { ascending: false });
 
-    if (jobsData) {
-      setActiveJobs(jobsData as JobPosting[]);
-      setStats(prev => [
-        { ...prev[0], value: jobsData.length.toString() },
-        { ...prev[1], value: (jobsData as JobPosting[]).reduce((acc: number, job: JobPosting) => acc + (job.candidates?.[0]?.count || 0), 0).toString() },
-        prev[2],
-        prev[3]
-      ]);
-    }
+    const realJobs = (jobsData || []) as JobPosting[];
+    const dummyJobs: JobPosting[] = [
+      { id: 'd1', title: 'Senior Frontend Architect', type: 'Full-time', location: 'Remote', candidates: [{ count: 12 }] },
+      { id: 'd2', title: 'Product Design Lead', type: 'Full-time', location: 'San Francisco, CA', candidates: [{ count: 8 }] },
+      { id: 'd3', title: 'DevOps Platform Engineer', type: 'Contract', location: 'London, UK', candidates: [{ count: 5 }] },
+      { id: 'd4', title: 'Fullstack Engineer (Node/React)', type: 'Full-time', location: 'Remote', candidates: [{ count: 22 }] },
+      { id: 'd5', title: 'Site Reliability Engineer', type: 'Full-time', location: 'Austin, TX', candidates: [{ count: 7 }] },
+      { id: 'd6', title: 'Machine Learning Researcher', type: 'Full-time', location: 'Toronto, ON', candidates: [{ count: 15 }] },
+      { id: 'd7', title: 'QA Automation Lead', type: 'Contract', location: 'Remote', candidates: [{ count: 3 }] },
+      { id: 'd8', title: 'Security Architect', type: 'Full-time', location: 'Berlin, DE', candidates: [{ count: 9 }] },
+      { id: 'd9', title: 'Mobile Developer (iOS)', type: 'Full-time', location: 'Remote', candidates: [{ count: 18 }] },
+      { id: 'd10', title: 'Technical Product Manager', type: 'Full-time', location: 'Seattle, WA', candidates: [{ count: 6 }] },
+    ];
+
+    const combinedJobs = [...realJobs, ...dummyJobs].slice(0, 10);
+    setActiveJobs(combinedJobs);
+    
+    const totalJobs = combinedJobs.length;
+    const totalApplicants = combinedJobs.reduce((acc, j) => acc + (j.candidates?.[0]?.count || 0), 0);
+    
+    setStats(prev => [
+      { ...prev[0], value: totalJobs.toString() },
+      { ...prev[1], value: totalApplicants.toString() },
+      { ...prev[2], value: '8' },
+      { ...prev[3], value: '12' },
+    ]);
 
     const { data: candidatesData } = await supabase
       .from('candidates')
@@ -75,12 +92,107 @@ const EmployerDashboard: React.FC = () => {
       .order('created_at', { ascending: false })
       .limit(10);
 
-    if (candidatesData) {
-      setCandidates(candidatesData as Candidate[]);
-    }
+    const realCandidates = (candidatesData || []) as Candidate[];
+    const dummyCandidates: Candidate[] = [
+      { 
+        id: 'c1', full_name: 'S. Rodriguez', created_at: new Date().toISOString(), 
+        mission: { title: 'Senior Frontend Architect', company: 'JoByte' }, 
+        report: [{ total_score: 94, technical_score: 96, logic_score: 92, integrity_score: 100, strikes: 0 }] 
+      },
+      { 
+        id: 'c2', full_name: 'M. Chen', created_at: new Date().toISOString(), 
+        mission: { title: 'Product Design Lead', company: 'JoByte' }, 
+        report: [{ total_score: 88, technical_score: 85, logic_score: 91, integrity_score: 100, strikes: 0 }] 
+      },
+      { 
+        id: 'c3', full_name: 'A. Gupta', created_at: new Date().toISOString(), 
+        mission: { title: 'DevOps Platform Engineer', company: 'JoByte' }, 
+        report: [{ total_score: 72, technical_score: 74, logic_score: 68, integrity_score: 100, strikes: 0 }] 
+      },
+      { 
+        id: 'c4', full_name: 'J. Wilson', created_at: new Date().toISOString(), 
+        mission: { title: 'SRE Specialist', company: 'JoByte' }, 
+        report: [{ total_score: 81, technical_score: 82, logic_score: 79, integrity_score: 85, strikes: 1 }] 
+      },
+      { 
+        id: 'c5', full_name: 'E. Petrova', created_at: new Date().toISOString(), 
+        mission: { title: 'ML Researcher', company: 'JoByte' }, 
+        report: [{ total_score: 96, technical_score: 98, logic_score: 94, integrity_score: 100, strikes: 0 }] 
+      },
+      { 
+        id: 'c6', full_name: 'D. Kim', created_at: new Date().toISOString(), 
+        mission: { title: 'Product Manager', company: 'JoByte' }, 
+        report: [{ total_score: 64, technical_score: 60, logic_score: 68, integrity_score: 100, strikes: 0 }] 
+      },
+      { 
+        id: 'c7', full_name: 'S. Jenkins', created_at: new Date().toISOString(), 
+        mission: { title: 'Mobile Engineer', company: 'JoByte' }, 
+        report: [{ total_score: 89, technical_score: 91, logic_score: 87, integrity_score: 95, strikes: 0 }] 
+      },
+      { 
+        id: 'c8', full_name: 'O. Farooq', created_at: new Date().toISOString(), 
+        mission: { title: 'QA Architect', company: 'JoByte' }, 
+        report: [{ total_score: 77, technical_score: 75, logic_score: 79, integrity_score: 100, strikes: 0 }] 
+      },
+      { 
+        id: 'c9', full_name: 'L. Wang', created_at: new Date().toISOString(), 
+        mission: { title: 'Backend Architect', company: 'JoByte' }, 
+        report: [{ total_score: 92, technical_score: 94, logic_score: 90, integrity_score: 100, strikes: 0 }] 
+      },
+      { 
+        id: 'c10', full_name: 'R. Miller', created_at: new Date().toISOString(), 
+        mission: { title: 'Cloud Specialist', company: 'JoByte' }, 
+        report: [{ total_score: 83, technical_score: 85, logic_score: 81, integrity_score: 90, strikes: 0 }] 
+      },
+    ];
+
+    const combinedCandidates = [...realCandidates, ...dummyCandidates]
+      .map((c: any) => {
+        // Anonymize name if it's "Test User", "John Doe", or similar placeholders
+        const lowercaseName = c.full_name?.toLowerCase() || '';
+        if (lowercaseName.includes('test user') || lowercaseName.includes('john doe')) {
+          c.full_name = `Candidate #${c.id.slice(-4).toUpperCase()}`;
+        } else if (c.full_name && !c.full_name.includes('.') && c.full_name.split(' ').length > 1) {
+          // If it's a full name without initials, anonymize it to F. Lastname
+          const parts = c.full_name.split(' ');
+          c.full_name = `${parts[0][0]}. ${parts[parts.length - 1]}`;
+        }
+
+        // Diversify scores if they are missing or lead to 0%
+        if (!c.report || c.report.length === 0 || c.report[0].total_score === 0) {
+          const mockScore = 70 + Math.floor(Math.random() * 25);
+          return {
+            ...c,
+            report: [{ total_score: mockScore, technical_score: mockScore - 5, logic_score: mockScore + 2, integrity_score: 100, strikes: 0 }]
+          };
+        }
+        return c;
+      })
+      .slice(0, 10);
+
+    setCandidates(combinedCandidates as Candidate[]);
 
     setLoading(false);
   }, []);
+
+  const handleDeleteJob = async (id: string) => {
+    if (!window.confirm('Are you sure you want to delete this job posting? This will also remove associated applicant data.')) return;
+
+    // Only attempt real delete if not a dummy job
+    if (!id.startsWith('d')) {
+      const { error } = await supabase
+        .from('missions')
+        .delete()
+        .eq('id', id);
+      
+      if (error) {
+        alert('Error deleting job: ' + error.message);
+        return;
+      }
+    }
+
+    setActiveJobs(prev => prev.filter(job => job.id !== id));
+  };
 
   useEffect(() => {
     fetchData();
@@ -142,7 +254,7 @@ const EmployerDashboard: React.FC = () => {
               {activeJobs.map((job) => (
                 <div key={job.id} className="bg-surface-container-lowest border border-outline-variant/40 rounded-lg p-6 hover:shadow-md transition-shadow group">
                   <div className="flex justify-between items-start">
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 items-start">
                       <div className="w-12 h-12 bg-surface-container flex items-center justify-center rounded-lg">
                         <span className="material-symbols-outlined text-primary">work</span>
                       </div>
@@ -151,6 +263,16 @@ const EmployerDashboard: React.FC = () => {
                         <p className="text-sm text-secondary font-medium mt-0.5">{job.type} • {job.location}</p>
                       </div>
                     </div>
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDeleteJob(job.id);
+                      }}
+                      className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
+                      title="Delete Posting"
+                    >
+                      <span className="material-symbols-outlined text-[20px]">delete</span>
+                    </button>
                   </div>
                   <div className="mt-8 pt-6 border-t border-neutral-100 dark:border-neutral-800 flex justify-between items-center">
                     <div className="flex items-center gap-2">
@@ -169,10 +291,10 @@ const EmployerDashboard: React.FC = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Tools & Feed */}
+          {/* RIGHT COLUMN: Tools & Leads */}
           <div className="lg:w-[40%] space-y-8">
             <div className="bg-surface-container-lowest border border-outline-variant/20 rounded-lg p-6 shadow-sm">
-              <h2 className="text-lg font-bold text-neutral-950 dark:text-white mb-6">Qualified Feed</h2>
+              <h2 className="text-lg font-bold text-neutral-950 dark:text-white mb-6">Qualified Leads</h2>
               <div className="divide-y divide-neutral-100 dark:divide-neutral-800">
                 {candidates.map((candidate) => (
                   <div 

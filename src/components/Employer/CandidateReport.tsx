@@ -30,7 +30,7 @@ const CandidateReport: React.FC<CandidateReportProps> = ({ candidate, onClose })
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+      className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
       onClick={onClose}
     >
       <motion.div 
@@ -126,7 +126,7 @@ const CandidateReport: React.FC<CandidateReportProps> = ({ candidate, onClose })
                       <Shield size={16} />
                       <span className="text-xs font-bold uppercase">Integrity</span>
                     </div>
-                    <span className="text-sm font-black">{report.integrity_score}%</span>
+                    <span className="text-2xl font-black">{report.integrity_score}%</span>
                   </div>
                   <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
                     <motion.div 
@@ -139,17 +139,24 @@ const CandidateReport: React.FC<CandidateReportProps> = ({ candidate, onClose })
               </div>
 
               {/* Anti-Cheating Telemetry */}
-              <div className={`p-4 rounded-2xl border ${report.strikes > 0 ? 'bg-red-500/5 border-red-500/20' : 'bg-green-500/5 border-green-500/20'}`}>
-                <div className="flex items-center gap-2 mb-2">
-                  {report.strikes > 0 ? <AlertTriangle className="text-red-400" size={16} /> : <CheckCircle2 className="text-green-400" size={16} />}
-                  <span className={`text-[10px] font-bold uppercase tracking-wider ${report.strikes > 0 ? 'text-red-400' : 'text-green-400'}`}>
-                    {report.strikes > 0 ? 'Potential Cheating Detected' : 'Verified Secure Session'}
-                  </span>
+              <div className={`p-5 rounded-2xl border ${report.strikes > 0 ? 'bg-red-500/10 border-red-500/20 shadow-lg shadow-red-500/5' : 'bg-green-500/10 border-green-500/20 shadow-lg shadow-green-500/5'}`}>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center ${report.strikes > 0 ? 'bg-red-500 text-white' : 'bg-green-500 text-white'}`}>
+                    {report.strikes > 0 ? <AlertTriangle size={16} /> : <CheckCircle2 size={16} />}
+                  </div>
+                  <div>
+                    <span className={`text-[10px] font-black uppercase tracking-widest ${report.strikes > 0 ? 'text-red-400' : 'text-green-400'}`}>
+                      {report.strikes > 0 ? 'Security Violation' : 'Integrity Verified'}
+                    </span>
+                    <h4 className="text-sm font-bold text-white leading-none">
+                      {report.strikes > 0 ? `${report.strikes} Strikes Detected` : 'Secure Session'}
+                    </h4>
+                  </div>
                 </div>
-                <p className="text-[10px] text-slate-500 leading-relaxed font-medium">
+                <p className="text-[11px] text-slate-400 leading-relaxed font-medium">
                   {report.strikes > 0 
-                    ? `The system detected ${report.strikes} instances of application switching or tab blurring during the assessment.` 
-                    : 'Candidate remained in full-screen focus throughout the entire 45-minute simulation session.'}
+                    ? `The system flagged ${report.strikes} unauthorized tab changes. High risk of external consultation detected.` 
+                    : 'Uninterrupted focus session. No unauthorized application switching detected during the 45-minute technical simulation.'}
                 </p>
               </div>
             </div>

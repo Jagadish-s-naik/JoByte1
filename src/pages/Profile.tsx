@@ -385,6 +385,7 @@ const Profile: React.FC = () => {
                       <div className="md:col-span-2">
                         <FieldLabel label="Brief Biography" />
                         <textarea
+                          maxLength={2000}
                           className="w-full bg-slate-800/50 border border-white/10 rounded-2xl p-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all min-h-[120px]"
                           value={profile.bio || ''}
                           onChange={(e) => updateProfileField('bio', e.target.value)}
@@ -471,6 +472,7 @@ const Profile: React.FC = () => {
                               </div>
                               <div className="md:col-span-2">
                                 <textarea
+                                  maxLength={1000}
                                   className="w-full bg-slate-800/10 border border-white/5 rounded-xl p-3 text-sm text-slate-300 focus:outline-none focus:border-primary/50 transition-all min-h-[80px]"
                                   placeholder="Key accomplishments..."
                                   value={exp.description}
@@ -610,6 +612,7 @@ const Profile: React.FC = () => {
                         <SectionTitle title="About the Company" icon={<FileText className="text-primary" size={18} />} />
                         <div className="mt-4">
                           <textarea
+                            maxLength={5000}
                             className="w-full bg-slate-800/50 border border-white/10 rounded-2xl p-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all min-h-[200px]"
                             value={profile.company_description || ''}
                             onChange={(e) => updateProfileField('company_description', e.target.value)}
@@ -743,6 +746,7 @@ const FieldLabel = ({ label }: { label: string }) => (
 
 const Input = (props: React.InputHTMLAttributes<HTMLInputElement>) => (
   <input
+    maxLength={250}
     {...props}
     className={`w-full bg-slate-800/50 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all ${props.className || ''}`}
   />

@@ -205,6 +205,7 @@ const Signup: React.FC = () => {
                           required
                           value={formData.fullName}
                           onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                          maxLength={250}
                           className="w-full bg-surface-800 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
                           placeholder="John Doe"
                         />
@@ -222,6 +223,7 @@ const Signup: React.FC = () => {
                           required
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          maxLength={250}
                           className="w-full bg-surface-800 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
                           placeholder="john@example.com"
                         />
@@ -239,6 +241,7 @@ const Signup: React.FC = () => {
                           required
                           value={formData.password}
                           onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                          maxLength={250}
                           className="w-full bg-surface-800 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
                           placeholder="Min 8 characters"
                         />

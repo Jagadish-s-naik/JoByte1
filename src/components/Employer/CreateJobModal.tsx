@@ -39,6 +39,14 @@ const CreateJobModal: React.FC<CreateJobModalProps> = ({ onClose, onSuccess }) =
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+    
+    // Hardening for salary field: strictly numeric and currency characters
+    if (name === 'salary') {
+      const sanitized = value.replace(/[^0-9$kKmM,.\-\s]/g, '');
+      setFormData(prev => ({ ...prev, [name]: sanitized }));
+      return;
+    }
+
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
@@ -130,6 +138,7 @@ ${formData.benefits ? '### Benefits\n' + formData.benefits : ''}
                     value={formData.title}
                     onChange={handleChange}
                     placeholder="e.g. Senior Frontend Engineer"
+                    maxLength={250}
                     className="w-full bg-slate-800/50 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm"
                   />
                 </div>
@@ -147,6 +156,7 @@ ${formData.benefits ? '### Benefits\n' + formData.benefits : ''}
                     value={formData.company}
                     onChange={handleChange}
                     placeholder="Company Name"
+                    maxLength={250}
                     className="w-full bg-slate-800/50 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm"
                   />
                 </div>
@@ -164,6 +174,7 @@ ${formData.benefits ? '### Benefits\n' + formData.benefits : ''}
                     value={formData.location}
                     onChange={handleChange}
                     placeholder="e.g. Remote, San Francisco"
+                    maxLength={250}
                     className="w-full bg-slate-800/50 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm"
                   />
                 </div>
@@ -180,6 +191,7 @@ ${formData.benefits ? '### Benefits\n' + formData.benefits : ''}
                     value={formData.salary}
                     onChange={handleChange}
                     placeholder="e.g. $120k - $150k"
+                    maxLength={50}
                     className="w-full bg-slate-800/50 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm"
                   />
                 </div>
@@ -231,6 +243,7 @@ ${formData.benefits ? '### Benefits\n' + formData.benefits : ''}
                   value={formData.tags}
                   onChange={handleChange}
                   placeholder="React, TypeScript, Node.js (Comma separated)"
+                  maxLength={250}
                   className="w-full bg-slate-800/50 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm"
                 />
               </div>
@@ -247,6 +260,7 @@ ${formData.benefits ? '### Benefits\n' + formData.benefits : ''}
                   value={formData.description}
                   onChange={handleChange}
                   placeholder="Describe the role and responsibilities..."
+                  maxLength={5000}
                   rows={4}
                   className="w-full bg-slate-800/50 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm resize-y custom-scrollbar"
                 />
@@ -263,6 +277,7 @@ ${formData.benefits ? '### Benefits\n' + formData.benefits : ''}
                   value={formData.requirements}
                   onChange={handleChange}
                   placeholder="List the key requirements and qualifications..."
+                  maxLength={2000}
                   rows={3}
                   className="w-full bg-slate-800/50 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm resize-y custom-scrollbar"
                 />
@@ -279,6 +294,7 @@ ${formData.benefits ? '### Benefits\n' + formData.benefits : ''}
                   value={formData.benefits}
                   onChange={handleChange}
                   placeholder="What benefits does the company provide?"
+                  maxLength={2000}
                   rows={3}
                   className="w-full bg-slate-800/50 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm resize-y custom-scrollbar"
                 />
